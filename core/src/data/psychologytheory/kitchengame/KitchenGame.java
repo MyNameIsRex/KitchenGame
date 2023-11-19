@@ -1,31 +1,32 @@
 package data.psychologytheory.kitchengame;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
+import data.psychologytheory.kitchengame.gameplay.init.GameContentInitializer;
+import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 public class KitchenGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+	private GameContentInitializer gameContentInitializer;
+	private RenderHelper renderHelper;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		this.gameContentInitializer = new GameContentInitializer();
+		this.renderHelper = new RenderHelper();
+		this.gameContentInitializer.createContents();
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		ScreenUtils.clear(0, 0, 0, 1);
+		this.renderHelper.startRendering();
+		this.renderHelper.renderTexture(GameObjectList.KITCHEN_BACKGROUND.getGameObjectInstance());
+		this.renderHelper.endRendering();
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		this.gameContentInitializer.disposeContents();
 	}
 }
