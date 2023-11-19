@@ -15,7 +15,7 @@ public class GameObjectInit implements IContent {
     @Override
     public void createContents() {
         GameObjectList.KITCHEN_BACKGROUND.setGameObjectInstance(new StationaryGameObject(0, 640, 384,
-                0, 0, "kitchen_background", TextureList.KITCHEN_BACKGROUND.getTexture()));
+                0, 0, "kitchen_background", TextureList.KITCHEN_BACKGROUND.getTexture(), 0, false));
     }
 
     @Override

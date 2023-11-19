@@ -14,7 +14,13 @@ public class GameContentInitializer {
         this.gameObjectInit.createContents();
     }
 
+    public void loadContents() {
+        this.textureInit.loadContents();
+        this.gameObjectInit.loadContents();
+    }
+
     public void disposeContents() {
         this.textureInit.disposeContents();
     }
+
 }

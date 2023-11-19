@@ -29,7 +29,7 @@ public class TextureInit implements IContent {
         for (Texture texture : TEXTURE_MAP.values()) {
             texture.dispose();
         }
-        getSpriteBatch().dispose();
+        getSpriteBatch().dispose(); 
     }
 
     public static SpriteBatch getSpriteBatch() {

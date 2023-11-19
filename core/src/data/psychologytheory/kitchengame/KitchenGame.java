@@ -8,21 +8,20 @@ import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 public class KitchenGame extends ApplicationAdapter {
 	private GameContentInitializer gameContentInitializer;
-	private RenderHelper renderHelper;
 	
 	@Override
 	public void create () {
 		this.gameContentInitializer = new GameContentInitializer();
-		this.renderHelper = new RenderHelper();
 		this.gameContentInitializer.createContents();
+		this.gameContentInitializer.loadContents();
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
-		this.renderHelper.startRendering();
-		this.renderHelper.renderTexture(GameObjectList.KITCHEN_BACKGROUND.getGameObjectInstance());
-		this.renderHelper.endRendering();
+		RenderHelper.getInstance().startRendering();
+		RenderHelper.getInstance().renderTextures();
+		RenderHelper.getInstance().endRendering();
 	}
 	
 	@Override

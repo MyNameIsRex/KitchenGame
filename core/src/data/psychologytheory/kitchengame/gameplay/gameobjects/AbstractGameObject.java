@@ -1,6 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects;
 
 import com.badlogic.gdx.graphics.Texture;
+import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 public abstract class AbstractGameObject {
     private int objID;
@@ -8,8 +9,9 @@ public abstract class AbstractGameObject {
     private float objPosX, objPosY;
     private String objName;
     private Texture texture;
+    private int zIndex;
 
-    public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture) {
+    public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, int zIndex) {
         this.objID = objID;
         this.objWidth = objWidth;
         this.objHeight = objHeight;
@@ -17,6 +19,7 @@ public abstract class AbstractGameObject {
         this.objPosY = objPosY;
         this.objName = objName;
         this.texture = texture;
+        this.zIndex = zIndex;
     }
 
     public void update() {
@@ -24,7 +27,7 @@ public abstract class AbstractGameObject {
     }
 
     public void render() {
-
+        RenderHelper.getInstance().renderTexture(this);
     }
 
     public int getObjID() {
@@ -81,5 +84,13 @@ public abstract class AbstractGameObject {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+
+    public int getZIndex() {
+        return zIndex;
+    }
+
+    public void setZIndex(int zIndex) {
+        this.zIndex = zIndex;
     }
 }
