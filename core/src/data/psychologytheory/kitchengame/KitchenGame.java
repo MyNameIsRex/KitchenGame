@@ -1,7 +1,10 @@
 package data.psychologytheory.kitchengame;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
+import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.init.GameContentInitializer;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
@@ -33,8 +36,12 @@ public class KitchenGame extends ApplicationAdapter {
 		RenderHelper.getInstance().startRendering();
 		RenderHelper.getInstance().renderTextures();
 		RenderHelper.getInstance().endRendering();
+
+		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {
+			Gdx.app.exit();
+		}
 	}
-	
+
 	@Override
 	public void dispose () {
 		this.gameContentInitializer.disposeContents();
