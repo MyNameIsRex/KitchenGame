@@ -37,6 +37,10 @@ public class RenderHelper {
         TextureInit.getSpriteBatch().end();
     }
 
+    public static float moveToCenter(int windowSize, int objSize) {
+        return (float)windowSize / 2 - (float)objSize / 2;
+    }
+
     public static RenderHelper getInstance() {
         if (instance == null) {
            instance = new RenderHelper();

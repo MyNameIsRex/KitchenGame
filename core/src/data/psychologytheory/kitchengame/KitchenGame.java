@@ -8,12 +8,23 @@ import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 public class KitchenGame extends ApplicationAdapter {
 	private GameContentInitializer gameContentInitializer;
-	
+	public static int currentWidth, currentHeight;
+	public static final int WIDTH = 1280, HEIGHT = 768;
+
 	@Override
 	public void create () {
+		currentWidth = WIDTH;
+		currentHeight = HEIGHT;
 		this.gameContentInitializer = new GameContentInitializer();
 		this.gameContentInitializer.createContents();
 		this.gameContentInitializer.loadContents();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		currentWidth = width;
+		currentHeight = height;
 	}
 
 	@Override

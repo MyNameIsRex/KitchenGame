@@ -1,5 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.init;
 
+import data.psychologytheory.kitchengame.KitchenGame;
+import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.lists.TextureList;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
@@ -15,7 +17,9 @@ public class GameObjectInit implements IContent {
     @Override
     public void createContents() {
         GameObjectList.KITCHEN_BACKGROUND.setGameObjectInstance(new StationaryGameObject(0, 640, 384,
-                0, 0, "kitchen_background", TextureList.KITCHEN_BACKGROUND.getTexture(), 0, false));
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 640),
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 384), "kitchen_background",
+                TextureList.KITCHEN_BACKGROUND.getTexture(), 0, false));
     }
 
     @Override

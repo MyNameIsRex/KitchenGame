@@ -3,7 +3,20 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
 public enum GameObjectList {
-    KITCHEN_BACKGROUND();
+    KITCHEN_BACKGROUND(),
+    FRIDGE(),
+    TABLE_TOP_LEFT(),
+    TABLE_TOP_CENTER(),
+    TABLE_TOP_DESSERT(),
+    SINK_LEFT(),
+    SINK_CENTER(),
+    SINK_RIGHT(),
+    GRILL(),
+    OVEN(),
+    STOVE_FISH(),
+    STOVE_APPETIZER(),
+    STOVE_GARNISH(),
+    HOTPLATE();
 
     private int gameObjectID;
     private AbstractGameObject gameObjectInstance;
