@@ -18,15 +18,15 @@ public class FridgeGameObject extends InteractableGameObject {
     @Override
     public void render() {
         if (isFridgeFull) {
-            RenderHelper.getInstance().renderTexture(TextureList.KITCHEN_FRIDGE_FULL.getTexture(), (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
+            RenderHelper.getInstance().renderTexture(this.getTextures()[3], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
         } else {
-            RenderHelper.getInstance().renderTexture(TextureList.KITCHEN_FRIDGE_EMPTY.getTexture(), (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
+            RenderHelper.getInstance().renderTexture(this.getTextures()[2], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
         }
 
         if (isFridgeDoorOpen) {
-            RenderHelper.getInstance().renderTexture(TextureList.KITCHEN_FRIDGE_DOOR_OPENED.getTexture(), (int) this.getObjPosX() - 6, (int) this.getObjPosY() + 2);
+            RenderHelper.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX() - 6, (int) this.getObjPosY() + 2);
         } else {
-            RenderHelper.getInstance().renderTexture(TextureList.KITCHEN_FRIDGE_DOOR_CLOSED.getTexture(), (int) this.getObjPosX(), (int) this.getObjPosY() + 2);
+            RenderHelper.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 2);
         }
     }
 
