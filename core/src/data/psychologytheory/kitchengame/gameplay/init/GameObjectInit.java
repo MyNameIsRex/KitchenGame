@@ -24,7 +24,7 @@ public class GameObjectInit implements IContent {
                 TextureList.KITCHEN_BACKGROUND.getTexture(), 0, false));
         GameObjectList.FRIDGE.setGameObjectInstance(new FridgeGameObject(1, 64, 128,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 96,
-                RenderHelper.moveToCenter(KitchenGame.currentHeight, 128) + 64, "kitchen_fridge",
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 128) + 80, "kitchen_fridge",
                 new Texture[]{TextureList.KITCHEN_FRIDGE_DOOR_CLOSED.getTexture(), TextureList.KITCHEN_FRIDGE_DOOR_OPENED.getTexture(),
                 TextureList.KITCHEN_FRIDGE_EMPTY.getTexture(), TextureList.KITCHEN_FRIDGE_FULL.getTexture()},
                 1, false, true));
@@ -36,6 +36,10 @@ public class GameObjectInit implements IContent {
                 GameObjectList.KITCHEN_BACKGROUND.getGameObjectInstance());
         GAME_OBJECT_MAP.put(GameObjectList.FRIDGE.getGameObjectID(),
                 GameObjectList.FRIDGE.getGameObjectInstance());
+    }
+
+    public void updateGameObjects() {
+        GAME_OBJECT_MAP.forEach((key, value) -> value.update());
     }
 
     @Override
