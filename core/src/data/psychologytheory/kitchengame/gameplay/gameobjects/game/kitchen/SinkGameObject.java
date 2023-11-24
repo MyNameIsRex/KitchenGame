@@ -1,4 +1,4 @@
-package data.psychologytheory.kitchengame.gameplay.gameobjects.game;
+package data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,10 +6,10 @@ import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
 
-public class SinkObject extends InteractableGameObject {
+public class SinkGameObject extends InteractableGameObject {
     private boolean isSinkFull = false;
 
-    public SinkObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
+    public SinkGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
     }
 
@@ -25,12 +25,10 @@ public class SinkObject extends InteractableGameObject {
     @Override
     public void runInteraction() {
         if (MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
-            MouseInput.getMousePosY() >= this.getObjPosY() && MouseInput.getMousePosY() <= this.getObjPosY()) {
+            MouseInput.getMousePosY() >= this.getObjPosY() + 16 && MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight() + 16) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 this.isSinkFull = !this.isSinkFull;
             }
-        } else {
-            System.out.println("Mouse Y: " + MouseInput.getMousePosY());
         }
     }
 }

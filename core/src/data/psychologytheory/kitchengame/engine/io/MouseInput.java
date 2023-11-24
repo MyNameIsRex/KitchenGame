@@ -1,6 +1,7 @@
 package data.psychologytheory.kitchengame.engine.io;
 
 import com.badlogic.gdx.Gdx;
+import data.psychologytheory.kitchengame.KitchenGame;
 
 public class MouseInput {
     public static boolean isMouseButtonPressed(int button) {
@@ -16,6 +17,6 @@ public class MouseInput {
     }
 
     public static int getMousePosY() {
-        return Gdx.input.getY();
+        return KitchenGame.currentHeight - Gdx.input.getY();
     }
 }

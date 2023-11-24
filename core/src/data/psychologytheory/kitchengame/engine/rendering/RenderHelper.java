@@ -24,7 +24,6 @@ public class RenderHelper {
             GameObjectInit.GAME_OBJECT_MAP.forEach((key, value) -> {
                 if (value.getZIndex() == currentZIndex) {
                     value.render();
-                    System.out.println("Obj: " + value.getObjName() + " | YPos: " + value.getObjPosY() + " | YPos + Height: " + (value.getObjPosY() + value.getObjHeight()));
                 }
             });
         }

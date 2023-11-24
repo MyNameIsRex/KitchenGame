@@ -6,6 +6,7 @@ public enum GameObjectList {
     KITCHEN_BACKGROUND(),
     FRIDGE(),
     TABLE_TOP_LEFT(),
+    TABLE_TOP_RIGHT(),
     TABLE_TOP_CENTER(),
     TABLE_TOP_DESSERT(),
     SINK_LEFT(),

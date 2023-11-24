@@ -1,4 +1,4 @@
-package data.psychologytheory.kitchengame.gameplay.gameobjects.game;
+package data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -33,7 +33,7 @@ public class FridgeGameObject extends InteractableGameObject {
     @Override
     public void runInteraction() {
         this.isFridgeDoorOpen = MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
-                MouseInput.getMousePosY() <= this.getObjPosY() - 48 && MouseInput.getMousePosY() >= this.getObjPosY() - this.getObjHeight() - 16;
+                MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight() - 16 && MouseInput.getMousePosY() >= this.getObjPosY() + 16;
 
         if (this.isFridgeDoorOpen) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
