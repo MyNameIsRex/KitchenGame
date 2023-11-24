@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.game.FridgeGameObject;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.game.SinkObject;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.lists.TextureList;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
@@ -28,6 +29,11 @@ public class GameObjectInit implements IContent {
                 new Texture[] {TextureList.KITCHEN_FRIDGE_DOOR_CLOSED.getTexture(), TextureList.KITCHEN_FRIDGE_DOOR_OPENED.getTexture(),
                 TextureList.KITCHEN_FRIDGE_EMPTY.getTexture(), TextureList.KITCHEN_FRIDGE_FULL.getTexture()},
                 1, false, true));
+        GameObjectList.SINK_LEFT.setGameObjectInstance(new SinkObject(2, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 32,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 48, "kitchen_sink_left",
+                new Texture[] {TextureList.KITCHEN_SINK_EMPTY.getTexture(), TextureList.KITCHEN_SINK_FULL.getTexture()},
+                1, false, true));
     }
 
     @Override
@@ -36,6 +42,8 @@ public class GameObjectInit implements IContent {
                 GameObjectList.KITCHEN_BACKGROUND.getGameObjectInstance());
         GAME_OBJECT_MAP.put(GameObjectList.FRIDGE.getGameObjectID(),
                 GameObjectList.FRIDGE.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.SINK_LEFT.getGameObjectID(),
+                GameObjectList.SINK_LEFT.getGameObjectInstance());
     }
 
     public void updateGameObjects() {
