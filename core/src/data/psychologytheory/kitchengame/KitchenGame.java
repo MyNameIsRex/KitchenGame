@@ -2,6 +2,7 @@ package data.psychologytheory.kitchengame;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
@@ -14,10 +15,13 @@ public class KitchenGame extends ApplicationAdapter {
 	private GameContentInitializer gameContentInitializer;
 	private GameObjectInit gameObjectInit;
 	public static int currentWidth, currentHeight;
-	public static final int WIDTH = 1280, HEIGHT = 768;
+	public static final int WIDTH = 1280, HEIGHT = 720;
+	public static float currentRatio = (float) currentWidth / WIDTH;
+	private Graphics.DisplayMode currentDisplayMode;
 
 	@Override
 	public void create () {
+		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
 		currentWidth = WIDTH;
 		currentHeight = HEIGHT;
 		this.gameContentInitializer = new GameContentInitializer();
@@ -31,11 +35,13 @@ public class KitchenGame extends ApplicationAdapter {
 		super.resize(width, height);
 		currentWidth = width;
 		currentHeight = height;
+		currentRatio = (float) currentWidth / WIDTH;
 	}
 
 	@Override
 	public void render () {
-		gameObjectInit.updateGameObjects();
+		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
+		this.gameObjectInit.updateGameObjects();
 
 		ScreenUtils.clear(0, 0, 0, 1);
 		RenderHelper.getInstance().startRendering();
@@ -45,10 +51,21 @@ public class KitchenGame extends ApplicationAdapter {
 		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
+
+		if (KeyboardInput.isKeyJustReleased(Input.Keys.F11)) {
+			if (Gdx.graphics.isFullscreen()) {
+				Gdx.graphics.setWindowedMode(WIDTH, HEIGHT);
+			} else {
+				Gdx.graphics.setFullscreenMode(this.currentDisplayMode);
+			}
+		}
 	}
 
 	@Override
 	public void dispose () {
+		if (Gdx.graphics.isFullscreen()) {
+			Gdx.graphics.setWindowedMode(WIDTH, HEIGHT);
+		}
 		this.gameContentInitializer.disposeContents();
 	}
 }
