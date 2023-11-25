@@ -22,6 +22,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 640),
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 384), "kitchen_background",
                 TextureList.KITCHEN_BACKGROUND.getTexture(), 0, false));
+
         GameObjectList.FRIDGE.setGameObjectInstance(new FridgeGameObject(1, 64, 128,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 96,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 128) + 80, "kitchen_fridge",
@@ -57,6 +58,39 @@ public class GameObjectInit implements IContent {
                 new Texture[] {TextureList.KITCHEN_OVEN_DOOR_CLOSED.getTexture(), TextureList.KITCHEN_OVEN_DOOR_OPENED.getTexture(),
                 TextureList.KITCHEN_OVEN_OFF.getTexture(), TextureList.KITCHEN_OVEN_ON.getTexture()},
                 1, false, true));
+
+        GameObjectList.TABLE_TOP_LEFT.setGameObjectInstance(new StationaryGameObject(8, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 96,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_left",
+                TextureList.KITCHEN_TABLE_TOP_LARGE.getTexture(), 4, false));
+        GameObjectList.STOVE_GARNISH.setGameObjectInstance(new StoveGameObject(9, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 32,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_garnish",
+                new Texture[] {TextureList.KITCHEN_STOVE_OFF.getTexture(), TextureList.KITCHEN_STOVE_ON.getTexture()},
+                1, false, true));
+        GameObjectList.STOVE_APPETIZER.setGameObjectInstance(new StoveGameObject(10, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 32,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_appetizer",
+                new Texture[] {TextureList.KITCHEN_STOVE_OFF.getTexture(), TextureList.KITCHEN_STOVE_ON.getTexture()},
+                1, false, true));
+        GameObjectList.TABLE_TOP_CENTER_CENTER.setGameObjectInstance(new StationaryGameObject(11, 32, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 96,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_center_center",
+                TextureList.KITCHEN_TABLE_TOP.getTexture(), 4, false));
+        GameObjectList.SINK_CENTER.setGameObjectInstance(new SinkGameObject(12, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 128,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 80, "kitchen_sink_center",
+                new Texture[] {TextureList.KITCHEN_SINK_EMPTY.getTexture(), TextureList.KITCHEN_SINK_FULL.getTexture()},
+                1, false, true));
+        GameObjectList.TABLE_TOP_DESSERT.setGameObjectInstance(new StationaryGameObject(13, 64, 64,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 192,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_dessert",
+                TextureList.KITCHEN_TABLE_TOP_LARGE.getTexture(), 4, false));
+
+        GameObjectList.HOTPLATE.setGameObjectInstance(new StationaryGameObject(14, 416, 32,
+                RenderHelper.moveToCenter(KitchenGame.currentWidth, 416) + 80,
+                RenderHelper.moveToCenter(KitchenGame.currentHeight, 32) - 176, "kitchen_hot_plate",
+                TextureList.KITCHEN_HOT_PLATE.getTexture(), 7, false));
     }
 
     @Override
@@ -77,6 +111,20 @@ public class GameObjectInit implements IContent {
                 GameObjectList.TABLE_TOP_RIGHT.getGameObjectInstance());
         GAME_OBJECT_MAP.put(GameObjectList.OVEN.getGameObjectID(),
                 GameObjectList.OVEN.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.TABLE_TOP_LEFT.getGameObjectID(),
+                GameObjectList.TABLE_TOP_LEFT.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.STOVE_GARNISH.getGameObjectID(),
+                GameObjectList.STOVE_GARNISH.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.STOVE_APPETIZER.getGameObjectID(),
+                GameObjectList.STOVE_APPETIZER.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.TABLE_TOP_CENTER_CENTER.getGameObjectID(),
+                GameObjectList.TABLE_TOP_CENTER_CENTER.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.SINK_CENTER.getGameObjectID(),
+                GameObjectList.SINK_CENTER.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.TABLE_TOP_DESSERT.getGameObjectID(),
+                GameObjectList.TABLE_TOP_DESSERT.getGameObjectInstance());
+        GAME_OBJECT_MAP.put(GameObjectList.HOTPLATE.getGameObjectID(),
+                GameObjectList.HOTPLATE.getGameObjectInstance());
     }
 
     public void updateGameObjects() {
