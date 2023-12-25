@@ -1,12 +1,12 @@
 package data.psychologytheory.kitchengame.gameplay.init;
 
 public class GameContentInitializer {
-    private final TextureInit textureInit;
+    private final AssetInit textureInit;
     private final GameObjectInit gameObjectInit;
     private final CharacterInit characterInit;
 
     public GameContentInitializer() {
-        this.textureInit = new TextureInit();
+        this.textureInit = new AssetInit();
         this.gameObjectInit = new GameObjectInit();
         this.characterInit = new CharacterInit();
     }

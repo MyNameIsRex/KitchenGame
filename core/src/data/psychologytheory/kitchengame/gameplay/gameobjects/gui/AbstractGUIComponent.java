@@ -1,13 +1,13 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 
+import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
 public class AbstractGUIComponent extends AbstractGameObject {
-    private int guiID;
+    private boolean displayGUIComponent = false;
 
-    public AbstractGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, int guiID) {
+    public AbstractGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, null, zIndex);
-        this.guiID = guiID;
     }
 
     @Override
@@ -15,11 +15,11 @@ public class AbstractGUIComponent extends AbstractGameObject {
 
     }
 
-    public int getGUIID() {
-        return this.guiID;
+    public boolean isDisplayGUIComponent() {
+        return displayGUIComponent;
     }
 
-    public void setGUIID(int guiID) {
-        this.guiID = guiID;
+    public void setDisplayGUIComponent(boolean displayGUIComponent) {
+        this.displayGUIComponent = displayGUIComponent;
     }
 }

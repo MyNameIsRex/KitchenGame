@@ -45,7 +45,7 @@ public class KitchenGame extends ApplicationAdapter {
 
 		ScreenUtils.clear(0, 0, 0, 1);
 		RenderHelper.getInstance().startRendering();
-		RenderHelper.getInstance().renderTextures();
+		RenderHelper.getInstance().renderLayers();
 		RenderHelper.getInstance().endRendering();
 
 		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {

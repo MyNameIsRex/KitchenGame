@@ -6,7 +6,6 @@ import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
-import data.psychologytheory.kitchengame.gameplay.lists.TextureList;
 
 public class FridgeGameObject extends InteractableGameObject {
     private boolean isFridgeFull = false;
