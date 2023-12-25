@@ -28,7 +28,6 @@ public class GameplayScene extends AbstractScene {
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.STOVE_GARNISH.getGameObjectID()));
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.STOVE_APPETIZER.getGameObjectID()));
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.TABLE_TOP_CENTER_CENTER.getGameObjectID()));
-        GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.FRIDGE.getGameObjectID()));
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.SINK_CENTER.getGameObjectID()));
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.TABLE_TOP_DESSERT.getGameObjectID()));
 
