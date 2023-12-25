@@ -10,10 +10,10 @@ import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.init.GameContentInitializer;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
 
 public class KitchenGame extends ApplicationAdapter {
 	private GameContentInitializer gameContentInitializer;
-	private GameObjectInit gameObjectInit;
 	public static int currentWidth, currentHeight;
 	public static final int WIDTH = 1280, HEIGHT = 720;
 	public static float currentRatio = (float) currentWidth / WIDTH;
@@ -25,7 +25,6 @@ public class KitchenGame extends ApplicationAdapter {
 		currentWidth = WIDTH;
 		currentHeight = HEIGHT;
 		this.gameContentInitializer = new GameContentInitializer();
-		this.gameObjectInit = new GameObjectInit();
 		this.gameContentInitializer.createContents();
 		this.gameContentInitializer.loadContents();
 	}
@@ -41,11 +40,10 @@ public class KitchenGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
-		this.gameObjectInit.updateGameObjects();
-
+		SceneHelper.getInstance().updateScene(SceneHelper.currentSceneID);
 		ScreenUtils.clear(0, 0, 0, 1);
 		RenderHelper.getInstance().startRendering();
-		RenderHelper.getInstance().renderLayers();
+		SceneHelper.getInstance().renderScene(SceneHelper.currentSceneID);
 		RenderHelper.getInstance().endRendering();
 
 		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {
@@ -57,6 +55,14 @@ public class KitchenGame extends ApplicationAdapter {
 				Gdx.graphics.setWindowedMode(WIDTH, HEIGHT);
 			} else {
 				Gdx.graphics.setFullscreenMode(this.currentDisplayMode);
+			}
+		}
+
+		if (KeyboardInput.isKeyJustReleased(Input.Keys.SPACE)) {
+			if (SceneHelper.currentSceneID == 0) {
+				SceneHelper.getInstance().changeScene(1);
+			} else {
+				SceneHelper.getInstance().changeScene(0);
 			}
 		}
 	}

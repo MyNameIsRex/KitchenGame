@@ -127,10 +127,6 @@ public class GameObjectInit implements IContent {
                 GameObjectList.HOTPLATE.getGameObjectInstance());
     }
 
-    public void updateGameObjects() {
-        GAME_OBJECT_MAP.forEach((key, value) -> value.update());
-    }
-
     @Override
     public void disposeContents() {
 

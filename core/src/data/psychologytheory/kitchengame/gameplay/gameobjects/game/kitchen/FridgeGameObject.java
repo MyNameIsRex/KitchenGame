@@ -8,7 +8,7 @@ import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
 
 public class FridgeGameObject extends InteractableGameObject {
-    private boolean isFridgeFull = false;
+    private boolean isFridgeFull = true;
     private boolean isFridgeDoorOpen = false;
 
     public FridgeGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
@@ -38,7 +38,9 @@ public class FridgeGameObject extends InteractableGameObject {
         if (this.isFridgeDoorOpen) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 isFridgeFull = !isFridgeFull;
+                System.out.println(isFridgeFull);
             }
+
         }
     }
 }
