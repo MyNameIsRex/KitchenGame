@@ -3,7 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
 
 public enum GUIList {
-    TIME_OF_DAY();
+    TEST_TEXT();
 
     private int guiID;
     private AbstractGUIComponent guiComponent;
@@ -13,19 +13,15 @@ public enum GUIList {
         this.guiID = guiComponent.getObjID();
     }
 
-    public int getGuiID() {
+    public int getGUIID() {
         return guiID;
     }
 
-    public void setGuiID(int guiID) {
+    public void setGUIID(int guiID) {
         this.guiID = guiID;
     }
 
-    public AbstractGUIComponent getGuiComponent() {
+    public AbstractGUIComponent getGUIComponent() {
         return guiComponent;
-    }
-
-    public void setGuiComponent(AbstractGUIComponent guiComponent) {
-        this.guiComponent = guiComponent;
     }
 }

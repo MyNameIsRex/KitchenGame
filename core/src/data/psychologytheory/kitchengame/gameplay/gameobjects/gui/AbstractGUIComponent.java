@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
 public class AbstractGUIComponent extends AbstractGameObject {
-    private boolean displayGUIComponent = false;
+    private boolean displayGUIComponent = true;
 
     public AbstractGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, null, zIndex);
