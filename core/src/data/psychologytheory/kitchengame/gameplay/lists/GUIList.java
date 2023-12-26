@@ -3,8 +3,8 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
 
 public enum GUIList {
-    TEST_TEXT();
-
+    TEST_TEXT(),
+    TEST_IMAGE();
     private int guiID;
     private AbstractGUIComponent guiComponent;
 

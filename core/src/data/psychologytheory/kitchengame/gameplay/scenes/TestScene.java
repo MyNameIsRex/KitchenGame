@@ -18,6 +18,7 @@ public class TestScene extends AbstractScene {
     @Override
     public void addGUIComponents() {
         GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.TEST_TEXT.getGUIID()));
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.TEST_IMAGE.getGUIID()));
     }
 
     @Override
