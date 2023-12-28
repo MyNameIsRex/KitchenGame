@@ -44,12 +44,16 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     public void render() {
         super.render();
         if (this.isDisplayGUIComponent()) {
-            RenderHelper.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX(), (int) this.getObjPosY());
             if (!this.isHoveredOver) {
                 RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
             } else {
-                RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                if (!this.isPressed) {
+                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                } else {
+                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                }
             }
+            RenderHelper.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
         }
     }
 

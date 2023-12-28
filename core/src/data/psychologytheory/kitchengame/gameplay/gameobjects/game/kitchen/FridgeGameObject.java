@@ -38,7 +38,6 @@ public class FridgeGameObject extends InteractableGameObject {
         if (this.isFridgeDoorOpen) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 isFridgeFull = !isFridgeFull;
-                System.out.println(isFridgeFull);
             }
 
         }

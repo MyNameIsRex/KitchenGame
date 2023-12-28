@@ -2,7 +2,9 @@ package data.psychologytheory.kitchengame.gameplay.scenes;
 
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.init.GUIInit;
 import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
+import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class GameplayScene extends AbstractScene {
 
     @Override
     public void addGUIComponents() {
-
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.TEST_COMPOUND_BUTTON.getGUIID()));
     }
 
     @Override

@@ -52,7 +52,7 @@ public class AssetInit implements IContent {
         AssetList.KITCHEN_SOUS_CHEF.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_SOUS_CHEF.getAssetLocation())));
 
         AssetList.PRESS_START_2P.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.PRESS_START_2P.getAssetLocation())),
-                18, Color.BLACK);
+                18, Color.WHITE);
     }
 
     @Override

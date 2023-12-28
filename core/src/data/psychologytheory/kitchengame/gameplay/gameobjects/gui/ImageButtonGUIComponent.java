@@ -41,7 +41,11 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
             if (!this.isHoveredOver) {
                 RenderHelper.getInstance().renderTexture(this.buttonTextures[0], (int) this.getObjPosX(), (int) this.getObjPosY());
             } else {
-                RenderHelper.getInstance().renderTexture(this.buttonTextures[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                if (!this.isPressed) {
+                    RenderHelper.getInstance().renderTexture(this.buttonTextures[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                } else {
+                    RenderHelper.getInstance().renderTexture(this.buttonTextures[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                }
             }
         }
     }

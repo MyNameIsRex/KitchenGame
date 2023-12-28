@@ -2,10 +2,7 @@ package data.psychologytheory.kitchengame.gameplay.init;
 
 import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.ImageButtonGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.ImageGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.TextGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.*;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
@@ -27,6 +24,12 @@ public class GUIInit implements IContent {
                         SceneHelper.currentSceneID = 0;
                     }
         }));
+        GUIList.TEST_COMPOUND_BUTTON.setGUIComponent(new CompoundButtonGUIComponent(3, 64, 64, 100, 600, "test_compound_button", 9, "Change Scene", AssetList.PRESS_START_2P.getBitmapFont(), new Texture[]{AssetList.KITCHEN_TABLE_TOP_LARGE.getTexture(), AssetList.KITCHEN_GRILL_ON.getTexture()},
+                (runAction) -> {
+                    if (runAction) {
+                        SceneHelper.currentSceneID = 1;
+                    }
+                }));
     }
 
     @Override
@@ -34,6 +37,7 @@ public class GUIInit implements IContent {
         GUI_MAP.put(GUIList.TEST_TEXT.getGUIID(), GUIList.TEST_TEXT.getGUIComponent());
         GUI_MAP.put(GUIList.TEST_IMAGE.getGUIID(), GUIList.TEST_IMAGE.getGUIComponent());
         GUI_MAP.put(GUIList.TEST_BUTTON.getGUIID(), GUIList.TEST_BUTTON.getGUIComponent());
+        GUI_MAP.put(GUIList.TEST_COMPOUND_BUTTON.getGUIID(), GUIList.TEST_COMPOUND_BUTTON.getGUIComponent());
     }
 
     @Override
