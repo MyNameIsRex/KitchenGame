@@ -9,6 +9,7 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.TextGUICompone
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class GUIInit implements IContent {
 
     @Override
     public void createContents() {
+        GUIList.TEST_TEXT.setGUIComponent(new TextGUIComponent(0, 100, 100, 300, 700, "test_text", 8, "GUI Test Scene", AssetList.PRESS_START_2P.getBitmapFont()));
         GUIList.TEST_IMAGE.setGUIComponent(new ImageGUIComponent(1, 64, 64, 100, 100, "test_image", 9, AssetList.KITCHEN_SINK_FULL.getTexture()));
         GUIList.TEST_BUTTON.setGUIComponent(new ImageButtonGUIComponent(2, 64, 64, 500, 300, "test_button", 9, new Texture[]{AssetList.KITCHEN_TABLE_TOP_LARGE.getTexture(), AssetList.KITCHEN_SINK_FULL.getTexture()},
                 (runAction) -> {
@@ -29,6 +31,7 @@ public class GUIInit implements IContent {
 
     @Override
     public void loadContents() {
+        GUI_MAP.put(GUIList.TEST_TEXT.getGUIID(), GUIList.TEST_TEXT.getGUIComponent());
         GUI_MAP.put(GUIList.TEST_IMAGE.getGUIID(), GUIList.TEST_IMAGE.getGUIComponent());
         GUI_MAP.put(GUIList.TEST_BUTTON.getGUIID(), GUIList.TEST_BUTTON.getGUIComponent());
     }

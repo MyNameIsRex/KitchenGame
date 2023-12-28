@@ -1,7 +1,9 @@
 package data.psychologytheory.kitchengame.gameplay.lists;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public enum AssetList {
     KITCHEN_BACKGROUND(0, "textures/gameplay/kitchen_background.png"),
@@ -40,10 +42,10 @@ public enum AssetList {
     //Characters
     KITCHEN_CHEF(18, "textures/gameplay/characters/chef/chef.png"),
     KITCHEN_LINE_COOK(19, "textures/gameplay/characters/line_cook/line_cook.png"),
-    KITCHEN_SOUS_CHEF(20, "textures/gameplay/characters/sous_chef/sous_chef.png");
+    KITCHEN_SOUS_CHEF(20, "textures/gameplay/characters/sous_chef/sous_chef.png"),
 
-    //Font
-
+    //Fonts
+    PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf");
 
     //Sound
 
@@ -83,18 +85,15 @@ public enum AssetList {
     }
 
     public BitmapFont getBitmapFont() {
-        return bitmapFont;
+        return this.bitmapFont;
     }
 
-    public String getFNTFileLocation() {
-        return this.assetLocation + ".fnt";
-    }
-
-    public String getPNGFileLocation() {
-        return this.assetLocation + ".png";
-    }
-
-    public void setBitmapFont(BitmapFont bitmapFont) {
-        this.bitmapFont = bitmapFont;
+    public void setBitmapFont(FreeTypeFontGenerator fontGenerator, int fontSize, Color color) {
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        fontParameter.size = fontSize;
+        fontParameter.color = color;
+        fontParameter.magFilter = Texture.TextureFilter.Nearest;
+        fontParameter.minFilter = Texture.TextureFilter.Nearest;
+        this.bitmapFont = fontGenerator.generateFont(fontParameter);
     }
 }

@@ -1,10 +1,12 @@
 package data.psychologytheory.kitchengame.gameplay.init;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 
@@ -48,6 +50,9 @@ public class AssetInit implements IContent {
         AssetList.KITCHEN_CHEF.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_CHEF.getAssetLocation())));
         AssetList.KITCHEN_LINE_COOK.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_LINE_COOK.getAssetLocation())));
         AssetList.KITCHEN_SOUS_CHEF.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_SOUS_CHEF.getAssetLocation())));
+
+        AssetList.PRESS_START_2P.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.PRESS_START_2P.getAssetLocation())),
+                18, Color.BLACK);
     }
 
     @Override
@@ -81,6 +86,8 @@ public class AssetInit implements IContent {
         TEXTURE_MAP.put(AssetList.KITCHEN_CHEF.getAssetID(), AssetList.KITCHEN_CHEF.getTexture());
         TEXTURE_MAP.put(AssetList.KITCHEN_LINE_COOK.getAssetID(), AssetList.KITCHEN_LINE_COOK.getTexture());
         TEXTURE_MAP.put(AssetList.KITCHEN_SOUS_CHEF.getAssetID(), AssetList.KITCHEN_SOUS_CHEF.getTexture());
+
+        FONT_MAP.put(AssetList.PRESS_START_2P.getAssetID(), AssetList.PRESS_START_2P.getBitmapFont());
     }
     @Override
     public void disposeContents() {
