@@ -48,8 +48,6 @@ public class AssetInit implements IContent {
         AssetList.KITCHEN_CHEF.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_CHEF.getAssetLocation())));
         AssetList.KITCHEN_LINE_COOK.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_LINE_COOK.getAssetLocation())));
         AssetList.KITCHEN_SOUS_CHEF.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_SOUS_CHEF.getAssetLocation())));
-
-        AssetList.GUI_TEXT_72_BLACK.setBitmapFont(new BitmapFont(Gdx.files.internal(AssetList.GUI_TEXT_72_BLACK.getFNTFileLocation()), Gdx.files.internal(AssetList.GUI_TEXT_72_BLACK.getPNGFileLocation()), false));
     }
 
     @Override
@@ -83,8 +81,6 @@ public class AssetInit implements IContent {
         TEXTURE_MAP.put(AssetList.KITCHEN_CHEF.getAssetID(), AssetList.KITCHEN_CHEF.getTexture());
         TEXTURE_MAP.put(AssetList.KITCHEN_LINE_COOK.getAssetID(), AssetList.KITCHEN_LINE_COOK.getTexture());
         TEXTURE_MAP.put(AssetList.KITCHEN_SOUS_CHEF.getAssetID(), AssetList.KITCHEN_SOUS_CHEF.getTexture());
-
-        FONT_MAP.put(AssetList.GUI_TEXT_72_BLACK.getAssetID(), AssetList.GUI_TEXT_72_BLACK.getBitmapFont());
     }
     @Override
     public void disposeContents() {

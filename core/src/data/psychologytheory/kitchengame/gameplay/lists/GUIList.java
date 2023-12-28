@@ -5,7 +5,8 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUICom
 public enum GUIList {
     TEST_TEXT(),
     TEST_IMAGE(),
-    TEST_BUTTON();
+    TEST_BUTTON(),
+    TEST_COMPOUND_BUTTON();
     private int guiID;
     private AbstractGUIComponent guiComponent;
 

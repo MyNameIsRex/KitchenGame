@@ -40,10 +40,10 @@ public enum AssetList {
     //Characters
     KITCHEN_CHEF(18, "textures/gameplay/characters/chef/chef.png"),
     KITCHEN_LINE_COOK(19, "textures/gameplay/characters/line_cook/line_cook.png"),
-    KITCHEN_SOUS_CHEF(20, "textures/gameplay/characters/sous_chef/sous_chef.png"),
+    KITCHEN_SOUS_CHEF(20, "textures/gameplay/characters/sous_chef/sous_chef.png");
 
     //Font
-    GUI_TEXT_72_BLACK(50, "textures/gui/fonts/coolvetica_regular_black_72/coolvetica-reg-black-72");
+
 
     //Sound
 
