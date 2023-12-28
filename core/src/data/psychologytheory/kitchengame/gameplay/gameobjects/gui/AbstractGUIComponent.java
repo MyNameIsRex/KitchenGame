@@ -11,11 +11,6 @@ public class AbstractGUIComponent extends AbstractGameObject {
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public void render() {
 
     }

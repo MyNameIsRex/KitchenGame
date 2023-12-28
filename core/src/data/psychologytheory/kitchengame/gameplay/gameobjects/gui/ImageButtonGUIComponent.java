@@ -22,23 +22,27 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
     @Override
     public void update() {
         super.update();
-        this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
-        MouseInput.getMousePosY() >= this.getObjPosY() && MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight();
+        if (this.isDisplayGUIComponent()) {
+            this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
+                    MouseInput.getMousePosY() >= this.getObjPosY() && MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight();
 
-        if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
-            this.isPressed = true;
-            this.buttonAction.accept(true);
-        } else {
-            this.isPressed = false;
+            if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
+                this.isPressed = true;
+                this.buttonAction.accept(true);
+            } else {
+                this.isPressed = false;
+            }
         }
     }
 
     @Override
     public void render() {
-        if (!this.isHoveredOver) {
-            RenderHelper.getInstance().renderTexture(this.buttonTextures[0], (int) this.getObjPosX(), (int) this.getObjPosY());
-        } else {
-            RenderHelper.getInstance().renderTexture(this.buttonTextures[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+        if (this.isDisplayGUIComponent()) {
+            if (!this.isHoveredOver) {
+                RenderHelper.getInstance().renderTexture(this.buttonTextures[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+            } else {
+                RenderHelper.getInstance().renderTexture(this.buttonTextures[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+            }
         }
     }
 
