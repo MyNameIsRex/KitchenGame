@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public class ImageButtonGUIComponent extends AbstractGUIComponent {
     private Consumer<Boolean> buttonAction;
     private Texture[] buttonTextures;
-    private boolean isHoveredOver = true;
+    private boolean isHoveredOver = false;
     private boolean isPressed = false;
 
     public ImageButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, Texture[] buttonTextures, Consumer<Boolean> buttonAction) {
@@ -22,6 +22,8 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
     @Override
     public void update() {
         super.update();
+        this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
+        MouseInput.getMousePosY() >= this.getObjPosY() && MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight();
 
         if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
             this.isPressed = true;
@@ -33,8 +35,10 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
 
     @Override
     public void render() {
-        if (!this.isPressed) {
+        if (!this.isHoveredOver) {
             RenderHelper.getInstance().renderTexture(this.buttonTextures[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+        } else {
+            RenderHelper.getInstance().renderTexture(this.buttonTextures[1], (int) this.getObjPosX(), (int) this.getObjPosY());
         }
     }
 
