@@ -3,6 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
@@ -28,8 +29,8 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     public void update() {
         super.update();
         if (this.isDisplayGUIComponent()) {
-            this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() && MouseInput.getMousePosX() <= this.getObjPosX() + this.getObjWidth() &&
-                    MouseInput.getMousePosY() >= this.getObjPosY() && MouseInput.getMousePosY() <= this.getObjPosY() + this.getObjHeight();
+            this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatio && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatio &&
+                    MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatio && MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight()) * KitchenGame.currentRatio;
 
             if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 this.isPressed = true;
