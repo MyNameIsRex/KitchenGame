@@ -3,10 +3,16 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
 
 public enum GUIList {
-    TEST_TEXT(),
-    TEST_IMAGE(),
-    TEST_BUTTON(),
-    TEST_COMPOUND_BUTTON();
+    //Gameplay Scene
+    CURRENT_ORDER_PROMPT(),
+    COUNTDOWN_PROMPT(),
+    INFORMATION_PROMPT(),
+    CURRENT_TIME_PROMPT(),
+    PAUSE_MENU_BUTTON(),
+    ACHIEVEMENT_MENU_BUTTON();
+    //Main Menu Scene
+    //Options Scene
+
     private int guiID;
     private AbstractGUIComponent guiComponent;
 

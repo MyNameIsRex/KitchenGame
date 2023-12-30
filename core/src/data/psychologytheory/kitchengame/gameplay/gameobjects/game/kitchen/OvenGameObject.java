@@ -37,7 +37,6 @@ public class OvenGameObject extends InteractableGameObject {
         if (this.isOvenDoorOpen) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 isOvenOn = !isOvenOn;
-                System.out.println(isOvenOn);
             }
         }
     }

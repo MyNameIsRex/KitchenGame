@@ -17,12 +17,16 @@ public class RenderHelper {
         AssetInit.getSpriteBatch().draw(gameObject.getTexture(), gameObject.getObjPosX(), gameObject.getObjPosY());
     }
 
-    public void renderText(CharSequence text, BitmapFont font, int x, int y) {
-        font.draw(AssetInit.getSpriteBatch(), text, x, y);
-    }
-
     public void renderTexture(Texture texture, int x, int y) {
         AssetInit.getSpriteBatch().draw(texture, x, y);
+    }
+
+    public void renderTexture(Texture texture, int x, int y, int width, int height) {
+        AssetInit.getSpriteBatch().draw(texture, x, y, width, height);
+    }
+
+    public void renderText(CharSequence text, BitmapFont font, int x, int y) {
+        font.draw(AssetInit.getSpriteBatch(), text, x, y);
     }
 
     public void endRendering() {

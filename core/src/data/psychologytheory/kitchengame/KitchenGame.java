@@ -41,11 +41,7 @@ public class KitchenGame extends ApplicationAdapter {
 	public void render () {
 		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
 		SceneHelper.getInstance().updateScene(SceneHelper.currentSceneID);
-		if (SceneHelper.currentSceneID == 0 ) {
-			ScreenUtils.clear(0, 0, 0, 1);
-		} else {
-			ScreenUtils.clear(1, 1, 1, 1);
-		}
+		ScreenUtils.clear(0, 0, 0, 1);
 
 		RenderHelper.getInstance().startRendering();
 		SceneHelper.getInstance().renderScene(SceneHelper.currentSceneID);

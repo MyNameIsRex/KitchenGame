@@ -38,7 +38,12 @@ public class GameplayScene extends AbstractScene {
 
     @Override
     public void addGUIComponents() {
-        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.TEST_COMPOUND_BUTTON.getGUIID()));
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.CURRENT_ORDER_PROMPT.getGUIID()));
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.COUNTDOWN_PROMPT.getGUIID()));
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.INFORMATION_PROMPT.getGUIID()));
+        GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.CURRENT_TIME_PROMPT.getGUIID()));
+        //GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.PAUSE_MENU_BUTTON.getGUIID()));
+        //GUI_COMPONENT_LIST.add(GUIInit.GUI_MAP.get(GUIList.ACHIEVEMENT_MENU_BUTTON.getGUIID()));
     }
 
     @Override

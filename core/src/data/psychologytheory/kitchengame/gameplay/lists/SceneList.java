@@ -3,8 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import data.psychologytheory.kitchengame.gameplay.scenes.AbstractScene;
 
 public enum SceneList {
-    GAMEPLAY_SCENE(0, "gameplay"),
-    TEST_SCENE(1, "test");
+    GAMEPLAY_SCENE(0, "gameplay");
 
     SceneList(int sceneID, String name) {
         this.sceneID = sceneID;
