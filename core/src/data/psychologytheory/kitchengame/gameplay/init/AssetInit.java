@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
+import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 
 import java.util.HashMap;
@@ -98,6 +100,7 @@ public class AssetInit implements IContent {
 
         //GUI
         TEXTURE_MAP.put(AssetList.CURRENT_ORDER_PROMPT.getAssetID(), AssetList.CURRENT_ORDER_PROMPT.getTexture());
+
         TEXTURE_MAP.put(AssetList.COUNTDOWN_PROMPT.getAssetID(), AssetList.COUNTDOWN_PROMPT.getTexture());
         TEXTURE_MAP.put(AssetList.INFORMATION_PROMPT.getAssetID(), AssetList.INFORMATION_PROMPT.getTexture());
         TEXTURE_MAP.put(AssetList.CURRENT_TIME_PROMPT.getAssetID(), AssetList.CURRENT_TIME_PROMPT.getTexture());

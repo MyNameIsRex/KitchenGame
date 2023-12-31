@@ -1,6 +1,8 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
 public class AbstractGUIComponent extends AbstractGameObject {
@@ -8,6 +10,14 @@ public class AbstractGUIComponent extends AbstractGameObject {
 
     public AbstractGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, null, zIndex);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (KeyboardInput.isKeyJustReleased(Input.Keys.G)) {
+            this.displayGUIComponent = !this.displayGUIComponent;
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.lists;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public enum AssetList {
@@ -62,6 +63,7 @@ public enum AssetList {
     private String assetLocation;
 
     private Texture texture;
+    private TextureRegion[] textureRegions;
     private BitmapFont bitmapFont;
 
     AssetList(int assetID, String assetLocation) {
@@ -91,6 +93,14 @@ public enum AssetList {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+
+    public TextureRegion[] getTextureRegions() {
+        return textureRegions;
+    }
+
+    public void setTextureRegions(TextureRegion[] textureRegions) {
+        this.textureRegions = textureRegions;
     }
 
     public BitmapFont getBitmapFont() {

@@ -58,14 +58,6 @@ public class KitchenGame extends ApplicationAdapter {
 				Gdx.graphics.setFullscreenMode(this.currentDisplayMode);
 			}
 		}
-
-		if (KeyboardInput.isKeyJustReleased(Input.Keys.SPACE)) {
-			if (SceneHelper.currentSceneID == 0) {
-				SceneHelper.getInstance().changeScene(1);
-			} else {
-				SceneHelper.getInstance().changeScene(0);
-			}
-		}
 	}
 
 	@Override

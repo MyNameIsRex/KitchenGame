@@ -3,6 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
@@ -12,6 +13,8 @@ import java.util.function.Consumer;
 public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     private Consumer<Boolean> buttonAction;
     private Texture[] buttonBackgrounds;
+    private TextureRegion[] buttonPartialBackgrounds;
+    private int[][] buttonPartialBackgroundOffsets;
     private String buttonText;
     private BitmapFont buttonFont;
     private boolean isHoveredOver = false;
@@ -22,6 +25,15 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
         this.buttonText = buttonText;
         this.buttonFont = buttonFont;
         this.buttonBackgrounds = buttonBackgrounds;
+        this.buttonAction = buttonAction;
+    }
+
+    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, TextureRegion[] buttonBackgrounds, int[][] buttonPartialBackgroundOffsets, Consumer<Boolean> buttonAction) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
+        this.buttonText = buttonText;
+        this.buttonFont = buttonFont;
+        this.buttonPartialBackgrounds = buttonBackgrounds;
+        this.buttonPartialBackgroundOffsets = buttonPartialBackgroundOffsets;
         this.buttonAction = buttonAction;
     }
 
@@ -46,12 +58,24 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
         super.render();
         if (this.isDisplayGUIComponent()) {
             if (!this.isHoveredOver) {
-                RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                if (!(this.buttonBackgrounds == null)) {
+                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                } else {
+                    RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                }
             } else {
                 if (!this.isPressed) {
-                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    if (!(this.buttonBackgrounds == null)) {
+                        RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    } else {
+                        RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    }
                 } else {
-                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    if (!(this.buttonBackgrounds == null)) {
+                        RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    } else {
+                        RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    }
                 }
             }
             RenderHelper.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
@@ -88,5 +112,37 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
 
     public void setButtonFont(BitmapFont buttonFont) {
         this.buttonFont = buttonFont;
+    }
+
+    public TextureRegion[] getButtonPartialBackgrounds() {
+        return buttonPartialBackgrounds;
+    }
+
+    public void setButtonPartialBackgrounds(TextureRegion[] buttonPartialBackgrounds) {
+        this.buttonPartialBackgrounds = buttonPartialBackgrounds;
+    }
+
+    public boolean isHoveredOver() {
+        return isHoveredOver;
+    }
+
+    public void setHoveredOver(boolean hoveredOver) {
+        isHoveredOver = hoveredOver;
+    }
+
+    public boolean isPressed() {
+        return isPressed;
+    }
+
+    public void setPressed(boolean pressed) {
+        isPressed = pressed;
+    }
+
+    public int[][] getButtonPartialBackgroundOffsets() {
+        return buttonPartialBackgroundOffsets;
+    }
+
+    public void setButtonPartialBackgroundOffsets(int[][] buttonPartialBackgroundOffsets) {
+        this.buttonPartialBackgroundOffsets = buttonPartialBackgroundOffsets;
     }
 }

@@ -26,4 +26,12 @@ public class TextGUIComponent extends AbstractGUIComponent {
     public void setText(String text) {
         this.guiText = text;
     }
+
+    public BitmapFont getGuiFont() {
+        return guiFont;
+    }
+
+    public void setGuiFont(BitmapFont guiFont) {
+        this.guiFont = guiFont;
+    }
 }

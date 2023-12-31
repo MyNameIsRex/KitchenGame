@@ -2,12 +2,15 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 public class CompoundGUIComponent extends AbstractGUIComponent {
     private String guiText;
     private BitmapFont guiFont;
     private Texture[] guiTextures;
+    private TextureRegion[] guiPartialTextures;
+    private int[][] guiPartialTexturesOffset;
     private int textOffsetX, textOffsetY;
 
     public CompoundGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String guiText, BitmapFont guiFont, Texture[] guiTextures, int textOffsetX, int textOffsetY) {
@@ -15,6 +18,16 @@ public class CompoundGUIComponent extends AbstractGUIComponent {
         this.guiText = guiText;
         this.guiFont = guiFont;
         this.guiTextures = guiTextures;
+        this.textOffsetX = textOffsetX;
+        this.textOffsetY = textOffsetY;
+    }
+
+    public CompoundGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String guiText, BitmapFont guiFont, TextureRegion[] guiPartialTextures, int[][] guiPartialTexturesOffset, int textOffsetX, int textOffsetY) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
+        this.guiText = guiText;
+        this.guiFont = guiFont;
+        this.guiPartialTextures = guiPartialTextures;
+        this.guiPartialTexturesOffset = guiPartialTexturesOffset;
         this.textOffsetX = textOffsetX;
         this.textOffsetY = textOffsetY;
     }
@@ -28,7 +41,11 @@ public class CompoundGUIComponent extends AbstractGUIComponent {
     public void render() {
         super.render();
         if (this.isDisplayGUIComponent()) {
-            RenderHelper.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+            if (!(this.guiTextures == null)) {
+                RenderHelper.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+            } else {
+                RenderHelper.getInstance().renderPartialTexture(this.guiPartialTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+            }
             RenderHelper.getInstance().renderText(this.guiText, this.guiFont, (int) this.getObjPosX() + textOffsetX, (int) (this.getObjPosY() + this.getObjHeight() / 2 + textOffsetY));
         }
     }
@@ -71,5 +88,21 @@ public class CompoundGUIComponent extends AbstractGUIComponent {
 
     public void setTextOffsetY(int textOffsetY) {
         this.textOffsetY = textOffsetY;
+    }
+
+    public TextureRegion[] getGuiPartialTextures() {
+        return guiPartialTextures;
+    }
+
+    public void setGuiPartialTextures(TextureRegion[] guiPartialTextures) {
+        this.guiPartialTextures = guiPartialTextures;
+    }
+
+    public int[][] getGuiPartialTexturesOffset() {
+        return guiPartialTexturesOffset;
+    }
+
+    public void setGuiPartialTexturesOffset(int[][] guiPartialTexturesOffset) {
+        this.guiPartialTexturesOffset = guiPartialTexturesOffset;
     }
 }

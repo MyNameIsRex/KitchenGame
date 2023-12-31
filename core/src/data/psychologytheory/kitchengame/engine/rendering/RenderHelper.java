@@ -2,6 +2,7 @@ package data.psychologytheory.kitchengame.engine.rendering;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 import data.psychologytheory.kitchengame.gameplay.init.AssetInit;
 
@@ -19,6 +20,14 @@ public class RenderHelper {
 
     public void renderTexture(Texture texture, int x, int y) {
         AssetInit.getSpriteBatch().draw(texture, x, y);
+    }
+
+    public TextureRegion createPartialTexture(Texture texture, int x, int y, int width, int height) {
+        return new TextureRegion(texture, x, y, width, height);
+    }
+
+    public void renderPartialTexture(TextureRegion textureRegion, int x, int y) {
+        AssetInit.getSpriteBatch().draw(textureRegion, x, y);
     }
 
     public void renderTexture(Texture texture, int x, int y, int width, int height) {
