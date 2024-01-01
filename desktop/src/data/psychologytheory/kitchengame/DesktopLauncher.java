@@ -7,14 +7,14 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 public class DesktopLauncher {
 
 	public static final int WIDTH = 1280, HEIGHT = 720;
-	public static final String VERSION = "v0.1.0.5";
+	public static final String VERSION = "v0.1.1_1";
 
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setWindowedMode(WIDTH, HEIGHT);
 		config.setTitle("Kitchen Game " + VERSION);
-		config.setResizable(false);
+		config.setResizable(true);
 		new Lwjgl3Application(new KitchenGame(), config);
 	}
 }
