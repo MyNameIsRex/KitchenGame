@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
 
 public class SinkGameObject extends InteractableGameObject {

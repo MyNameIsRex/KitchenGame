@@ -5,13 +5,15 @@ import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
 
-public class OvenGameObject extends InteractableGameObject {
+public class OvenGameObject extends AbstractKitchenGameObject {
     private boolean isOvenOn = false;
     private boolean isOvenDoorOpen = false;
-    public OvenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
-        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
+
+    public OvenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract, AbstractDish[] dishes) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract, dishes);
     }
 
     @Override

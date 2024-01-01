@@ -22,6 +22,10 @@ public class RenderHelper {
         AssetInit.getSpriteBatch().draw(texture, x, y);
     }
 
+    public void renderTexture(Texture texture, int x, int y, int width, int height) {
+        AssetInit.getSpriteBatch().draw(texture, x, y, width, height);
+    }
+
     public TextureRegion createPartialTexture(Texture texture, int x, int y, int width, int height) {
         return new TextureRegion(texture, x, y, width, height);
     }
@@ -30,8 +34,8 @@ public class RenderHelper {
         AssetInit.getSpriteBatch().draw(textureRegion, x, y);
     }
 
-    public void renderTexture(Texture texture, int x, int y, int width, int height) {
-        AssetInit.getSpriteBatch().draw(texture, x, y, width, height);
+    public void renderPartialTexture(TextureRegion textureRegion, int x, int y, int width, int height) {
+        AssetInit.getSpriteBatch().draw(textureRegion, x, y, width, height);
     }
 
     public void renderText(CharSequence text, BitmapFont font, int x, int y) {

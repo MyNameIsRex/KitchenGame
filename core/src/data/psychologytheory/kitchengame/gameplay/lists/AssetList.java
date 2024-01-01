@@ -46,13 +46,17 @@ public enum AssetList {
     KITCHEN_LINE_COOK(19, "textures/gameplay/characters/line_cook/line_cook.png"),
     KITCHEN_SOUS_CHEF(20, "textures/gameplay/characters/sous_chef/sous_chef.png"),
 
+    //Dishes
+    TORTELLINI(21, "textures/gameplay/dishes/appetizers/tortellini.png"),
+    FRIES(22, "textures/gameplay/dishes/appetizers/fries.png"),
+
     //GUI
-    CURRENT_ORDER_PROMPT(21, "textures/gui/gameplay/current_order_prompt.png"),
-    COUNTDOWN_PROMPT(22, "textures/gui/gameplay/countdown_prompt.png"),
-    INFORMATION_PROMPT(23, "textures/gui/gameplay/information_prompt.png"),
-    CURRENT_TIME_PROMPT(24, "textures/gui/gameplay/current_time_prompt.png"),
-    PAUSE_MENU_BUTTON(25, "textures/gui/pause_menu_button.png"),
-    ACHIEVEMENT_MENU_BUTTON(26, "textures/gui/achievement_menu_button.png"),
+    CURRENT_ORDER_PROMPT(31, "textures/gui/gameplay/current_order_prompt.png"),
+    COUNTDOWN_PROMPT(32, "textures/gui/gameplay/countdown_prompt.png"),
+    INFORMATION_PROMPT(33, "textures/gui/gameplay/information_prompt.png"),
+    CURRENT_TIME_PROMPT(34, "textures/gui/gameplay/current_time_prompt.png"),
+    PAUSE_MENU_BUTTON(35, "textures/gui/pause_menu_button.png"),
+    ACHIEVEMENT_MENU_BUTTON(36, "textures/gui/achievement_menu_button.png"),
 
     //Fonts
     PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf");

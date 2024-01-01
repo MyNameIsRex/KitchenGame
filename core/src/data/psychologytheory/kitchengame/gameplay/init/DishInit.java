@@ -1,7 +1,10 @@
 package data.psychologytheory.kitchengame.gameplay.init;
 
 import java.util.Map;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
+import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.appetizers.FriesDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.appetizers.TortelliniDish;
@@ -11,6 +14,7 @@ import data.psychologytheory.kitchengame.gameplay.dishes.garnishes.AsparagusDish
 import data.psychologytheory.kitchengame.gameplay.dishes.garnishes.SpinachDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.mains.FishDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.mains.SteakDish;
+import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.lists.DishList;
 
 import java.util.HashMap;
@@ -22,9 +26,13 @@ public class DishInit implements IContent {
     public void createContents() {
         //Appetizers
         DishList.TORTELLINI.setDish(new TortelliniDish(0, "Tortellini", 10, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 0, 0, 32, 32),
+                RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 32, 0, 32, 32),
+                RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 64, 0, 32, 32)}));
         DishList.FRIES.setDish(new FriesDish(1, "Fries", 8, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 0, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 32, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 64, 0, 32, 32)}));
 
         //Main Course
         DishList.FISH.setDish(new FishDish(10, "Fish", 15, null,

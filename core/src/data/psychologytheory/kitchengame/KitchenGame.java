@@ -39,6 +39,7 @@ public class KitchenGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		float delta = Gdx.graphics.getDeltaTime();
 		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
 		SceneHelper.getInstance().updateScene(SceneHelper.currentSceneID);
 		ScreenUtils.clear(0, 0, 0, 1);

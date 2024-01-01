@@ -3,7 +3,9 @@ package data.psychologytheory.kitchengame.gameplay.init;
 import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen.*;
+import data.psychologytheory.kitchengame.gameplay.lists.DishList;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
@@ -38,7 +40,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_stove_fish",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true));
+                1, false, true, new AbstractDish[]{DishList.FISH.getDish()}));
         GameObjectList.TABLE_TOP_CENTER.setGameObjectInstance(new StationaryGameObject(4, 32, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 96,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_table_top_center",
@@ -47,7 +49,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 128,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_grill",
                 new Texture[] {AssetList.KITCHEN_GRILL_OFF.getTexture(), AssetList.KITCHEN_GRILL_ON.getTexture()},
-                1, false, true));
+                1, false, true, new AbstractDish[]{DishList.STEAK.getDish()}));
         GameObjectList.TABLE_TOP_RIGHT.setGameObjectInstance(new StationaryGameObject(6, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 192,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_table_top_right",
@@ -57,7 +59,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_oven",
                 new Texture[] {AssetList.KITCHEN_OVEN_DOOR_CLOSED.getTexture(), AssetList.KITCHEN_OVEN_DOOR_OPENED.getTexture(),
                 AssetList.KITCHEN_OVEN_OFF.getTexture(), AssetList.KITCHEN_OVEN_ON.getTexture()},
-                1, false, true));
+                1, false, true, new AbstractDish[]{DishList.CARAMEL_PUDDING.getDish()}));
 
         GameObjectList.TABLE_TOP_LEFT.setGameObjectInstance(new StationaryGameObject(8, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 96,
@@ -67,12 +69,12 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_garnish",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true));
+                1, false, true, new AbstractDish[]{DishList.ASPARAGUS.getDish(), DishList.SPINACH.getDish(), DishList.SAUCE.getDish()}));
         GameObjectList.STOVE_APPETIZER.setGameObjectInstance(new StoveGameObject(10, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_appetizer",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true));
+                1, false, true, new AbstractDish[]{DishList.TORTELLINI.getDish(), DishList.FRIES.getDish()}));
         GameObjectList.TABLE_TOP_CENTER_CENTER.setGameObjectInstance(new StationaryGameObject(11, 32, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 96,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_center_center",

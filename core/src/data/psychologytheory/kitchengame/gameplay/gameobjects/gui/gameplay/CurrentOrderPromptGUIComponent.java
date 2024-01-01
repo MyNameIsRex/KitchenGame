@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.CompoundGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 
 public class CurrentOrderPromptGUIComponent extends CompoundGUIComponent {
     public CurrentOrderPromptGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String guiText, BitmapFont guiFont, TextureRegion[] guiPartialTextures, int[][] guiPartialTexturesOffset, int textOffsetX, int textOffsetY) {
