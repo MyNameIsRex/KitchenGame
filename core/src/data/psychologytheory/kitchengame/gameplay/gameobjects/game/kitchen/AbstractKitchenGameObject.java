@@ -6,9 +6,8 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameOb
 
 public class AbstractKitchenGameObject extends InteractableGameObject {
     private AbstractDish[] dishes;
-    public AbstractKitchenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract, AbstractDish[] dishes) {
+    public AbstractKitchenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
-        this.dishes = dishes;
     }
 
     public AbstractDish[] getDishes() {

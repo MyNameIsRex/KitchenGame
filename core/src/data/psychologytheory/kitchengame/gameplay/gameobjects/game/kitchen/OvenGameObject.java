@@ -12,8 +12,8 @@ public class OvenGameObject extends AbstractKitchenGameObject {
     private boolean isOvenOn = false;
     private boolean isOvenDoorOpen = false;
 
-    public OvenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract, AbstractDish[] dishes) {
-        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract, dishes);
+    public OvenGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
     }
 
     @Override

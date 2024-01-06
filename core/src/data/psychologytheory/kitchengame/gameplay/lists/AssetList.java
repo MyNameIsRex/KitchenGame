@@ -49,6 +49,7 @@ public enum AssetList {
     //Dishes
     TORTELLINI(21, "textures/gameplay/dishes/appetizers/tortellini.png"),
     FRIES(22, "textures/gameplay/dishes/appetizers/fries.png"),
+    STEAK(24, "textures/gameplay/dishes/mains/steak.png"),
 
     //GUI
     CURRENT_ORDER_PROMPT(31, "textures/gui/gameplay/current_order_prompt.png"),

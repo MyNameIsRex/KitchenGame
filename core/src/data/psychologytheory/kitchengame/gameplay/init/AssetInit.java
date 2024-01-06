@@ -56,6 +56,7 @@ public class AssetInit implements IContent {
 
         AssetList.TORTELLINI.setTexture(new Texture(Gdx.files.internal(AssetList.TORTELLINI.getAssetLocation())));
         AssetList.FRIES.setTexture(new Texture(Gdx.files.internal(AssetList.FRIES.getAssetLocation())));
+        AssetList.STEAK.setTexture(new Texture(Gdx.files.internal(AssetList.STEAK.getAssetLocation())));
 
         //GUI
         AssetList.CURRENT_ORDER_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.CURRENT_ORDER_PROMPT.getAssetLocation())));
@@ -103,6 +104,7 @@ public class AssetInit implements IContent {
 
         TEXTURE_MAP.put(AssetList.TORTELLINI.getAssetID(), AssetList.TORTELLINI.getTexture());
         TEXTURE_MAP.put(AssetList.FRIES.getAssetID(), AssetList.FRIES.getTexture());
+        TEXTURE_MAP.put(AssetList.STEAK.getAssetID(), AssetList.STEAK.getTexture());
 
         //GUI
         TEXTURE_MAP.put(AssetList.CURRENT_ORDER_PROMPT.getAssetID(), AssetList.CURRENT_ORDER_PROMPT.getTexture());

@@ -2,6 +2,7 @@ package data.psychologytheory.kitchengame.gameplay.init;
 
 public class GameContentInitializer {
     private final AssetInit assetInit;
+    private final DishInit dishInit;
     private final GameObjectInit gameObjectInit;
     private final CharacterInit characterInit;
     private final GUIInit guiInit;
@@ -9,6 +10,7 @@ public class GameContentInitializer {
 
     public GameContentInitializer() {
         this.assetInit = new AssetInit();
+        this.dishInit = new DishInit();
         this.gameObjectInit = new GameObjectInit();
         this.characterInit = new CharacterInit();
         this.guiInit = new GUIInit();
@@ -17,6 +19,7 @@ public class GameContentInitializer {
 
     public void createContents() {
         this.assetInit.createContents();
+        this.dishInit.createContents();
         this.gameObjectInit.createContents();
         this.characterInit.createContents();
         this.guiInit.createContents();
@@ -25,6 +28,7 @@ public class GameContentInitializer {
 
     public void loadContents() {
         this.assetInit.loadContents();
+        this.dishInit.loadContents();
         this.gameObjectInit.loadContents();
         this.characterInit.loadContents();
         this.guiInit.loadContents();

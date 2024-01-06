@@ -11,8 +11,8 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameOb
 public class StoveGameObject extends AbstractKitchenGameObject {
     private boolean isStoveOn = false;
 
-    public StoveGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract, AbstractDish[] dishes) {
-        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract, dishes);
+    public StoveGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
     }
 
     @Override
@@ -21,6 +21,11 @@ public class StoveGameObject extends AbstractKitchenGameObject {
             RenderHelper.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX(), (int) this.getObjPosY());
         } else {
             RenderHelper.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+        }
+
+        if (this.getDishes() != null) {
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX() + 5, (int) this.getObjPosY() + 44, 28, 28);
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[1].getDishPartialTextures()[0], (int) this.getObjPosX() + 31, (int) this.getObjPosY() + 44, 28, 28);
         }
     }
 

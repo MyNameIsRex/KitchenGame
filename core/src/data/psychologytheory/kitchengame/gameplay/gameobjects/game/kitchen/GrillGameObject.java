@@ -11,8 +11,8 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameOb
 public class GrillGameObject extends AbstractKitchenGameObject {
     private boolean isGrillOn = false;
 
-    public GrillGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract, AbstractDish[] dishes) {
-        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract, dishes);
+    public GrillGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, textures, zIndex, canMove, canInteract);
         this.isGrillOn = isGrillOn;
     }
 

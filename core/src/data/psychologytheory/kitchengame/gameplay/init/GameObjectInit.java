@@ -40,7 +40,8 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_stove_fish",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true, new AbstractDish[]{DishList.FISH.getDish()}));
+                1, false, true));
+        //new AbstractDish[]{DishList.FISH.getDish()}
         GameObjectList.TABLE_TOP_CENTER.setGameObjectInstance(new StationaryGameObject(4, 32, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 96,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_table_top_center",
@@ -49,7 +50,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 128,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_grill",
                 new Texture[] {AssetList.KITCHEN_GRILL_OFF.getTexture(), AssetList.KITCHEN_GRILL_ON.getTexture()},
-                1, false, true, new AbstractDish[]{DishList.STEAK.getDish()}));
+                1, false, true));
         GameObjectList.TABLE_TOP_RIGHT.setGameObjectInstance(new StationaryGameObject(6, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 192,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_table_top_right",
@@ -59,7 +60,7 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) + 64, "kitchen_oven",
                 new Texture[] {AssetList.KITCHEN_OVEN_DOOR_CLOSED.getTexture(), AssetList.KITCHEN_OVEN_DOOR_OPENED.getTexture(),
                 AssetList.KITCHEN_OVEN_OFF.getTexture(), AssetList.KITCHEN_OVEN_ON.getTexture()},
-                1, false, true, new AbstractDish[]{DishList.CARAMEL_PUDDING.getDish()}));
+                1, false, true));
 
         GameObjectList.TABLE_TOP_LEFT.setGameObjectInstance(new StationaryGameObject(8, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 96,
@@ -69,12 +70,13 @@ public class GameObjectInit implements IContent {
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) - 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_garnish",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true, new AbstractDish[]{DishList.ASPARAGUS.getDish(), DishList.SPINACH.getDish(), DishList.SAUCE.getDish()}));
+                1, false, true));
+        //new AbstractDish[]{DishList.ASPARAGUS.getDish(), DishList.SPINACH.getDish(), DishList.SAUCE.getDish()}
         GameObjectList.STOVE_APPETIZER.setGameObjectInstance(new StoveGameObject(10, 64, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 32,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_appetizer",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true, new AbstractDish[]{DishList.TORTELLINI.getDish(), DishList.FRIES.getDish()}));
+                1, false, true));
         GameObjectList.TABLE_TOP_CENTER_CENTER.setGameObjectInstance(new StationaryGameObject(11, 32, 64,
                 RenderHelper.moveToCenter(KitchenGame.currentWidth, 64) + 96,
                 RenderHelper.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_center_center",
@@ -127,6 +129,12 @@ public class GameObjectInit implements IContent {
                 GameObjectList.TABLE_TOP_DESSERT.getGameObjectInstance());
         GAME_OBJECT_MAP.put(GameObjectList.HOTPLATE.getGameObjectID(),
                 GameObjectList.HOTPLATE.getGameObjectInstance());
+
+        for (AbstractGameObject gameObject : GAME_OBJECT_MAP.values()) {
+            if (gameObject.getObjID() == GAME_OBJECT_MAP.get(GameObjectList.STOVE_APPETIZER.getGameObjectID()).getObjID()) {
+                ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.TORTELLINI.getDish(), DishList.FRIES.getDish()});
+            }
+        }
     }
 
     @Override
