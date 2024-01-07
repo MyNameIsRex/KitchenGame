@@ -60,7 +60,8 @@ public enum AssetList {
     ACHIEVEMENT_MENU_BUTTON(36, "textures/gui/achievement_menu_button.png"),
 
     //Fonts
-    PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf");
+    PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf"),
+    ROBOTO_BLACK(51, "textures/gui/fonts/roboto_black/roboto_black.ttf");
 
     //Sound
 

@@ -12,7 +12,9 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject
 import data.psychologytheory.kitchengame.gameplay.gameobjects.StationaryGameObject;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameObjectInit implements IContent {
@@ -131,8 +133,15 @@ public class GameObjectInit implements IContent {
                 GameObjectList.HOTPLATE.getGameObjectInstance());
 
         for (AbstractGameObject gameObject : GAME_OBJECT_MAP.values()) {
-            if (gameObject.getObjID() == GAME_OBJECT_MAP.get(GameObjectList.STOVE_APPETIZER.getGameObjectID()).getObjID()) {
-                ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.TORTELLINI.getDish(), DishList.FRIES.getDish()});
+            if (gameObject instanceof AbstractKitchenGameObject) {
+                switch(gameObject.getObjName()) {
+                    case "kitchen_stove_appetizer":
+                        ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.TORTELLINI.getDish(), DishList.FRIES.getDish()});
+                        break;
+                    case "kitchen_grill":
+                        ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.STEAK.getDish()});
+                        break;
+                }
             }
         }
     }

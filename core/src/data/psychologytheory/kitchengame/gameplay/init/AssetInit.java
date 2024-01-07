@@ -67,6 +67,8 @@ public class AssetInit implements IContent {
         //Font
         AssetList.PRESS_START_2P.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.PRESS_START_2P.getAssetLocation())),
                 18, Color.WHITE);
+        AssetList.ROBOTO_BLACK.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.ROBOTO_BLACK.getAssetLocation())),
+                36, Color.BLACK);
     }
 
     @Override
@@ -117,6 +119,7 @@ public class AssetInit implements IContent {
 
         //Font
         FONT_MAP.put(AssetList.PRESS_START_2P.getAssetID(), AssetList.PRESS_START_2P.getBitmapFont());
+        FONT_MAP.put(AssetList.ROBOTO_BLACK.getAssetID(), AssetList.ROBOTO_BLACK.getBitmapFont());
     }
     @Override
     public void disposeContents() {

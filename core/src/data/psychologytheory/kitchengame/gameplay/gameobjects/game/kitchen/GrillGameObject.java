@@ -23,6 +23,11 @@ public class GrillGameObject extends AbstractKitchenGameObject {
         } else {
             RenderHelper.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY());
         }
+
+        if (this.getDishes() != null) {
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX() + 2, (int) this.getObjPosY() + 40);
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX() + 30, (int) this.getObjPosY() + 40);
+        }
     }
 
     @Override

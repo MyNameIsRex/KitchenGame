@@ -24,8 +24,8 @@ public class StoveGameObject extends AbstractKitchenGameObject {
         }
 
         if (this.getDishes() != null) {
-            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX() + 5, (int) this.getObjPosY() + 44, 28, 28);
-            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[1].getDishPartialTextures()[0], (int) this.getObjPosX() + 31, (int) this.getObjPosY() + 44, 28, 28);
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX() + 2, (int) this.getObjPosY() + 40);
+            RenderHelper.getInstance().renderPartialTexture(this.getDishes()[1].getDishPartialTextures()[0], (int) this.getObjPosX() + 30, (int) this.getObjPosY() + 40);
         }
     }
 

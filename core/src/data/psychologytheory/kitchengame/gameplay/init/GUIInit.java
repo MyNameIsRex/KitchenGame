@@ -25,31 +25,30 @@ public class GUIInit implements IContent {
 
     @Override
     public void createContents() {
-        AssetList.PRESS_START_2P.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.PRESS_START_2P.getAssetLocation())), 18, Color.BLACK);
         //Gameplay Scene
         GUIList.CURRENT_ORDER_PROMPT.setGUIComponent(new CurrentOrderPromptGUIComponent(0, 256, 256, 15, 448, "current_order_prompt",
-                8, "Order 1", AssetList.PRESS_START_2P.getBitmapFont(),
+                8, "Order 1", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CURRENT_ORDER_PROMPT.getTexture(), 0, 0, 256, 67),
                 RenderHelper.getInstance().createPartialTexture(AssetList.CURRENT_ORDER_PROMPT.getTexture(), 0, 68, 256, 188)},
                 new int[][]{{0, 188},{0, 0}},
-                80, 229));
+                80, 235));
         GUIList.COUNTDOWN_PROMPT.setGUIComponent(new CountdownPromptGUIComponent(1, 256, 100, 512, 604, "countdown_prompt",
-                8, "Keep Going!", AssetList.PRESS_START_2P.getBitmapFont(),
+                8, "Keep Going!", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.COUNTDOWN_PROMPT.getTexture(), 0, 0, 256, 67),
                 RenderHelper.getInstance().createPartialTexture(AssetList.COUNTDOWN_PROMPT.getTexture(), 0, 68, 256, 32)},
                 new int[][]{{0, 32}, {0, 0}},
-                54, 74));
+                54, 80));
         GUIList.INFORMATION_PROMPT.setGUIComponent(new InformationPromptGUIComponent(2, 256, 196, 1008, 508, "information_prompt",
-                8, "New Info!", AssetList.PRESS_START_2P.getBitmapFont(),
+                8, "New Info!", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.INFORMATION_PROMPT.getTexture(), 0, 0, 256, 67),
                 RenderHelper.getInstance().createPartialTexture(AssetList.INFORMATION_PROMPT.getTexture(), 0, 68, 256, 128)},
                 new int[][]{{0, 128}, {0, 0}},
-                68, 170));
+                68, 175));
         GUIList.CURRENT_TIME_PROMPT.setGUIComponent(new CurrentTimePromptGUIComponent(3, 256, 64, 512, 16, "current_time_prompt",
-                8, "12 : 30 PM", AssetList.PRESS_START_2P.getBitmapFont(),
+                8, "12 : 30 PM", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CURRENT_TIME_PROMPT.getTexture(), 0, 0, 256, 67)},
                 new int[][]{{0, 0}},
-                60, 42));
+                60, 48));
         //Main Menu Scene
         //Options Scene
     }
