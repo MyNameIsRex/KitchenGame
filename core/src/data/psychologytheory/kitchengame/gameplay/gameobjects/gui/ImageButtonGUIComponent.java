@@ -4,30 +4,31 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.KitchenGame;
+import data.psychologytheory.kitchengame.engine.interfaces.IClickListener;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 import java.util.function.Consumer;
 
 public class ImageButtonGUIComponent extends AbstractGUIComponent {
-    private Consumer<Boolean> buttonAction;
+    private IClickListener clickListener;
     private Texture[] buttonTextures;
     private TextureRegion[] buttonPartialTextures;
     private int[][] buttonPartialTexturesOffset;
     private boolean isHoveredOver = false;
     private boolean isPressed = false;
 
-    public ImageButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, Texture[] buttonTextures, Consumer<Boolean> buttonAction) {
+    public ImageButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, Texture[] buttonTextures, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonTextures = buttonTextures;
-        this.buttonAction = buttonAction;
+        this.clickListener = clickListener;
     }
 
-    public ImageButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, TextureRegion[] buttonPartialTextures, int[][] buttonPartialTexturesOffset, Consumer<Boolean> buttonAction) {
+    public ImageButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, TextureRegion[] buttonPartialTextures, int[][] buttonPartialTexturesOffset, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonPartialTextures = buttonPartialTextures;
         this.buttonPartialTexturesOffset = buttonPartialTexturesOffset;
-        this.buttonAction = buttonAction;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
 
             if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 this.isPressed = true;
-                this.buttonAction.accept(true);
+                this.clickListener.executeAction();
             } else {
                 this.isPressed = false;
             }
@@ -105,12 +106,12 @@ public class ImageButtonGUIComponent extends AbstractGUIComponent {
         this.buttonPartialTextures = buttonPartialTextures;
     }
 
-    public Consumer<Boolean> getButtonAction() {
-        return buttonAction;
+    public IClickListener getClickListener() {
+        return clickListener;
     }
 
-    public void setButtonAction(Consumer<Boolean> buttonAction) {
-        this.buttonAction = buttonAction;
+    public void setClickListener(IClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     public int[][] getButtonPartialTexturesOffset() {

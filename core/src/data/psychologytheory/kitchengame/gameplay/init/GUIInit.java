@@ -44,6 +44,7 @@ public class GUIInit implements IContent {
                 RenderHelper.getInstance().createPartialTexture(AssetList.INFORMATION_PROMPT.getTexture(), 0, 68, 256, 128)},
                 new int[][]{{0, 128}, {0, 0}},
                 68, 175));
+        //Change Back Later
         GUIList.CURRENT_TIME_PROMPT.setGUIComponent(new CurrentTimePromptGUIComponent(3, 256, 64, 512, 16, "current_time_prompt",
                 8, "12 : 30 PM", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CURRENT_TIME_PROMPT.getTexture(), 0, 0, 256, 67)},

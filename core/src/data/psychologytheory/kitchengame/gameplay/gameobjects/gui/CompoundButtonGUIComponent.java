@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.KitchenGame;
+import data.psychologytheory.kitchengame.engine.interfaces.IClickListener;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 
 import java.util.function.Consumer;
 
 public class CompoundButtonGUIComponent extends AbstractGUIComponent {
-    private Consumer<Boolean> buttonAction;
+    private IClickListener clickListener;
     private Texture[] buttonBackgrounds;
     private TextureRegion[] buttonPartialBackgrounds;
     private int[][] buttonPartialBackgroundOffsets;
@@ -20,21 +21,21 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     private boolean isHoveredOver = false;
     private boolean isPressed = false;
 
-    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, Texture[] buttonBackgrounds, Consumer<Boolean> buttonAction) {
+    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, Texture[] buttonBackgrounds, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonText = buttonText;
         this.buttonFont = buttonFont;
         this.buttonBackgrounds = buttonBackgrounds;
-        this.buttonAction = buttonAction;
+        this.clickListener = clickListener;
     }
 
-    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, TextureRegion[] buttonBackgrounds, int[][] buttonPartialBackgroundOffsets, Consumer<Boolean> buttonAction) {
+    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, TextureRegion[] buttonBackgrounds, int[][] buttonPartialBackgroundOffsets, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonText = buttonText;
         this.buttonFont = buttonFont;
         this.buttonPartialBackgrounds = buttonBackgrounds;
         this.buttonPartialBackgroundOffsets = buttonPartialBackgroundOffsets;
-        this.buttonAction = buttonAction;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
 
             if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
                 this.isPressed = true;
-                this.buttonAction.accept(true);
+                this.clickListener.executeAction();
             } else {
                 this.isPressed = false;
             }
@@ -82,12 +83,12 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
         }
     }
 
-    public Consumer<Boolean> getButtonAction() {
-        return buttonAction;
+    public IClickListener getClickListener() {
+        return clickListener;
     }
 
-    public void setButtonAction(Consumer<Boolean> buttonAction) {
-        this.buttonAction = buttonAction;
+    public void setClickListener(IClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     public Texture[] getButtonBackgrounds() {
