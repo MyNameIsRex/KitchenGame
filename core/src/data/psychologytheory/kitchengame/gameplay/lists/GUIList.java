@@ -8,8 +8,8 @@ public enum GUIList {
     COUNTDOWN_PROMPT(),
     INFORMATION_PROMPT(),
     CURRENT_TIME_PROMPT(),
-    PAUSE_MENU_BUTTON(),
-    ACHIEVEMENT_MENU_BUTTON();
+    OPTIONS_MENU_BUTTON(),
+    ACHIEVEMENTS_MENU_BUTTON();
     //Main Menu Scene
     //Options Scene
 

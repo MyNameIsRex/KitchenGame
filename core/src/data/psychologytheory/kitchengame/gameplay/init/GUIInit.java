@@ -8,10 +8,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
 import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.*;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.gameplay.CountdownPromptGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.gameplay.CurrentOrderPromptGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.gameplay.CurrentTimePromptGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.gameplay.InformationPromptGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.gameplay.*;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
@@ -44,12 +41,24 @@ public class GUIInit implements IContent {
                 RenderHelper.getInstance().createPartialTexture(AssetList.INFORMATION_PROMPT.getTexture(), 0, 68, 256, 128)},
                 new int[][]{{0, 128}, {0, 0}},
                 68, 175));
-        //Change Back Later
         GUIList.CURRENT_TIME_PROMPT.setGUIComponent(new CurrentTimePromptGUIComponent(3, 256, 64, 512, 16, "current_time_prompt",
                 8, "12 : 30 PM", AssetList.ROBOTO_BLACK.getBitmapFont(),
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CURRENT_TIME_PROMPT.getTexture(), 0, 0, 256, 67)},
                 new int[][]{{0, 0}},
                 60, 48));
+        AssetList.ROBOTO_BLACK.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.ROBOTO_BLACK.getAssetLocation())), 28, Color.WHITE);
+        GUIList.OPTIONS_MENU_BUTTON.setGUIComponent(new OptionsMenuButtonGUIComponent(4, 256, 32, 248, 16, "options_menu_button",
+                8, "Options", AssetList.ROBOTO_BLACK.getBitmapFont(),
+                new Texture[]{AssetList.OPTIONS_MENU_BUTTON.getTexture()}, 84, 28,
+                () -> {
+                    System.out.println("Fuck You");
+                }));
+        GUIList.ACHIEVEMENTS_MENU_BUTTON.setGUIComponent(new AchievementsMenuButtonGUIComponent(5, 256, 32, 776, 16, "achievements_menu_button",
+                8, "Achievements", AssetList.ROBOTO_BLACK.getBitmapFont(),
+                new Texture[]{AssetList.ACHIEVEMENTS_MENU_BUTTON.getTexture()}, 48, 28,
+                () -> {
+                    System.out.println("AHHHHHHHH");
+                }));
         //Main Menu Scene
         //Options Scene
     }
@@ -60,6 +69,8 @@ public class GUIInit implements IContent {
         GUI_MAP.put(GUIList.COUNTDOWN_PROMPT.getGUIID(), GUIList.COUNTDOWN_PROMPT.getGUIComponent());
         GUI_MAP.put(GUIList.INFORMATION_PROMPT.getGUIID(), GUIList.INFORMATION_PROMPT.getGUIComponent());
         GUI_MAP.put(GUIList.CURRENT_TIME_PROMPT.getGUIID(), GUIList.CURRENT_TIME_PROMPT.getGUIComponent());
+        GUI_MAP.put(GUIList.OPTIONS_MENU_BUTTON.getGUIID(), GUIList.OPTIONS_MENU_BUTTON.getGUIComponent());
+        GUI_MAP.put(GUIList.ACHIEVEMENTS_MENU_BUTTON.getGUIID(), GUIList.ACHIEVEMENTS_MENU_BUTTON.getGUIComponent());
     }
 
     @Override

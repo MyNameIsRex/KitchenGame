@@ -36,7 +36,9 @@ public class DishInit implements IContent {
 
         //Main Course
         DishList.FISH.setDish(new FishDish(10, "Fish", 15, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 0, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 32, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 64, 0, 32, 32)}));
         DishList.STEAK.setDish(new SteakDish(11, "Steak", 14, null,
                 new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.STEAK.getTexture(), 0, 0, 32, 32),
                         RenderHelper.getInstance().createPartialTexture(AssetList.STEAK.getTexture(), 32, 0, 32, 32)}));

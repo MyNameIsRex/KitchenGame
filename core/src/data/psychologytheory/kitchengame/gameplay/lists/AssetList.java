@@ -50,14 +50,15 @@ public enum AssetList {
     TORTELLINI(21, "textures/gameplay/dishes/appetizers/tortellini.png"),
     FRIES(22, "textures/gameplay/dishes/appetizers/fries.png"),
     STEAK(24, "textures/gameplay/dishes/mains/steak.png"),
+    FISH(25, "textures/gameplay/dishes/mains/fish.png"),
 
     //GUI
     CURRENT_ORDER_PROMPT(31, "textures/gui/gameplay/current_order_prompt.png"),
     COUNTDOWN_PROMPT(32, "textures/gui/gameplay/countdown_prompt.png"),
     INFORMATION_PROMPT(33, "textures/gui/gameplay/information_prompt.png"),
     CURRENT_TIME_PROMPT(34, "textures/gui/gameplay/current_time_prompt.png"),
-    PAUSE_MENU_BUTTON(35, "textures/gui/pause_menu_button.png"),
-    ACHIEVEMENT_MENU_BUTTON(36, "textures/gui/achievement_menu_button.png"),
+    OPTIONS_MENU_BUTTON(35, "textures/gui/gameplay/options_menu_button.png"),
+    ACHIEVEMENTS_MENU_BUTTON(36, "textures/gui/gameplay/achievements_menu_button.png"),
 
     //Fonts
     PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf"),

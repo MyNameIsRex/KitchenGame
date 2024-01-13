@@ -17,24 +17,30 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     private TextureRegion[] buttonPartialBackgrounds;
     private int[][] buttonPartialBackgroundOffsets;
     private String buttonText;
+    private int buttonTextOffsetX;
+    private int buttonTextOffsetY;
     private BitmapFont buttonFont;
     private boolean isHoveredOver = false;
     private boolean isPressed = false;
 
-    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, Texture[] buttonBackgrounds, IClickListener clickListener) {
+    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, Texture[] buttonBackgrounds, int buttonTextOffsetX, int buttonTextOffsetY, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonText = buttonText;
         this.buttonFont = buttonFont;
         this.buttonBackgrounds = buttonBackgrounds;
+        this.buttonTextOffsetX = buttonTextOffsetX;
+        this.buttonTextOffsetY = buttonTextOffsetY;
         this.clickListener = clickListener;
     }
 
-    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, TextureRegion[] buttonBackgrounds, int[][] buttonPartialBackgroundOffsets, IClickListener clickListener) {
+    public CompoundButtonGUIComponent(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, int zIndex, String buttonText, BitmapFont buttonFont, TextureRegion[] buttonBackgrounds, int[][] buttonPartialBackgroundOffsets, int buttonTextOffsetX, int buttonTextOffsetY, IClickListener clickListener) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, zIndex);
         this.buttonText = buttonText;
         this.buttonFont = buttonFont;
         this.buttonPartialBackgrounds = buttonBackgrounds;
         this.buttonPartialBackgroundOffsets = buttonPartialBackgroundOffsets;
+        this.buttonTextOffsetX = buttonTextOffsetX;
+        this.buttonTextOffsetY = buttonTextOffsetY;
         this.clickListener = clickListener;
     }
 
@@ -145,5 +151,21 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
 
     public void setButtonPartialBackgroundOffsets(int[][] buttonPartialBackgroundOffsets) {
         this.buttonPartialBackgroundOffsets = buttonPartialBackgroundOffsets;
+    }
+
+    public int getButtonTextOffsetX() {
+        return buttonTextOffsetX;
+    }
+
+    public void setButtonTextOffsetX(int buttonTextOffsetX) {
+        this.buttonTextOffsetX = buttonTextOffsetX;
+    }
+
+    public int getButtonTextOffsetY() {
+        return buttonTextOffsetY;
+    }
+
+    public void setButtonTextOffsetY(int buttonTextOffsetY) {
+        this.buttonTextOffsetY = buttonTextOffsetY;
     }
 }

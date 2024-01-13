@@ -141,6 +141,9 @@ public class GameObjectInit implements IContent {
                     case "kitchen_grill":
                         ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.STEAK.getDish()});
                         break;
+                    case "kitchen_stove_fish":
+                        ((AbstractKitchenGameObject) gameObject).setDishes(new AbstractDish[]{DishList.FISH.getDish()});
+                        break;
                 }
             }
         }
