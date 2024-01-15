@@ -29,7 +29,7 @@ public class AnimationUtil {
 
     public void createBufferTime(Animation animation) {
         int counter = 0;
-        while (counter < animation.getSpeed()) {
+        while (counter < animation.getSpeed() * 1000000000) {
             counter++;
         }
     }
@@ -40,17 +40,31 @@ public class AnimationUtil {
         } else {
             animation.setCurrentFrame(0);
         }
+        AnimationUtil.getInstance().setCurrentFramePartialTexture(animation, animation.getCurrentFrame());
     }
 
-    public void playAnimation(Animation animation, int startFrame) {
+    public void setCurrentFramePartialTexture(Animation animation, int currentFrame) {
+        animation.setCurrentFramePartialTexture(animation.getPartialTextures()[currentFrame]);
+    }
+
+    public void playAnimation(Animation animation, int startFrame, int frameLength) {
         AnimationUtil.getInstance().setCurrentFrame(animation, startFrame);
-        AnimationUtil.getInstance().createBufferTime(animation);
-        AnimationUtil.getInstance().changeFrame(animation);
+        AnimationUtil.getInstance().setCurrentFramePartialTexture(animation, startFrame);
+        for (int i = 0; i < frameLength; i++) {
+            AnimationUtil.getInstance().createBufferTime(animation);
+            AnimationUtil.getInstance().changeFrame(animation);
+            System.out.println("Animation: " + animation + " just increased a frame to frame " + animation.getCurrentFrame());
+        }
     }
 
-    public void playAnimation(Animation animation) {
-        AnimationUtil.getInstance().createBufferTime(animation);
-        AnimationUtil.getInstance().changeFrame(animation);
+    public void playAnimation(Animation animation, int frameLength) {
+        AnimationUtil.getInstance().setCurrentFrame(animation, 0);
+        AnimationUtil.getInstance().setCurrentFramePartialTexture(animation, 0);
+        for (int i = 0; i < frameLength; i++) {
+            AnimationUtil.getInstance().createBufferTime(animation);
+            AnimationUtil.getInstance().changeFrame(animation);
+            System.out.println("Animation: " + animation + " just increased a frame to frame " + animation.getCurrentFrame());
+        }
     }
 
     public static AnimationUtil getInstance() {

@@ -12,9 +12,11 @@ public class AssetUtil {
 
     public TextureRegion[] createUniformPartialTextures(Texture texture, int startX, int startY, int width, int height, int textureCount, int row, int column) {
         TextureRegion[] textureRegions = new TextureRegion[textureCount];
+        int index = 0;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                AssetUtil.getInstance().createPartialTexture(texture, startX + width * i, startY + height * j, width, height);
+                textureRegions[index] = AssetUtil.getInstance().createPartialTexture(texture, startX + width * i, startY + height * j, width, height);
+                index++;
             }
         }
         return textureRegions;
