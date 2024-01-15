@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Animation {
     private final int frames;
+    private int startingFrame;
+    private int endingFrame;
     private final int speed;
     private int currentFrame;
     private Texture currentFrameTexture;
@@ -38,6 +40,11 @@ public class Animation {
 
     public void setCurrentFrame(int currentFrame) {
         this.currentFrame = currentFrame;
+        if (this.getCurrentFramePartialTexture() != null) {
+            this.setCurrentFramePartialTexture(this.getPartialTextures()[currentFrame - 1]);
+        } else {
+            this.setCurrentFrameTexture(this.getTextures()[currentFrame - 1]);
+        }
     }
 
     public Texture getCurrentFrameTexture() {
@@ -70,5 +77,21 @@ public class Animation {
 
     public void setPartialTextures(TextureRegion[] partialTextures) {
         this.partialTextures = partialTextures;
+    }
+
+    public int getStartingFrame() {
+        return startingFrame;
+    }
+
+    public void setStartingFrame(int startingFrame) {
+        this.startingFrame = startingFrame;
+    }
+
+    public int getEndingFrame() {
+        return endingFrame;
+    }
+
+    public void setEndingFrame(int endingFrame) {
+        this.endingFrame = endingFrame;
     }
 }

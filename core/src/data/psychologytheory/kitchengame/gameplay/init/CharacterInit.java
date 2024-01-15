@@ -22,13 +22,14 @@ public class CharacterInit implements IContent {
                 AssetList.KITCHEN_CHEF.getTexture(), 1, 1.0F, 1.0F,
                 new Animation[]{AnimationUtil.getInstance().createAnimation(
                         AssetUtil.getInstance().createUniformPartialTextures(AssetList.KITCHEN_CHEF.getTexture(), 0, 0, 64, 128, 16, 16, 1),
-                        16, 500000000)},
+                        16, 5)},
                 new AbstractCharacterGoals[]{}));
     }
 
     @Override
     public void loadContents() {
         CHARACTER_MAP.put(CharacterList.CHEF.getCharacterID(), CharacterList.CHEF.getCharacterInstance());
+        CHARACTER_MAP.forEach(((integer, character) -> character.setupAnimations()));
     }
 
     @Override
