@@ -7,9 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.interfaces.IClickListener;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
-
-import java.util.function.Consumer;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     private IClickListener clickListener;
@@ -66,26 +64,26 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
         if (this.isDisplayGUIComponent()) {
             if (!this.isHoveredOver) {
                 if (!(this.buttonBackgrounds == null)) {
-                    RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
                 } else {
-                    RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                    RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
                 }
             } else {
                 if (!this.isPressed) {
                     if (!(this.buttonBackgrounds == null)) {
-                        RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                        RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
                     } else {
-                        RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                        RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
                     }
                 } else {
                     if (!(this.buttonBackgrounds == null)) {
-                        RenderHelper.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                        RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
                     } else {
-                        RenderHelper.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                        RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
                     }
                 }
             }
-            RenderHelper.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+            RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
         }
     }
 

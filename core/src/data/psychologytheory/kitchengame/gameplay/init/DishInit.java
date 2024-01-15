@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.AssetUtil;
 import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.appetizers.FriesDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.appetizers.TortelliniDish;
@@ -27,41 +27,29 @@ public class DishInit implements IContent {
     public void createContents() {
         //Appetizers
         DishList.TORTELLINI.setDish(new TortelliniDish(0, "Tortellini", 10, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 0, 0, 32, 32),
-                RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 32, 0, 32, 32),
-                RenderHelper.getInstance().createPartialTexture(AssetList.TORTELLINI.getTexture(), 64, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.TORTELLINI.getTexture(), 0, 0, 32, 32, 2, 1, 2)));
         DishList.FRIES.setDish(new FriesDish(1, "Fries", 8, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 0, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 32, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.FRIES.getTexture(), 64, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.FRIES.getTexture(), 0, 0, 32, 32, 2, 1, 2)));
 
         //Main Course
         DishList.FISH.setDish(new FishDish(10, "Fish", 15, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 0, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 32, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.FISH.getTexture(), 64, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.FISH.getTexture(), 0, 0, 32, 32, 3, 1, 3)));
         DishList.STEAK.setDish(new SteakDish(11, "Steak", 14, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.STEAK.getTexture(), 0, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.STEAK.getTexture(), 32, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.STEAK.getTexture(), 0, 0, 32, 32, 3, 1, 3)));
 
         //Garnish
         DishList.ASPARAGUS.setDish(new AsparagusDish(20, "Asparagus", 5, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 0, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 32, 0, 32, 32),
-                        RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 64, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.ASPARAGUS.getTexture(), 0, 0, 32, 32, 3, 1, 3)));
         DishList.SPINACH.setDish(new SpinachDish(21, "Spinach", 2, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 0, 0, 32, 32),
-                RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 32, 0, 32, 32),
-                RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 64, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.SPINACH.getTexture(), 0, 0, 32, 32, 3, 1, 3)));
         DishList.SAUCE.setDish(new SauceDish(22, "Sauce", 3, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.SAUCE.getTexture(), 0, 0, 32, 32),
-                RenderHelper.getInstance().createPartialTexture(AssetList.SAUCE.getTexture(), 32, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.SAUCE.getTexture(), 0, 0, 32, 32, 2, 1, 2)));
 
         //Dessert
         DishList.CARAMEL_PUDDING.setDish(new CaramelPuddingDish(30, "Caramel Pudding", 7, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CARAMEL_PUDDING.getTexture(), 0, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.CARAMEL_PUDDING.getTexture(), 0, 0, 32, 32, 1, 1, 1)));
         DishList.ICE_CREAM.setDish(new IceCreamDish(31, "Ice Cream", 4, null,
-                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.ICE_CREAM.getTexture(), 0, 0, 32, 32)}));
+                AssetUtil.getInstance().createUniformPartialTextures(AssetList.ICE_CREAM.getTexture(), 0, 0, 32, 32, 1, 1, 1)));
     }
 
     @Override

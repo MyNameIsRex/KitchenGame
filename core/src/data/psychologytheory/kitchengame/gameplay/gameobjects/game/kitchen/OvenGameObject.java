@@ -4,9 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
-import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public class OvenGameObject extends AbstractKitchenGameObject {
     private boolean isOvenOn = false;
@@ -19,15 +17,15 @@ public class OvenGameObject extends AbstractKitchenGameObject {
     @Override
     public void render() {
         if (isOvenOn) {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[3], (int) this.getObjPosX(), (int) this.getObjPosY());
+            RenderUtil.getInstance().renderTexture(this.getTextures()[3], (int) this.getObjPosX(), (int) this.getObjPosY());
         } else {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[2], (int) this.getObjPosX(), (int) this.getObjPosY());
+            RenderUtil.getInstance().renderTexture(this.getTextures()[2], (int) this.getObjPosX(), (int) this.getObjPosY());
         }
 
         if (isOvenDoorOpen) {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX() - 8, (int) this.getObjPosY() + 18);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX() - 8, (int) this.getObjPosY() + 18);
         } else {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 18);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 18);
         }
     }
 

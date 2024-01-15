@@ -1,4 +1,4 @@
-package data.psychologytheory.kitchengame.engine.rendering;
+package data.psychologytheory.kitchengame.engine.utils;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 import data.psychologytheory.kitchengame.gameplay.init.AssetInit;
 
-import static data.psychologytheory.kitchengame.gameplay.init.SceneInit.SCENE_MAP;
-
-public class RenderHelper {
-    public static RenderHelper instance;
+public class RenderUtil {
+    public static RenderUtil instance;
     public void startRendering() {
         AssetInit.getSpriteBatch().begin();
     }
@@ -24,10 +22,6 @@ public class RenderHelper {
 
     public void renderTexture(Texture texture, int x, int y, int width, int height) {
         AssetInit.getSpriteBatch().draw(texture, x, y, width, height);
-    }
-
-    public TextureRegion createPartialTexture(Texture texture, int x, int y, int width, int height) {
-        return new TextureRegion(texture, x, y, width, height);
     }
 
     public void renderPartialTexture(TextureRegion textureRegion, int x, int y) {
@@ -50,9 +44,9 @@ public class RenderHelper {
         return (float)windowSize / 2 - (float)objSize / 2;
     }
 
-    public static RenderHelper getInstance() {
+    public static RenderUtil getInstance() {
         if (instance == null) {
-           instance = new RenderHelper();
+           instance = new RenderUtil();
         }
         return instance;
     }

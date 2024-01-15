@@ -1,7 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public class TextGUIComponent extends AbstractGUIComponent {
     private CharSequence guiText;
@@ -15,7 +15,7 @@ public class TextGUIComponent extends AbstractGUIComponent {
     @Override
     public void render() {
         if (this.isDisplayGUIComponent()) {
-            RenderHelper.getInstance().renderText(guiText, guiFont, (int) this.getObjPosX(), (int) this.getObjPosY());
+            RenderUtil.getInstance().renderText(guiText, guiFont, (int) this.getObjPosX(), (int) this.getObjPosY());
         }
     }
 

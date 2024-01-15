@@ -1,6 +1,6 @@
 package data.psychologytheory.kitchengame.gameplay.lists;
 
-import data.psychologytheory.kitchengame.gameplay.gameobjects.game.characters.AbstractCharacter;
+import data.psychologytheory.kitchengame.gameplay.characters.AbstractCharacter;
 
 public enum CharacterList {
     CHEF(),

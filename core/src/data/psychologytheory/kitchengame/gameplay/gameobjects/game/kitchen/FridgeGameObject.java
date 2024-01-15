@@ -4,8 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
-import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.InteractableGameObject;
 
 public class FridgeGameObject extends InteractableGameObject {
@@ -19,15 +18,15 @@ public class FridgeGameObject extends InteractableGameObject {
     @Override
     public void render() {
         if (isFridgeFull) {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[3], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[3], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
         } else {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[2], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[2], (int) this.getObjPosX(), (int) this.getObjPosY() + 16);
         }
 
         if (isFridgeDoorOpen) {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX() - 6, (int) this.getObjPosY() + 2);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX() - 6, (int) this.getObjPosY() + 2);
         } else {
-            RenderHelper.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 2);
+            RenderUtil.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 2);
         }
     }
 

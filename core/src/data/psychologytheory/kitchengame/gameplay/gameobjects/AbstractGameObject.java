@@ -1,7 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects;
 
 import com.badlogic.gdx.graphics.Texture;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public abstract class AbstractGameObject {
     private int objID;
@@ -27,7 +27,7 @@ public abstract class AbstractGameObject {
     }
 
     public void render() {
-        RenderHelper.getInstance().renderTexture(this);
+        RenderUtil.getInstance().renderTexture(this);
     }
 
     public int getObjID() {

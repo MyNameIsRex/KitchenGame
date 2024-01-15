@@ -3,7 +3,7 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public class CompoundGUIComponent extends AbstractGUIComponent {
     private String guiText;
@@ -42,11 +42,11 @@ public class CompoundGUIComponent extends AbstractGUIComponent {
         super.render();
         if (this.isDisplayGUIComponent()) {
             if (!(this.guiTextures == null)) {
-                RenderHelper.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+                RenderUtil.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
             } else {
-                RenderHelper.getInstance().renderPartialTexture(this.guiPartialTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+                RenderUtil.getInstance().renderPartialTexture(this.guiPartialTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
             }
-            RenderHelper.getInstance().renderText(this.guiText, this.guiFont, (int) this.getObjPosX() + textOffsetX, (int) (this.getObjPosY() + this.getObjHeight() / 2 + textOffsetY));
+            RenderUtil.getInstance().renderText(this.guiText, this.guiFont, (int) this.getObjPosX() + textOffsetX, (int) (this.getObjPosY() + this.getObjHeight() / 2 + textOffsetY));
         }
     }
 

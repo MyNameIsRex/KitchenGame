@@ -6,10 +6,8 @@ import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
-import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
-import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 import data.psychologytheory.kitchengame.gameplay.init.GameContentInitializer;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
 
 public class KitchenGame extends ApplicationAdapter {
@@ -44,9 +42,9 @@ public class KitchenGame extends ApplicationAdapter {
 		SceneHelper.getInstance().updateScene(SceneHelper.currentSceneID);
 		ScreenUtils.clear(0, 0, 0, 1);
 
-		RenderHelper.getInstance().startRendering();
+		RenderUtil.getInstance().startRendering();
 		SceneHelper.getInstance().renderScene(SceneHelper.currentSceneID);
-		RenderHelper.getInstance().endRendering();
+		RenderUtil.getInstance().endRendering();
 
 		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();

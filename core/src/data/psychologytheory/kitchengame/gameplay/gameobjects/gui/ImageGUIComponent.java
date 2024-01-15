@@ -1,7 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects.gui;
 
 import com.badlogic.gdx.graphics.Texture;
-import data.psychologytheory.kitchengame.engine.rendering.RenderHelper;
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public class ImageGUIComponent extends AbstractGUIComponent {
     private Texture imageTexture;
@@ -21,7 +21,7 @@ public class ImageGUIComponent extends AbstractGUIComponent {
     @Override
     public void render() {
         if (this.isDisplayGUIComponent()) {
-            RenderHelper.getInstance().renderTexture(imageTexture, (int) this.getObjPosX(), (int) this.getObjPosY());
+            RenderUtil.getInstance().renderTexture(imageTexture, (int) this.getObjPosX(), (int) this.getObjPosY());
         }
     }
 }
