@@ -7,40 +7,31 @@ import data.psychologytheory.kitchengame.engine.animation.Animation;
 public class AnimationUtil {
     public static AnimationUtil instance;
 
-    public Animation createAnimation(Texture[] textures, int frames, int speed) {
-        return new Animation(textures, frames, speed);
+    public Animation createAnimation(int frames, int speed) {
+        return new Animation(frames, speed);
     }
 
-    public Animation createAnimation(TextureRegion[] partialTextures, int frames, int speed) {
-        return new Animation(partialTextures, frames, speed);
+    public void createBufferTime(Animation animation) {
+        int counter = 0;
+        while(counter < animation.getSpeed()) {
+            counter++;
+        }
     }
 
-    public void setStartingFrame(Animation animation, int startingFrame) {
-        animation.setStartingFrame(startingFrame);
-    }
-
-    public void setEndingFrame(Animation animation, int endingFrame) {
-        animation.setEndingFrame(endingFrame);
+    public void nextFrame(Animation animation, int startingFrame, int endingFrame) {
+        if (startingFrame <= animation.getCurrentFrame() && animation.getCurrentFrame() < endingFrame) {
+            animation.setCurrentFrame(animation.getCurrentFrame() + 1);
+        } else {
+            animation.setCurrentFrame(startingFrame);
+        }
     }
 
     public void nextFrame(Animation animation) {
-        animation.setCurrentFrame(animation.getCurrentFrame() + 1);
+        AnimationUtil.getInstance().nextFrame(animation, 0, animation.getFrames() - 1);
     }
 
-    public void updateAnimationTexture(Animation animation) {
-        animation.setCurrentFrameTexture(animation.getTextures()[animation.getCurrentFrame() - 1]);
-    }
-
-    public void updateAnimationPartialTexture(Animation animation) {
-        animation.setCurrentFramePartialTexture(animation.getPartialTextures()[animation.getCurrentFrame() - 1]);
-    }
-
-    public Texture getCurrentAnimationTexture(Animation animation) {
-        return animation.getCurrentFrameTexture();
-    }
-
-    public TextureRegion getCurrentAnimationPartialTexture(Animation animation) {
-        return animation.getCurrentFramePartialTexture();
+    public int getCurrentFrame(Animation animation) {
+        return animation.getCurrentFrame();
     }
 
     public static AnimationUtil getInstance() {
