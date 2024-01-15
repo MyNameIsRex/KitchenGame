@@ -11,6 +11,7 @@ import data.psychologytheory.kitchengame.gameplay.dishes.appetizers.TortelliniDi
 import data.psychologytheory.kitchengame.gameplay.dishes.desserts.CaramelPuddingDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.desserts.IceCreamDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.garnishes.AsparagusDish;
+import data.psychologytheory.kitchengame.gameplay.dishes.garnishes.SauceDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.garnishes.SpinachDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.mains.FishDish;
 import data.psychologytheory.kitchengame.gameplay.dishes.mains.SteakDish;
@@ -45,15 +46,22 @@ public class DishInit implements IContent {
 
         //Garnish
         DishList.ASPARAGUS.setDish(new AsparagusDish(20, "Asparagus", 5, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 0, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 32, 0, 32, 32),
+                        RenderHelper.getInstance().createPartialTexture(AssetList.ASPARAGUS.getTexture(), 64, 0, 32, 32)}));
         DishList.SPINACH.setDish(new SpinachDish(21, "Spinach", 2, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 0, 0, 32, 32),
+                RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 32, 0, 32, 32),
+                RenderHelper.getInstance().createPartialTexture(AssetList.SPINACH.getTexture(), 64, 0, 32, 32)}));
+        DishList.SAUCE.setDish(new SauceDish(22, "Sauce", 3, null,
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.SAUCE.getTexture(), 0, 0, 32, 32),
+                RenderHelper.getInstance().createPartialTexture(AssetList.SAUCE.getTexture(), 32, 0, 32, 32)}));
 
         //Dessert
         DishList.CARAMEL_PUDDING.setDish(new CaramelPuddingDish(30, "Caramel Pudding", 7, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.CARAMEL_PUDDING.getTexture(), 0, 0, 32, 32)}));
         DishList.ICE_CREAM.setDish(new IceCreamDish(31, "Ice Cream", 4, null,
-                null));
+                new TextureRegion[]{RenderHelper.getInstance().createPartialTexture(AssetList.ICE_CREAM.getTexture(), 0, 0, 32, 32)}));
     }
 
     @Override

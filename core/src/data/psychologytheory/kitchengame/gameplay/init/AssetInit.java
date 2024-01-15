@@ -58,6 +58,11 @@ public class AssetInit implements IContent {
         AssetList.FRIES.setTexture(new Texture(Gdx.files.internal(AssetList.FRIES.getAssetLocation())));
         AssetList.STEAK.setTexture(new Texture(Gdx.files.internal(AssetList.STEAK.getAssetLocation())));
         AssetList.FISH.setTexture(new Texture(Gdx.files.internal(AssetList.FISH.getAssetLocation())));
+        AssetList.ASPARAGUS.setTexture(new Texture(Gdx.files.internal(AssetList.ASPARAGUS.getAssetLocation())));
+        AssetList.SPINACH.setTexture(new Texture(Gdx.files.internal(AssetList.SPINACH.getAssetLocation())));
+        AssetList.SAUCE.setTexture(new Texture(Gdx.files.internal(AssetList.SAUCE.getAssetLocation())));
+        AssetList.CARAMEL_PUDDING.setTexture(new Texture(Gdx.files.internal(AssetList.CARAMEL_PUDDING.getAssetLocation())));
+        AssetList.ICE_CREAM.setTexture(new Texture(Gdx.files.internal(AssetList.ICE_CREAM.getAssetLocation())));
 
         //GUI
         AssetList.CURRENT_ORDER_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.CURRENT_ORDER_PROMPT.getAssetLocation())));
@@ -111,6 +116,11 @@ public class AssetInit implements IContent {
         TEXTURE_MAP.put(AssetList.FRIES.getAssetID(), AssetList.FRIES.getTexture());
         TEXTURE_MAP.put(AssetList.STEAK.getAssetID(), AssetList.STEAK.getTexture());
         TEXTURE_MAP.put(AssetList.FISH.getAssetID(), AssetList.FISH.getTexture());
+        TEXTURE_MAP.put(AssetList.ASPARAGUS.getAssetID(), AssetList.ASPARAGUS.getTexture());
+        TEXTURE_MAP.put(AssetList.SPINACH.getAssetID(), AssetList.SPINACH.getTexture());
+        TEXTURE_MAP.put(AssetList.SAUCE.getAssetID(), AssetList.SAUCE.getTexture());
+        TEXTURE_MAP.put(AssetList.CARAMEL_PUDDING.getAssetID(), AssetList.CARAMEL_PUDDING.getTexture());
+        TEXTURE_MAP.put(AssetList.ICE_CREAM.getAssetID(), AssetList.ICE_CREAM.getTexture());
 
         //GUI
         TEXTURE_MAP.put(AssetList.CURRENT_ORDER_PROMPT.getAssetID(), AssetList.CURRENT_ORDER_PROMPT.getTexture());

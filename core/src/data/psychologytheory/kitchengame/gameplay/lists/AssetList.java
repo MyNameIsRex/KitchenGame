@@ -51,6 +51,11 @@ public enum AssetList {
     FRIES(22, "textures/gameplay/dishes/appetizers/fries.png"),
     STEAK(24, "textures/gameplay/dishes/mains/steak.png"),
     FISH(25, "textures/gameplay/dishes/mains/fish.png"),
+    ASPARAGUS(26, "textures/gameplay/dishes/garnishes/asparagus.png"),
+    SPINACH(27, "textures/gameplay/dishes/garnishes/spinach.png"),
+    SAUCE(28, "textures/gameplay/dishes/garnishes/sauce.png"),
+    CARAMEL_PUDDING(29, "textures/gameplay/dishes/desserts/caramel_pudding.png"),
+    ICE_CREAM(30, "textures/gameplay/dishes/desserts/ice_cream.png"),
 
     //GUI
     CURRENT_ORDER_PROMPT(31, "textures/gui/gameplay/current_order_prompt.png"),
