@@ -21,7 +21,7 @@ public class CharacterInit implements IContent {
         CharacterList.CHEF.setCharacterInstance(new ChefCharacter(0, 32, 64, 0, 0, "chef_character",
                 AssetList.KITCHEN_CHEF.getTexture(), AssetUtil.getInstance().createUniformPartialTextures(AssetList.KITCHEN_CHEF.getTexture(), 0, 0, 64, 128, 16, 16, 1),
                 1, 1.0F, 1.0F,
-                new Animation[]{AnimationUtil.getInstance().createAnimation(16, 5)},
+                new Animation[]{AnimationUtil.getInstance().createAnimation(16, 1000)},
                 new AbstractCharacterGoals[]{}));
     }
 

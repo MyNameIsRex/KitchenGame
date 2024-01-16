@@ -8,11 +8,13 @@ public class Animation {
     private int startingFrame;
     private int endingFrame;
     private final int speed;
+    private float timer;
     private int currentFrame;
 
     public Animation(int frames, int speed) {
         this.frames = frames;
         this.speed = speed;
+        this.timer = 0;
     }
 
     public int getFrames() {
@@ -45,5 +47,13 @@ public class Animation {
 
     public void setEndingFrame(int endingFrame) {
         this.endingFrame = endingFrame;
+    }
+
+    public float getTimer() {
+        return timer;
+    }
+
+    public void setTimer(float timer) {
+        this.timer = timer;
     }
 }
