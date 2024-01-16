@@ -15,7 +15,7 @@ public class Notification {
         return receiverName;
     }
 
-    public boolean isHasReceived() {
+    public boolean isReceived() {
         return hasReceived;
     }
 
@@ -27,7 +27,7 @@ public class Notification {
         return token;
     }
 
-    public void setToken(String Token) {
+    public void setToken(String token) {
         this.token = token;
     }
 }

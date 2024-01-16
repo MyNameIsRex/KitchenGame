@@ -11,6 +11,7 @@ public abstract class AbstractGameObject {
     private Texture texture;
     private int zIndex;
     private String receivedToken;
+    private boolean attemptToReceiveNotification = false;
 
     public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, int zIndex) {
         this.objID = objID;
@@ -21,6 +22,7 @@ public abstract class AbstractGameObject {
         this.objName = objName;
         this.texture = texture;
         this.zIndex = zIndex;
+        this.receivedToken = "";
     }
 
     public void update() {
@@ -101,5 +103,14 @@ public abstract class AbstractGameObject {
 
     public void setReceivedToken(String receivedToken) {
         this.receivedToken = receivedToken;
+        this.attemptToReceiveNotification = true;
+    }
+
+    public boolean isAttemptToReceiveNotification() {
+        return attemptToReceiveNotification;
+    }
+
+    public void setAttemptToReceiveNotification(boolean attemptToReceiveNotification) {
+        this.attemptToReceiveNotification = attemptToReceiveNotification;
     }
 }

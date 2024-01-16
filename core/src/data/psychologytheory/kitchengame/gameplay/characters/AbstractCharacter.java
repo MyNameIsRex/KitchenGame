@@ -24,10 +24,6 @@ public class AbstractCharacter extends AbstractGameObject {
         this.characterGoals = characterGoals;
     }
 
-    public void setupAnimations() {
-
-    }
-
     public float getVelocityX() {
         return velocityX;
     }

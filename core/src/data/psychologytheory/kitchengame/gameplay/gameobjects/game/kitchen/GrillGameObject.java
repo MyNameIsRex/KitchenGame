@@ -6,6 +6,8 @@ import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
+import java.util.Objects;
+
 public class GrillGameObject extends AbstractKitchenGameObject {
     private boolean isGrillOn = false;
 

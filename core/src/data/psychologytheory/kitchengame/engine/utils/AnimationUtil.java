@@ -5,6 +5,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.animation.Animation;
 
+/*
+REFER TO THIS PROCEDURE IF NEEDED:
+
+When creating a new animatable game object:
+    Establishing a new animation: createAnimation(int frames, int speed);
+
+Play the animation:
+    In update method: playAnimation(Animation animation, int startingFrame, int endingFrame);
+    In render method: Render the partial texture via the current frame of the animation
+ */
 public class AnimationUtil {
     public static AnimationUtil instance;
 
@@ -36,8 +46,12 @@ public class AnimationUtil {
         animation.setTimer(animation.getTimer() + addDeltaToBufferTime(animation.getTimer()));
         if (animation.getTimer() > animation.getSpeed() + 1) {
             nextFrame(animation, startingFrame, endingFrame);
-            animation.setTimer(1);
+            animation.setTimer(1F);
         }
+    }
+
+    public void stopAnimation(Animation animation) {
+        animation.setTimer(0F);
     }
 
     public void nextFrame(Animation animation) {

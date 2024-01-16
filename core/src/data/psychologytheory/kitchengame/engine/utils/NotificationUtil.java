@@ -3,13 +3,32 @@ package data.psychologytheory.kitchengame.engine.utils;
 import data.psychologytheory.kitchengame.engine.notification.Notification;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
-import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
+/*
+REFER TO THIS PROCEDURE IF NEEDED!
+
+On sender side:
+    In update method:
+    1. createNotification(AbstractGameObject receiver);
+    2. sendNotification(Notification notification);
+    3. deliverToken(Notification notification, String receiver);
+
+On receiver side:
+    In update method:
+    if (this.isAttemptToReceiveNotification()) {
+        if (!(Objects.equals(NotificationUtil.getInstance().receiveNotification(this.getReceivedToken()), null))) {
+            Notification testNotification = NotificationUtil.getInstance().receiveNotification(this.getReceivedToken());
+            if (NotificationUtil.getInstance().isNotificationReceived(testNotification)) {
+                // Execute Code Here
+            }
+        }
+    }
+ */
 public class NotificationUtil {
     public static NotificationUtil instance;
     private static final String UPPER_CASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -17,7 +36,7 @@ public class NotificationUtil {
     private static final String DIGITS = "1234567890";
     private static final String SYMBOLS = "+/";
 
-    private static final List<Notification> UNHANDLED_NOTIFICATION_POOL = new ArrayList<>();
+    private static final Map<String, Notification> UNHANDLED_NOTIFICATION_POOL = new HashMap<>();
 
     public Notification createNotification(AbstractGameObject receiver) {
         return new Notification(receiver.getObjName());
@@ -50,11 +69,10 @@ public class NotificationUtil {
 
     public void sendNotification(Notification notification) {
         notification.setToken(NotificationUtil.getInstance().generateToken());
-        UNHANDLED_NOTIFICATION_POOL.add(notification);
+        UNHANDLED_NOTIFICATION_POOL.put(notification.getToken(), notification);
     }
     
     public void deliverToken(Notification notification, String receiver) {
-        final String token;
         GameObjectInit.GAME_OBJECT_MAP.forEach((integer, gameObject) -> {
             if (Objects.equals(gameObject.getObjName(), receiver)) {
                 NotificationUtil.getInstance().receiveToken(gameObject, notification);
@@ -66,16 +84,19 @@ public class NotificationUtil {
         gameObject.setReceivedToken(notification.getToken());
     }
     
-    public String getToken(Notification notification) {
-        return notification.getToken();
+    public Notification receiveNotification(String token) {
+        Notification notification = UNHANDLED_NOTIFICATION_POOL.get(token);
+        notification.setHasReceived(true);
+        UNHANDLED_NOTIFICATION_POOL.remove(token);
+        return notification;
     }
 
-    public void receiveNotification(String token) {
-        UNHANDLED_NOTIFICATION_POOL.forEach(notification -> {
-            if (Objects.equals(token, NotificationUtil.getInstance().getToken(notification))) {
-                UNHANDLED_NOTIFICATION_POOL.remove(notification);
-            }
-        });
+    public boolean isNotificationReceived(Notification notification) {
+        return notification.isReceived();
+    }
+
+    public void setNotificationReceived(Notification notification, boolean received) {
+        notification.setHasReceived(received);
     }
 
     public static NotificationUtil getInstance() {
