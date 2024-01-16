@@ -10,6 +10,7 @@ public abstract class AbstractGameObject {
     private String objName;
     private Texture texture;
     private int zIndex;
+    private String receivedToken;
 
     public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, int zIndex) {
         this.objID = objID;
@@ -92,5 +93,13 @@ public abstract class AbstractGameObject {
 
     public void setZIndex(int zIndex) {
         this.zIndex = zIndex;
+    }
+
+    public String getReceivedToken() {
+        return receivedToken;
+    }
+
+    public void setReceivedToken(String receivedToken) {
+        this.receivedToken = receivedToken;
     }
 }
