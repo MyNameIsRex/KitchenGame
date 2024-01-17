@@ -8,8 +8,8 @@ import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.characters.goals.AbstractCharacterGoals;
 
 public class ChefCharacter extends AbstractCharacter {
-    public ChefCharacter(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations, AbstractCharacterGoals[] characterGoals) {
-        super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, partialTextures, zIndex, velocityX, velocityY, animations, characterGoals);
+    public ChefCharacter(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations) {
+        super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, partialTextures, zIndex, velocityX, velocityY, animations);
     }
 
     @Override

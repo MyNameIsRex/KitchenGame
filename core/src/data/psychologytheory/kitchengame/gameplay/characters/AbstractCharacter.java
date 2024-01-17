@@ -14,14 +14,12 @@ public class AbstractCharacter extends AbstractGameObject {
     private AbstractCharacterGoals[] characterGoals;
 
     public AbstractCharacter(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName,
-                             Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations,
-                             AbstractCharacterGoals[] characterGoals) {
+                             Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, zIndex);
         this.partialTextures = partialTextures;
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.animations = animations;
-        this.characterGoals = characterGoals;
     }
 
     public float getVelocityX() {
