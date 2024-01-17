@@ -3,10 +3,13 @@ package data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget
 import data.psychologytheory.kitchengame.gameplay.characters.AbstractCharacter;
 import data.psychologytheory.kitchengame.gameplay.characters.goals.AbstractCharacterGoals;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen.AbstractKitchenGameObject;
 import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MoveToTargetGoal extends AbstractCharacterGoals {
-    private AbstractGameObject target;
 
     //FACING: 0 -> Down, 1 -> Up, 2 -> Left, 3 -> Right
     private static int FACING = 0;
@@ -17,8 +20,9 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
     private float currentWallX, currentWallY;
     private float currentWallWidth, currentWallHeight;
 
+    private List<Waypoint> route;
 
-    public MoveToTargetGoal(AbstractCharacter character, AbstractGameObject target) {
+    public MoveToTargetGoal(AbstractCharacter character, AbstractKitchenGameObject target) {
         super(character);
         this.characterPosX = character.getObjPosX();
         this.characterPosY = character.getObjPosY();
@@ -30,14 +34,18 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         this.targetHeight = target.getObjHeight();
         this.currentWallX = 0;
         this.currentWallY = 0;
+        this.route = new ArrayList<>();
     }
 
     @Override
     public void executeGoal() {
-        this.determineWallObject(FACING);
-        if (isWallInFront(this.characterPosX, this.characterPosY, this.characterWidth, this.characterHeight, this.currentWallX, this.currentWallY)) {
-
+        //Generate Route
+        if (this.route.isEmpty()) {
+            this.generateRoute();
         }
+
+        //Clear route
+        this.clearRoute(route);
     }
 
     @Override
@@ -45,42 +53,47 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         return false;
     }
 
-    private boolean isWallInFront(float characterX, float characterY, float characterWidth, float characterHeight, float wallX, float wallY) {
-        return (characterX + characterWidth) == (wallX - 64) ||
-                (characterX) == (wallX + 64) ||
-                (characterY) == (wallY + 64) ||
-                        (characterY + characterHeight) == (wallY - 64);
-    }
+    private void generateRoute() {
+        //First waypoint
+        Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.characterPosX, this.characterPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
 
-    private boolean hasReachedTargetFromHorizontal(float characterX, float characterWidth, float targetX, float targetWidth) {
-        return (characterX + characterWidth) == (targetX - 64) &&
-                (characterX) == (targetX + targetWidth + 64);
-    }
+        //Last waypoint
+        Waypoint endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 64, WaypointHelper.WaypointType.GOAL.getTypeID());
 
-    private boolean hasReachedTargetFromVertical(float characterY, float characterHeight, float targetY, float targetHeight) {
-        return (characterY) == (targetY + targetHeight + 64) &&
-                (characterY + characterHeight) == (targetY - 64);
-    }
+        this.route.add(beginingWaypoint);
 
-    private void determineWallObject(int facing) {
-        GameObjectInit.GAME_OBJECT_MAP.forEach((integer, gameObject) -> {
-            switch (facing) {
-                case 0:
-                    currentWallY = (gameObject.getObjPosY() + gameObject.getObjHeight());
-                    break;
-                case 1:
-                    currentWallY = (gameObject.getObjPosY());
-                case 2:
-                    currentWallX = (gameObject.getObjPosX() + gameObject.getObjWidth());
-                    break;
-                case 3:
-                    currentWallX = (gameObject.getObjPosX());
-                    break;
-                default:
-                    currentWallX = 0;
-                    currentWallY = 0;
-                    break;
+        //Second waypoint
+        if (this.characterPosX > this.targetPosX || this.characterPosX == this.targetPosX) {
+            this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.RIGHT_MOST_X, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+        } else {
+            this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.LEFT_MOST_X, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+        }
+
+        //Third waypoint
+        if (this.targetPosY == WaypointHelper.TOP_MOST_Y) {
+            this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.TOP_MOST_Y, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+        } else if ((this.targetPosY == WaypointHelper.CENTER_Y)) {
+            if (this.characterPosY > this.targetPosY) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.TOP_MOST_Y, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            } else {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.BOTTOM_MOST_Y, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
             }
-        });
+        } else {
+            this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.BOTTOM_MOST_Y, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+        }
+
+        this.route.add(endingWaypoint);
+    }
+
+    public void clearRoute(List<Waypoint> route) {
+        route.clear();
+    }
+
+    private boolean hasReachedWaypoint(Waypoint targetWaypoint, AbstractKitchenGameObject target) {
+        return targetWaypoint.getX() == target.getObjPosX() && targetWaypoint.getY() == target.getObjPosY();
+    }
+
+    private void findNextWaypoint() {
+
     }
 }

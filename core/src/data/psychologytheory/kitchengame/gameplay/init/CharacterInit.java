@@ -8,6 +8,7 @@ import data.psychologytheory.kitchengame.gameplay.characters.AbstractCharacter;
 import data.psychologytheory.kitchengame.gameplay.characters.ChefCharacter;
 import data.psychologytheory.kitchengame.gameplay.characters.goals.AbstractCharacterGoals;
 import data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget.MoveToTargetGoal;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen.AbstractKitchenGameObject;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 import data.psychologytheory.kitchengame.gameplay.lists.CharacterList;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
@@ -32,7 +33,7 @@ public class CharacterInit implements IContent {
         //Load goals here
         CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()).setCharacterGoals(new AbstractCharacterGoals[]{
                 new MoveToTargetGoal(CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()),
-                        GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()))
+                        (AbstractKitchenGameObject) GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()))
         });
     }
 
