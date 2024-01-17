@@ -20,7 +20,7 @@ public class CharacterInit implements IContent {
     public static final Map<Integer, AbstractCharacter> CHARACTER_MAP = new HashMap<>();
     @Override
     public void createContents() {
-        CharacterList.CHEF.setCharacterInstance(new ChefCharacter(0, 32, 64, 0, 0, "chef_character",
+        CharacterList.CHEF.setCharacterInstance(new ChefCharacter(0, 32, 64, 512, 344, "chef_character",
                 AssetList.KITCHEN_CHEF.getTexture(), AssetUtil.getInstance().createUniformPartialTextures(AssetList.KITCHEN_CHEF.getTexture(), 0, 0, 64, 128, 16, 16, 1),
                 1, 1.0F, 1.0F,
                 new Animation[]{AnimationUtil.getInstance().createAnimation(16, 1000)}));
@@ -31,10 +31,8 @@ public class CharacterInit implements IContent {
         CHARACTER_MAP.put(CharacterList.CHEF.getCharacterID(), CharacterList.CHEF.getCharacterInstance());
 
         //Load goals here
-        CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()).setCharacterGoals(new AbstractCharacterGoals[]{
-                new MoveToTargetGoal(CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()),
-                        (AbstractKitchenGameObject) GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()))
-        });
+        CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()).setCharacterGoals(
+                new AbstractCharacterGoals[]{new MoveToTargetGoal(CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()))});
     }
 
     @Override

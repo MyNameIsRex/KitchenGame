@@ -32,8 +32,8 @@ public class FridgeGameObject extends InteractableGameObject {
 
     @Override
     public void runInteraction() {
-        this.isFridgeDoorOpen = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatio && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth())  * KitchenGame.currentRatio &&
-                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() - 16) * KitchenGame.currentRatio && MouseInput.getMousePosY() >= (this.getObjPosY() + 16) * KitchenGame.currentRatio;
+        this.isFridgeDoorOpen = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth())  * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() - 16) * KitchenGame.currentRatioY && MouseInput.getMousePosY() >= (this.getObjPosY() + 16) * KitchenGame.currentRatioY;
 
         if (this.isFridgeDoorOpen) {
             if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {

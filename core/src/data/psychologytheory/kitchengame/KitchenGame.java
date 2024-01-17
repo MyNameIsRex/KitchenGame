@@ -7,6 +7,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.ScreenUtils;
 import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
 import data.psychologytheory.kitchengame.engine.utils.NotificationUtil;
+import data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget.Waypoint;
+import data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget.WaypointHelper;
 import data.psychologytheory.kitchengame.gameplay.init.GameContentInitializer;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.scenes.SceneHelper;
@@ -15,7 +17,8 @@ public class KitchenGame extends ApplicationAdapter {
 	private GameContentInitializer gameContentInitializer;
 	public static int currentWidth, currentHeight;
 	public static final int WIDTH = 1280, HEIGHT = 720;
-	public static float currentRatio = (float) currentWidth / WIDTH;
+	public static float currentRatioX = (float) currentWidth / WIDTH;
+	public static float currentRatioY = (float) currentHeight / HEIGHT;
 	private Graphics.DisplayMode currentDisplayMode;
 
 	@Override
@@ -33,7 +36,9 @@ public class KitchenGame extends ApplicationAdapter {
 		super.resize(width, height);
 		currentWidth = width;
 		currentHeight = height;
-		currentRatio = (float) currentWidth / WIDTH;
+		currentRatioX = (float) currentWidth / WIDTH;
+		currentRatioY = (float) currentHeight / HEIGHT;
+		this.updateConstants();
 	}
 
 	@Override
@@ -66,5 +71,13 @@ public class KitchenGame extends ApplicationAdapter {
 			Gdx.graphics.setWindowedMode(WIDTH, HEIGHT);
 		}
 		this.gameContentInitializer.disposeContents();
+	}
+
+	private void updateConstants() {
+		WaypointHelper.leftMostX = 448F * currentRatioX;
+		WaypointHelper.rightMostX = 864F * currentRatioX;
+		WaypointHelper.topMostY = 344F * currentRatioY;
+		WaypointHelper.centerY = 232F * currentRatioY;
+		WaypointHelper.bottomMostY = 200F * currentRatioY;
 	}
 }
