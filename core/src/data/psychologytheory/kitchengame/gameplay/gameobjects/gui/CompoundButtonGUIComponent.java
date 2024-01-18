@@ -45,44 +45,62 @@ public class CompoundButtonGUIComponent extends AbstractGUIComponent {
     @Override
     public void update() {
         super.update();
-        if (this.isDisplayGUIComponent()) {
-            this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
-                    MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY && MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight()) * KitchenGame.currentRatioY;
+        if (!this.isDisplayGUIComponent()) {
+            return;
+        }
 
-            if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
-                this.isPressed = true;
-                this.clickListener.executeAction();
-            } else {
-                this.isPressed = false;
-            }
+        this.isHoveredOver = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY &&
+                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight()) * KitchenGame.currentRatioY;
+
+        if (isHoveredOver && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
+            this.isPressed = true;
+            this.clickListener.executeAction();
+        } else {
+            this.isPressed = false;
         }
     }
 
     @Override
     public void render() {
         super.render();
-        if (this.isDisplayGUIComponent()) {
+        if (!this.isDisplayGUIComponent()) {
+            return;
+        }
+
+        if (this.buttonBackgrounds != null) {
             if (!this.isHoveredOver) {
-                if (!(this.buttonBackgrounds == null)) {
-                    RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
-                } else {
-                    RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
-                }
-            } else {
-                if (!this.isPressed) {
-                    if (!(this.buttonBackgrounds == null)) {
-                        RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
-                    } else {
-                        RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
-                    }
-                } else {
-                    if (!(this.buttonBackgrounds == null)) {
-                        RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
-                    } else {
-                        RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
-                    }
-                }
+                RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+                return;
             }
+
+            if (!this.isPressed) {
+                RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+                return;
+            }
+
+            RenderUtil.getInstance().renderTexture(this.buttonBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+            RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+            return;
+        }
+
+        if (this.buttonPartialBackgrounds != null) {
+            if (!this.isHoveredOver) {
+                RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+                RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+                return;
+            }
+
+            if (!this.isPressed) {
+                RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[1], (int) this.getObjPosX(), (int) this.getObjPosY());
+                RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
+                return;
+            }
+
+            RenderUtil.getInstance().renderPartialTexture(this.buttonPartialBackgrounds[0], (int) this.getObjPosX(), (int) this.getObjPosY());
             RenderUtil.getInstance().renderText(this.buttonText, this.buttonFont, (int) this.getObjPosX() + 18, (int) (this.getObjPosY() + this.getObjHeight() / 2 + 9));
         }
     }

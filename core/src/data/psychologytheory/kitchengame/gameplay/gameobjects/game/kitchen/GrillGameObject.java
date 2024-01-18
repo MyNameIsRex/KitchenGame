@@ -2,6 +2,7 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
@@ -26,11 +27,12 @@ public class GrillGameObject extends AbstractKitchenGameObject {
 
     @Override
     public void runInteraction() {
-        if (MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
-                MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY && MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight()) * KitchenGame.currentRatioY) {
-            if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
-                this.isGrillOn = !this.isGrillOn;
-            }
+        if ((MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY &&
+                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight()) * KitchenGame.currentRatioY) &&
+                MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
+            this.isGrillOn = !this.isGrillOn;
         }
     }
 }

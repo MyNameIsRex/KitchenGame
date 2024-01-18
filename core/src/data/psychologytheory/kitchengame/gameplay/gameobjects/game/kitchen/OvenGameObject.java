@@ -31,13 +31,13 @@ public class OvenGameObject extends AbstractKitchenGameObject {
 
     @Override
     public void runInteraction() {
-        this.isOvenDoorOpen = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
-                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() + 32) * KitchenGame.currentRatioY && MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY;
+        this.isOvenDoorOpen = MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() + 32) * KitchenGame.currentRatioY &&
+                MouseInput.getMousePosY() >= this.getObjPosY() * KitchenGame.currentRatioY;
 
-        if (this.isOvenDoorOpen) {
-            if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
-                isOvenOn = !isOvenOn;
-            }
+        if (this.isOvenDoorOpen && MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
+            isOvenOn = !isOvenOn;
         }
     }
 }

@@ -130,7 +130,6 @@ public class GameObjectInit implements IContent {
                 GameObjectList.HOTPLATE.getGameObjectInstance());
 
         for (AbstractGameObject gameObject : GAME_OBJECT_MAP.values()) {
-            System.out.println("Game Object " + gameObject.getObjName() + " is at X: " + gameObject.getObjPosX() + " | Y: " + gameObject.getObjPosY());
             if (gameObject instanceof AbstractKitchenGameObject) {
                 switch(gameObject.getObjName()) {
                     case "kitchen_stove_appetizer":

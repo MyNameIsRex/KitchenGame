@@ -40,12 +40,18 @@ public class CompoundGUIComponent extends AbstractGUIComponent {
     @Override
     public void render() {
         super.render();
-        if (this.isDisplayGUIComponent()) {
-            if (!(this.guiTextures == null)) {
-                RenderUtil.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
-            } else {
-                RenderUtil.getInstance().renderPartialTexture(this.guiPartialTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
-            }
+        if (!this.isDisplayGUIComponent()) {
+            return;
+        }
+
+        if (this.guiTextures != null) {
+            RenderUtil.getInstance().renderTexture(this.guiTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
+            RenderUtil.getInstance().renderText(this.guiText, this.guiFont, (int) this.getObjPosX() + textOffsetX, (int) (this.getObjPosY() + this.getObjHeight() / 2 + textOffsetY));
+            return;
+        }
+
+        if (this.guiPartialTextures != null) {
+            RenderUtil.getInstance().renderPartialTexture(this.guiPartialTextures[0], (int) this.getObjPosX(), (int) (this.getObjPosY()));
             RenderUtil.getInstance().renderText(this.guiText, this.guiFont, (int) this.getObjPosX() + textOffsetX, (int) (this.getObjPosY() + this.getObjHeight() / 2 + textOffsetY));
         }
     }

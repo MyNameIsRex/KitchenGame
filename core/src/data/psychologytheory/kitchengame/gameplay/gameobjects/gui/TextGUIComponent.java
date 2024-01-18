@@ -14,9 +14,11 @@ public class TextGUIComponent extends AbstractGUIComponent {
 
     @Override
     public void render() {
-        if (this.isDisplayGUIComponent()) {
-            RenderUtil.getInstance().renderText(guiText, guiFont, (int) this.getObjPosX(), (int) this.getObjPosY());
+        if (!this.isDisplayGUIComponent()) {
+            return;
         }
+
+        RenderUtil.getInstance().renderText(guiText, guiFont, (int) this.getObjPosX(), (int) this.getObjPosY());
     }
 
     public CharSequence getText() {

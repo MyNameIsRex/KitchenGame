@@ -67,17 +67,6 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
 
         //First waypoint
         Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.characterPosX, this.characterPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
-        Waypoint endingWaypoint;
-
-        //Last waypoint
-        if (this.targetPosY == WaypointHelper.bottomMostY - 32) {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY + 32, WaypointHelper.WaypointType.GOAL.getTypeID());
-        } else if (this.targetPosY == WaypointHelper.centerY + 48 || this.targetPosY == WaypointHelper.topMostY + 48) {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 48, WaypointHelper.WaypointType.GOAL.getTypeID());
-        } else {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY, WaypointHelper.WaypointType.GOAL.getTypeID());
-        }
-
         this.route.add(beginingWaypoint);
 
         //Second waypoint
@@ -104,28 +93,41 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
             }
         }
 
-        this.route.add(endingWaypoint);
-        System.out.println("Route Size: " + this.route.size());
-        System.out.println("Desired Route Size: " + routeSize);
-        for (Waypoint waypoint : this.route) {
-            System.out.println("Waypoint " + this.route.indexOf(waypoint) + " | X: " + waypoint.getX() + " | Y: " + waypoint.getY());
+        //Last Waypoint
+        Waypoint endingWaypoint;
+
+        if (this.targetPosY == WaypointHelper.bottomMostY - 32) {
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY + 32, WaypointHelper.WaypointType.GOAL.getTypeID());
+        } else if (this.targetPosY == WaypointHelper.centerY + 48 || this.targetPosY == WaypointHelper.topMostY + 48) {
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 48, WaypointHelper.WaypointType.GOAL.getTypeID());
+        } else {
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY, WaypointHelper.WaypointType.GOAL.getTypeID());
         }
+
+        this.route.add(endingWaypoint);
     }
 
     private void determineDirection() {
         int lastFacing = FACING;
-        //Determine Direction
-        if (!this.atEndWaypoint(this.currentWaypointIndex)) {
-            if (this.route.get(this.currentWaypointIndex + 1).getX() > this.route.get(this.currentWaypointIndex).getX() && this.route.get(this.currentWaypointIndex + 1).getY() == this.route.get(this.currentWaypointIndex).getY()) {
-                FACING = 3;
-            } else if (this.route.get(this.currentWaypointIndex + 1).getX() < this.route.get(this.currentWaypointIndex).getX() && this.route.get(this.currentWaypointIndex + 1).getY() == this.route.get(this.currentWaypointIndex).getY()) {
-                FACING = 2;
-            } else if (this.route.get(this.currentWaypointIndex + 1).getY() > this.route.get(this.currentWaypointIndex).getY() && this.route.get(this.currentWaypointIndex + 1).getX() == this.route.get(this.currentWaypointIndex).getX()) {
-                FACING = 1;
-            } else if (this.route.get(this.currentWaypointIndex + 1).getY() < this.route.get(this.currentWaypointIndex).getY() && this.route.get(this.currentWaypointIndex + 1).getX() == this.route.get(this.currentWaypointIndex).getX()) {
-                FACING = 0;
-            }
+
+        if (this.atEndWaypoint(this.currentWaypointIndex)) {
+            return;
         }
+
+        if (this.route.get(this.currentWaypointIndex + 1).getX() > this.route.get(this.currentWaypointIndex).getX() &&
+            this.route.get(this.currentWaypointIndex + 1).getY() == this.route.get(this.currentWaypointIndex).getY()) {
+            FACING = 3;
+        } else if (this.route.get(this.currentWaypointIndex + 1).getX() < this.route.get(this.currentWaypointIndex).getX() &&
+                   this.route.get(this.currentWaypointIndex + 1).getY() == this.route.get(this.currentWaypointIndex).getY()) {
+            FACING = 2;
+        } else if (this.route.get(this.currentWaypointIndex + 1).getY() > this.route.get(this.currentWaypointIndex).getY() &&
+                   this.route.get(this.currentWaypointIndex + 1).getX() == this.route.get(this.currentWaypointIndex).getX()) {
+            FACING = 1;
+        } else if (this.route.get(this.currentWaypointIndex + 1).getY() < this.route.get(this.currentWaypointIndex).getY() &&
+                   this.route.get(this.currentWaypointIndex + 1).getX() == this.route.get(this.currentWaypointIndex).getX()) {
+            FACING = 0;
+        }
+
         if (FACING != lastFacing) {
             switch (FACING) {
                 case 1:
@@ -157,40 +159,7 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
             this.getCharacter().setVelocityY(this.characterVelocityY);
         }
 
-        if (!this.atEndWaypoint(this.currentWaypointIndex)) {
-            if (!this.atNextWaypoint(this.route.get(this.currentWaypointIndex + 1))) {
-                switch (FACING) {
-                    case 0:
-                        this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() - this.getCharacter().getVelocityY());
-                        AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 0, 3);
-                        this.characterPosY = this.getCharacter().getObjPosY();
-                        break;
-                    case 1:
-                        this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() + this.getCharacter().getVelocityY());
-                        AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 4, 7);
-                        this.characterPosY = this.getCharacter().getObjPosY();
-                        break;
-                    case 2:
-                        this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() - this.getCharacter().getVelocityX());
-                        AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 8, 11);
-                        this.characterPosX = this.getCharacter().getObjPosX();
-                        break;
-                    case 3:
-                        this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() + this.getCharacter().getVelocityX());
-                        AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 12, 15);
-                        this.characterPosX = this.getCharacter().getObjPosX();
-                        break;
-                }
-            } else {
-                this.incrementWaypointIndex(maxIndex);
-            }
-        } else {
-            if (targetPosY > characterPosY) {
-                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 4);
-            } else {
-                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 0);
-            }
-        }
+        this.moveCharacter(maxIndex);
 
         if (this.characterPosY == WaypointHelper.topMostY) {
             this.getCharacter().setZIndex(2);
@@ -199,7 +168,45 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         } else if (this.characterPosY == WaypointHelper.bottomMostY) {
             this.getCharacter().setZIndex(5);
         }
-        System.out.println("Current Waypoint: " + this.currentWaypointIndex);
+    }
+
+    private void moveCharacter(int maxIndex) {
+        if (this.atEndWaypoint(this.currentWaypointIndex)) {
+            if (targetPosY > characterPosY) {
+                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 4);
+            } else {
+                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 0);
+            }
+            return;
+        }
+
+        if (this.atNextWaypoint(this.route.get(this.currentWaypointIndex + 1))) {
+            this.incrementWaypointIndex(maxIndex);
+            return;
+        }
+
+        switch (FACING) {
+            case 0:
+                this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() - this.getCharacter().getVelocityY());
+                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 0, 3);
+                this.characterPosY = this.getCharacter().getObjPosY();
+                break;
+            case 1:
+                this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() + this.getCharacter().getVelocityY());
+                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 4, 7);
+                this.characterPosY = this.getCharacter().getObjPosY();
+                break;
+            case 2:
+                this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() - this.getCharacter().getVelocityX());
+                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 8, 11);
+                this.characterPosX = this.getCharacter().getObjPosX();
+                break;
+            case 3:
+                this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() + this.getCharacter().getVelocityX());
+                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 12, 15);
+                this.characterPosX = this.getCharacter().getObjPosX();
+                break;
+        }
     }
 
     private boolean shouldSlowDown() {
@@ -213,7 +220,6 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
                (this.characterPosX - 8 <= this.route.get(nextIndex).getY() &&
                 this.characterPosX >= this.route.get(nextIndex).getY());
     }
-
 
     private boolean atNextWaypoint (Waypoint waypoint) {
         return this.characterPosX == waypoint.getX() && this.characterPosY == waypoint.getY();
@@ -232,7 +238,6 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
     }
 
     private int routeLength() {
-        System.out.println("Target Pos: X -> " + this.targetPosX + " / Y -> " + this.targetPosY);
         if ((this.targetPosX >= WaypointHelper.leftMostX && this.targetPosX <= WaypointHelper.rightMostX) && (
             (this.characterPosY == this.targetPosY - 32) || (this.characterPosY == this.targetPosY - 48))) {
             return 2;

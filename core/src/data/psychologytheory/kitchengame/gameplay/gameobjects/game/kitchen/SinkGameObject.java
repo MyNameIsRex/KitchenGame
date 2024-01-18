@@ -25,11 +25,12 @@ public class SinkGameObject extends InteractableGameObject {
 
     @Override
     public void runInteraction() {
-        if (MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX && MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
-            MouseInput.getMousePosY() >= (this.getObjPosY() + 16) * KitchenGame.currentRatioY && MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() + 16) * KitchenGame.currentRatioY){
-            if (MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
-                this.isSinkFull = !this.isSinkFull;
-            }
+        if ((MouseInput.getMousePosX() >= this.getObjPosX() * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosX() <= (this.getObjPosX() + this.getObjWidth()) * KitchenGame.currentRatioX &&
+                MouseInput.getMousePosY() >= (this.getObjPosY() + 16) * KitchenGame.currentRatioY &&
+                MouseInput.getMousePosY() <= (this.getObjPosY() + this.getObjHeight() + 16) * KitchenGame.currentRatioY) &&
+                MouseInput.isMouseButtonPressed(Input.Buttons.LEFT)) {
+            this.isSinkFull = !this.isSinkFull;
         }
     }
 }

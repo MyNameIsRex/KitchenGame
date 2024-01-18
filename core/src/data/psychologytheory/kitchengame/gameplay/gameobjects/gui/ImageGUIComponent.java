@@ -20,8 +20,10 @@ public class ImageGUIComponent extends AbstractGUIComponent {
 
     @Override
     public void render() {
-        if (this.isDisplayGUIComponent()) {
-            RenderUtil.getInstance().renderTexture(imageTexture, (int) this.getObjPosX(), (int) this.getObjPosY());
+        if (!this.isDisplayGUIComponent()) {
+            return;
         }
+
+        RenderUtil.getInstance().renderTexture(imageTexture, (int) this.getObjPosX(), (int) this.getObjPosY());
     }
 }
