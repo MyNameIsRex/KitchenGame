@@ -22,7 +22,7 @@ public class CharacterInit implements IContent {
     public void createContents() {
         CharacterList.CHEF.setCharacterInstance(new ChefCharacter(0, 32, 64, 512, 344, "chef_character",
                 AssetList.KITCHEN_CHEF.getTexture(), AssetUtil.getInstance().createUniformPartialTextures(AssetList.KITCHEN_CHEF.getTexture(), 0, 0, 64, 128, 16, 16, 1),
-                2, 2F, 2F,
+                2, 3F, 3F,
                 new Animation[]{AnimationUtil.getInstance().createAnimation(16, 1000)}));
     }
 

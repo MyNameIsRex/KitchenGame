@@ -13,17 +13,27 @@ import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 
 public class ChefCharacter extends AbstractCharacter {
+    private boolean runMoveToTargetGoal = false;
     public ChefCharacter(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, partialTextures, zIndex, velocityX, velocityY, animations);
     }
 
     @Override
     public void update() {
-        if (this.getCharacterGoals()[0] instanceof MoveToTargetGoal && !this.getCharacterGoals()[0].isInProgress()) {
-            ((MoveToTargetGoal) this.getCharacterGoals()[0]).setTarget(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.STOVE_APPETIZER.getGameObjectID()));
+        if (KeyboardInput.isKeyPressed(Input.Keys.R)) {
+            runMoveToTargetGoal = true;
         }
-        if (!this.getCharacterGoals()[0].isGoalSuccessful())
-            this.getCharacterGoals()[0].executeGoal();
+
+        if (runMoveToTargetGoal) {
+            if (this.getCharacterGoals()[0] instanceof MoveToTargetGoal && !this.getCharacterGoals()[0].isInProgress()) {
+                ((MoveToTargetGoal) this.getCharacterGoals()[0]).setTarget(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()));
+            }
+            if (!this.getCharacterGoals()[0].isGoalSuccessful())
+                this.getCharacterGoals()[0].executeGoal();
+            if (this.getCharacterGoals()[0].isGoalSuccessful()) {
+                runMoveToTargetGoal = false;
+            }
+        }
     }
 
     @Override
