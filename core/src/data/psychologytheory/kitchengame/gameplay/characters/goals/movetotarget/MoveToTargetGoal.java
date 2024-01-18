@@ -63,6 +63,8 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
     }
 
     private void generateRoute() {
+        int routeSize = this.routeLength();
+
         //First waypoint
         Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.characterPosX, this.characterPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
         Waypoint endingWaypoint;
@@ -70,6 +72,8 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         //Last waypoint
         if (this.targetPosY == WaypointHelper.bottomMostY - 32) {
             endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY + 32, WaypointHelper.WaypointType.GOAL.getTypeID());
+        } else if (this.targetPosY == WaypointHelper.centerY + 48 || this.targetPosY == WaypointHelper.topMostY + 48) {
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 48, WaypointHelper.WaypointType.GOAL.getTypeID());
         } else {
             endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 32, WaypointHelper.WaypointType.GOAL.getTypeID());
         }
@@ -78,19 +82,30 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
 
         //Second waypoint
         if (this.characterPosX < this.targetPosX || this.characterPosX == this.targetPosX) {
-            this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.rightMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            if (routeSize == 3) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            } else {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.rightMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            }
         } else {
-            this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.leftMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            if (routeSize == 3) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            } else {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.leftMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            }
         }
 
-        //Third waypoint
-        if (this.targetPosY == WaypointHelper.topMostY + 32) {
-            this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.topMostY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
-        } else if (this.targetPosY == WaypointHelper.centerY + 32) {
-            this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.centerY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
-        } else {
-            this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.bottomMostY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+        if (routeSize == 4) {
+            //Third waypoint
+            if (this.targetPosY == WaypointHelper.topMostY + 32) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.topMostY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            } else if (this.targetPosY == WaypointHelper.centerY + 32) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.centerY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            } else {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.bottomMostY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            }
         }
+
         this.route.add(endingWaypoint);
     }
 
@@ -204,16 +219,26 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         return currentWaypointIndex == this.route.size() - 1;
     }
 
-    public void clearRoute () {
-        this.route.clear();
-    }
-
     private void incrementWaypointIndex(int maxIndex) {
         if (this.currentWaypointIndex + 1 >= maxIndex) {
             this.currentWaypointIndex = maxIndex;
         } else {
             this.currentWaypointIndex++;
         }
+    }
+
+    private int routeLength() {
+        System.out.println("Target Pos: X -> " + this.targetPosX + " / Y -> " + this.targetPosY);
+        if (this.targetPosY >= WaypointHelper.bottomMostY) {
+            //Some code here
+        } else {
+            //Some code here
+        }
+        return 4;
+    }
+
+    public void clearRoute () {
+        this.route.clear();
     }
 
     public void setTarget (AbstractGameObject target){
