@@ -70,31 +70,30 @@ public class GameObjectInit implements IContent {
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 64) - 32,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_garnish",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true));
-        //new AbstractDish[]{DishList.ASPARAGUS.getDish(), DishList.SPINACH.getDish(), DishList.SAUCE.getDish()}
+                3, false, true));
         GameObjectList.STOVE_APPETIZER.setGameObjectInstance(new StoveGameObject(10, 64, 64,
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 64) + 32,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_stove_appetizer",
                 new Texture[] {AssetList.KITCHEN_STOVE_OFF.getTexture(), AssetList.KITCHEN_STOVE_ON.getTexture()},
-                1, false, true));
+                3, false, true));
         GameObjectList.TABLE_TOP_CENTER_CENTER.setGameObjectInstance(new StationaryGameObject(11, 32, 64,
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 64) + 96,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_center_center",
-                AssetList.KITCHEN_TABLE_TOP.getTexture(), 4, false));
+                AssetList.KITCHEN_TABLE_TOP.getTexture(), 3, false));
         GameObjectList.SINK_CENTER.setGameObjectInstance(new SinkGameObject(12, 64, 64,
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 64) + 128,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 64) - 80, "kitchen_sink_center",
                 new Texture[] {AssetList.KITCHEN_SINK_EMPTY.getTexture(), AssetList.KITCHEN_SINK_FULL.getTexture()},
-                1, false, true));
+                3, false, true));
         GameObjectList.TABLE_TOP_DESSERT.setGameObjectInstance(new StationaryGameObject(13, 64, 64,
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 64) + 192,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 64) - 64, "kitchen_table_top_dessert",
-                AssetList.KITCHEN_TABLE_TOP_LARGE.getTexture(), 4, false));
+                AssetList.KITCHEN_TABLE_TOP_LARGE.getTexture(), 3, false));
 
         GameObjectList.HOTPLATE.setGameObjectInstance(new StationaryGameObject(14, 416, 32,
                 RenderUtil.moveToCenter(KitchenGame.currentWidth, 416) + 80,
                 RenderUtil.moveToCenter(KitchenGame.currentHeight, 32) - 176, "kitchen_hot_plate",
-                AssetList.KITCHEN_HOT_PLATE.getTexture(), 7, false));
+                AssetList.KITCHEN_HOT_PLATE.getTexture(), 6, false));
     }
 
     @Override

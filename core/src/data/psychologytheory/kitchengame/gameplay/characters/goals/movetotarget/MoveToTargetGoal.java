@@ -10,6 +10,8 @@ import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static data.psychologytheory.kitchengame.KitchenGame.currentRatioY;
+
 public class MoveToTargetGoal extends AbstractCharacterGoals {
 
     //FACING: 0 -> Down, 1 -> Up, 2 -> Left, 3 -> Right
@@ -18,11 +20,14 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
     private float targetPosX, targetPosY;
     private List<Waypoint> route;
     private int currentWaypointIndex = 0;
+    private final float characterVelocityX, characterVelocityY;
 
     public MoveToTargetGoal(AbstractCharacter character) {
         super(character);
         this.characterPosX = character.getObjPosX();
         this.characterPosY = character.getObjPosY();
+        this.characterVelocityX = character.getVelocityX();
+        this.characterVelocityY = character.getVelocityY();
         this.targetPosX = 0;
         this.targetPosY = 0;
         this.route = new ArrayList<>();
@@ -37,7 +42,8 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
             this.generateRoute();
         }
 
-        this.followRoute();
+        this.determineDirection();
+        this.walkAlongRoute();
 
         if (this.atEndWaypoint(this.currentWaypointIndex)) {
             if (this.targetPosY > this.characterPosY) {
@@ -92,9 +98,7 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         this.route.add(endingWaypoint);
     }
 
-    private void followRoute() {
-        int maxIndex = this.route.size() - 1;
-
+    private void determineDirection() {
         //Determine Direction
         if (!this.atEndWaypoint(this.currentWaypointIndex)) {
             if (this.route.get(this.currentWaypointIndex + 1).getX() > this.route.get(this.currentWaypointIndex).getX() && this.route.get(this.currentWaypointIndex + 1).getY() == this.route.get(this.currentWaypointIndex).getY()) {
@@ -106,6 +110,20 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
             } else if (this.route.get(this.currentWaypointIndex + 1).getY() < this.route.get(this.currentWaypointIndex).getY() && this.route.get(this.currentWaypointIndex + 1).getX() == this.route.get(this.currentWaypointIndex).getX()) {
                 FACING = 0;
             }
+        }
+    }
+
+    private void walkAlongRoute() {
+        int maxIndex = this.route.size() - 1;
+
+        if (shouldSlowDown()) {
+            this.getCharacter().setObjPosX((int) this.getCharacter().getObjPosX());
+            this.getCharacter().setObjPosY((int) this.getCharacter().getObjPosY());
+            this.getCharacter().setVelocityX(1.0F);
+            this.getCharacter().setVelocityY(1.0F);
+        } else {
+            this.getCharacter().setVelocityX(this.characterVelocityX);
+            this.getCharacter().setVelocityY(this.characterVelocityY);
         }
 
         if (!this.atEndWaypoint(this.currentWaypointIndex)) {
@@ -146,6 +164,31 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
                 AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 0);
             }
         }
+
+        if (this.characterPosY == WaypointHelper.topMostY) {
+            this.getCharacter().setZIndex(2);
+        } else if (this.characterPosY == WaypointHelper.centerY) {
+            this.getCharacter().setZIndex(4);
+        } else if (this.characterPosY == WaypointHelper.bottomMostY) {
+            this.getCharacter().setZIndex(5);
+        }
+    }
+
+    private boolean shouldSlowDown() {
+        int nextIndex = 0;
+        if (this.currentWaypointIndex + 1 >= this.route.size() - 1) {
+            nextIndex = this.route.size() - 1;
+        } else {
+            nextIndex = this.currentWaypointIndex + 1;
+        }
+        return (this.characterPosX + 8 >= this.route.get(nextIndex).getX() &&
+                this.characterPosX <= this.route.get(nextIndex).getX()) ||
+               (this.characterPosX - 8 <= this.route.get(nextIndex).getX() &&
+                this.characterPosX >= this.route.get(nextIndex).getX()) ||
+               (this.characterPosX + 8 >= this.route.get(nextIndex).getY() &&
+                this.characterPosX <= this.route.get(nextIndex).getY()) ||
+               (this.characterPosX - 8 <= this.route.get(nextIndex).getY() &&
+                this.characterPosX >= this.route.get(nextIndex).getY());
     }
 
 
