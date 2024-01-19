@@ -7,7 +7,7 @@ import data.psychologytheory.kitchengame.gameplay.dishes.AbstractDish;
 
 public class CookingGoal extends AbstractEntityGoals {
     private final AbstractDish dish;
-    private int cookingTimer;
+    private float cookingTimer;
 
     public CookingGoal(AbstractEntity character, AbstractDish dish) {
         super(character);
@@ -17,24 +17,27 @@ public class CookingGoal extends AbstractEntityGoals {
 
     @Override
     public void executeGoal() {
-        float lastTime = Gdx.graphics.getDeltaTime();
-        float deltaTime;
-        float currentTime = Gdx.graphics.getDeltaTime();
-        deltaTime = currentTime - lastTime;
-
-        this.incrementCookingTimer(deltaTime);
+        this.setInProgress(true);
+        this.incrementCookingTimer(Gdx.graphics.getDeltaTime());
+        System.out.println("Current cooking timer: " + this.cookingTimer);
     }
 
     @Override
     public boolean isGoalSuccessful() {
-        return isCookingComplete(this.dish);
+        this.setInProgress(false);
+        if (isCookingComplete(this.dish)) {
+            System.out.println("Cooking Complete!");
+            this.cookingTimer = 0;
+            return true;
+        }
+        return false;
     }
 
     private void incrementCookingTimer(float deltaTime) {
-        this.cookingTimer += (int) deltaTime;
+        this.cookingTimer += deltaTime;
     }
 
     private boolean isCookingComplete(AbstractDish dish) {
-        return this.cookingTimer == dish.getDishCookTime() * 1000;
+        return this.cookingTimer > dish.getDishCookTime();
     }
 }

@@ -20,13 +20,17 @@ On sender side:
 
 On receiver side:
     In update method:
-    if (this.isAttemptToReceiveNotification()) {
-        if (!(Objects.equals(NotificationUtil.getInstance().receiveNotification(this.getReceivedToken()), null))) {
-            Notification testNotification = NotificationUtil.getInstance().receiveNotification(this.getReceivedToken());
-            if (NotificationUtil.getInstance().isNotificationReceived(testNotification)) {
-                // Execute Code Here
-            }
-        }
+    if (!this.isAttemptToReceiveNotification()) {
+            return;
+    }
+
+    notification = NotificationUtil.getInstance().receiveNotification(this.getReceivedToken());
+    if (Objects.equals(NotificationUtil.getInstance().receiveNotification(this.getReceivedToken()), null)) {
+        return;
+    }
+
+    if (NotificationUtil.getInstance().isNotificationReceived(notification)) {
+        // Execute Code Here
     }
  */
 public class NotificationUtil {

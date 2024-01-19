@@ -12,6 +12,7 @@ public abstract class AbstractGameObject {
     private int zIndex;
     private String receivedToken;
     private boolean attemptToReceiveNotification = false;
+    private boolean canCreateNotification = false;
 
     public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, int zIndex) {
         this.objID = objID;
