@@ -38,6 +38,7 @@ public class GameplayScene extends AbstractScene {
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()));
 
         GAME_OBJECT_LIST.add(EntityInit.ENTITY_MAP.get(EntityList.CHEF.getCharacterID()));
+        GAME_OBJECT_LIST.add(EntityInit.ENTITY_MAP.get(EntityList.LINE_COOK_MEAT.getCharacterID()));
     }
 
     @Override
