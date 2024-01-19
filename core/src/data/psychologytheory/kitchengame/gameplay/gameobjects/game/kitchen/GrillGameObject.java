@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 public class GrillGameObject extends AbstractKitchenGameObject {
     private boolean isGrillOn = false;
+    private boolean renderSteak = false;
     private LineCookEntity lineCookEntity;
 
     public GrillGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
@@ -37,6 +38,7 @@ public class GrillGameObject extends AbstractKitchenGameObject {
 
         if (NotificationUtil.getInstance().isNotificationReceived(toggleGrillNotification)) {
             this.isGrillOn = !isGrillOn;
+            this.renderSteak = this.isGrillOn;
         }
 
         this.setAttemptToReceiveNotification(false);
@@ -48,6 +50,10 @@ public class GrillGameObject extends AbstractKitchenGameObject {
             RenderUtil.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX(), (int) this.getObjPosY());
         } else {
             RenderUtil.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+        }
+
+        if (renderSteak) {
+            RenderUtil.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 36);
         }
     }
 
