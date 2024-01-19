@@ -2,10 +2,10 @@ package data.psychologytheory.kitchengame.gameplay.scenes;
 
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
-import data.psychologytheory.kitchengame.gameplay.init.CharacterInit;
+import data.psychologytheory.kitchengame.gameplay.init.EntityInit;
 import data.psychologytheory.kitchengame.gameplay.init.GUIInit;
 import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
-import data.psychologytheory.kitchengame.gameplay.lists.CharacterList;
+import data.psychologytheory.kitchengame.gameplay.lists.EntityList;
 import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
 
@@ -37,7 +37,7 @@ public class GameplayScene extends AbstractScene {
 
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()));
 
-        GAME_OBJECT_LIST.add(CharacterInit.CHARACTER_MAP.get(CharacterList.CHEF.getCharacterID()));
+        GAME_OBJECT_LIST.add(EntityInit.ENTITY_MAP.get(EntityList.CHEF.getCharacterID()));
     }
 
     @Override

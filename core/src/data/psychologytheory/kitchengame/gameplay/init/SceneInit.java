@@ -22,9 +22,4 @@ public class SceneInit implements IContent {
         SCENE_MAP.get(SceneList.GAMEPLAY_SCENE.getSceneID()).addGameObjects();
         SCENE_MAP.get(SceneList.GAMEPLAY_SCENE.getSceneID()).addGUIComponents();
     }
-
-    @Override
-    public void disposeContents() {
-
-    }
 }

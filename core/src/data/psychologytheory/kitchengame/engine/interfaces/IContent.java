@@ -4,6 +4,4 @@ public interface IContent {
     void createContents();
 
     void loadContents();
-
-    void disposeContents();
 }

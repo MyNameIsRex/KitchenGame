@@ -133,7 +133,7 @@ public class AssetInit implements IContent {
         FONT_MAP.put(AssetList.PRESS_START_2P.getAssetID(), AssetList.PRESS_START_2P.getBitmapFont());
         FONT_MAP.put(AssetList.ROBOTO_BLACK.getAssetID(), AssetList.ROBOTO_BLACK.getBitmapFont());
     }
-    @Override
+
     public void disposeContents() {
         for (Texture texture : TEXTURE_MAP.values()) {
             texture.dispose();

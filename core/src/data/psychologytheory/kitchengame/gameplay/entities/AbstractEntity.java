@@ -1,20 +1,20 @@
-package data.psychologytheory.kitchengame.gameplay.characters;
+package data.psychologytheory.kitchengame.gameplay.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.animation.Animation;
-import data.psychologytheory.kitchengame.gameplay.characters.goals.AbstractCharacterGoals;
+import data.psychologytheory.kitchengame.gameplay.entities.goals.AbstractEntityGoals;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
-public class AbstractCharacter extends AbstractGameObject {
+public class AbstractEntity extends AbstractGameObject {
     private TextureRegion[] partialTextures;
 
     private float velocityX, velocityY;
     private Animation[] animations;
-    private AbstractCharacterGoals[] characterGoals;
+    private AbstractEntityGoals[] characterGoals;
 
-    public AbstractCharacter(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName,
-                             Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations) {
+    public AbstractEntity(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName,
+                          Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, zIndex);
         this.partialTextures = partialTextures;
         this.velocityX = velocityX;
@@ -46,11 +46,11 @@ public class AbstractCharacter extends AbstractGameObject {
         this.animations = animations;
     }
 
-    public AbstractCharacterGoals[] getCharacterGoals() {
+    public AbstractEntityGoals[] getCharacterGoals() {
         return characterGoals;
     }
 
-    public void setCharacterGoals(AbstractCharacterGoals[] characterGoals) {
+    public void setCharacterGoals(AbstractEntityGoals[] characterGoals) {
         this.characterGoals = characterGoals;
     }
 

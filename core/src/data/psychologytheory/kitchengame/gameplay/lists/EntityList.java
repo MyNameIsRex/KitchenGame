@@ -1,8 +1,8 @@
 package data.psychologytheory.kitchengame.gameplay.lists;
 
-import data.psychologytheory.kitchengame.gameplay.characters.AbstractCharacter;
+import data.psychologytheory.kitchengame.gameplay.entities.AbstractEntity;
 
-public enum CharacterList {
+public enum EntityList {
     CHEF(),
     SOUS_CHEF(),
     LINE_COOK_APPETIZER(),
@@ -12,14 +12,14 @@ public enum CharacterList {
     LINE_COOK_DESSERT();
 
     private int characterID;
-    private AbstractCharacter characterInstance;
+    private AbstractEntity characterInstance;
 
-    public void setCharacterInstance(AbstractCharacter characterInstance) {
+    public void setCharacterInstance(AbstractEntity characterInstance) {
         this.characterInstance = characterInstance;
         this.characterID = this.characterInstance.getObjID();
     }
 
-    public AbstractCharacter getCharacterInstance() {
+    public AbstractEntity getCharacterInstance() {
         return this.characterInstance;
     }
 

@@ -4,7 +4,7 @@ public class GameContentInitializer {
     private final AssetInit assetInit;
     private final DishInit dishInit;
     private final GameObjectInit gameObjectInit;
-    private final CharacterInit characterInit;
+    private final EntityInit entityInit;
     private final GUIInit guiInit;
     private final SceneInit sceneInit;
 
@@ -12,7 +12,7 @@ public class GameContentInitializer {
         this.assetInit = new AssetInit();
         this.dishInit = new DishInit();
         this.gameObjectInit = new GameObjectInit();
-        this.characterInit = new CharacterInit();
+        this.entityInit = new EntityInit();
         this.guiInit = new GUIInit();
         this.sceneInit = new SceneInit();
     }
@@ -21,7 +21,7 @@ public class GameContentInitializer {
         this.assetInit.createContents();
         this.dishInit.createContents();
         this.gameObjectInit.createContents();
-        this.characterInit.createContents();
+        this.entityInit.createContents();
         this.guiInit.createContents();
         this.sceneInit.createContents();
     }
@@ -30,7 +30,7 @@ public class GameContentInitializer {
         this.assetInit.loadContents();
         this.dishInit.loadContents();
         this.gameObjectInit.loadContents();
-        this.characterInit.loadContents();
+        this.entityInit.loadContents();
         this.guiInit.loadContents();
         this.sceneInit.loadContents();
     }

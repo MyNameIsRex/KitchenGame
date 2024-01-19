@@ -67,9 +67,4 @@ public class DishInit implements IContent {
         DISH_MAP.put(DishList.CARAMEL_PUDDING.getDishID(), DishList.CARAMEL_PUDDING.getDish());
         DISH_MAP.put(DishList.ICE_CREAM.getDishID(), DishList.ICE_CREAM.getDish());
     }
-
-    @Override
-    public void disposeContents() {
-
-    }
 }

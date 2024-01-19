@@ -1,6 +1,4 @@
-package data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget;
-
-import java.util.List;
+package data.psychologytheory.kitchengame.gameplay.entities.goals.movetotarget;
 
 public class WaypointHelper {
     public static WaypointHelper instance;

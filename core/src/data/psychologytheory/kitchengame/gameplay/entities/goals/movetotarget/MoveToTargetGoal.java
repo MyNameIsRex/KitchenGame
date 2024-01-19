@@ -1,30 +1,29 @@
-package data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget;
+package data.psychologytheory.kitchengame.gameplay.entities.goals.movetotarget;
 
-import data.psychologytheory.kitchengame.engine.animation.Animation;
 import data.psychologytheory.kitchengame.engine.utils.AnimationUtil;
-import data.psychologytheory.kitchengame.gameplay.characters.AbstractCharacter;
-import data.psychologytheory.kitchengame.gameplay.characters.goals.AbstractCharacterGoals;
+import data.psychologytheory.kitchengame.gameplay.entities.AbstractEntity;
+import data.psychologytheory.kitchengame.gameplay.entities.goals.AbstractEntityGoals;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoveToTargetGoal extends AbstractCharacterGoals {
+public class MoveToTargetGoal extends AbstractEntityGoals {
 
     //FACING: 0 -> Down, 1 -> Up, 2 -> Left, 3 -> Right
     private static int FACING = 0;
-    private float characterPosX, characterPosY;
+    private float entityPosX, entityPosY;
     private float targetPosX, targetPosY;
     private List<Waypoint> route;
     private int currentWaypointIndex = 0;
-    private final float characterVelocityX, characterVelocityY;
+    private final float entityVelocityX, entityVelocityY;
 
-    public MoveToTargetGoal(AbstractCharacter character) {
-        super(character);
-        this.characterPosX = character.getObjPosX();
-        this.characterPosY = character.getObjPosY();
-        this.characterVelocityX = character.getVelocityX();
-        this.characterVelocityY = character.getVelocityY();
+    public MoveToTargetGoal(AbstractEntity entity) {
+        super(entity);
+        this.entityPosX = entity.getObjPosX();
+        this.entityPosY = entity.getObjPosY();
+        this.entityVelocityX = entity.getVelocityX();
+        this.entityVelocityY = entity.getVelocityY();
         this.targetPosX = 0;
         this.targetPosY = 0;
         this.route = new ArrayList<>();
@@ -43,9 +42,9 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         this.walkAlongRoute();
 
         if (this.atEndWaypoint(this.currentWaypointIndex)) {
-            if (this.targetPosY > this.characterPosY) {
+            if (this.targetPosY > this.entityPosY) {
                 FACING = 1;
-            } else if (this.targetPosY < this.characterPosY) {
+            } else if (this.targetPosY < this.entityPosY) {
                 FACING = 0;
             }
             this.clearRoute();
@@ -66,15 +65,15 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         int routeSize = this.routeLength();
 
         //First waypoint
-        Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.characterPosX, this.characterPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
+        Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.entityPosX, this.entityPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
         this.route.add(beginingWaypoint);
 
         //Second waypoint
         if (routeSize >= 3) {
-            if (this.characterPosX < this.targetPosX || this.characterPosX == this.targetPosX) {
-                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.rightMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+            if (this.entityPosX < this.targetPosX || this.entityPosX == this.targetPosX) {
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.rightMostX, this.entityPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
             } else {
-                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.leftMostX, this.characterPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
+                this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.leftMostX, this.entityPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
             }
         }
 
@@ -131,16 +130,16 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         if (FACING != lastFacing) {
             switch (FACING) {
                 case 1:
-                    AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 4);
+                    AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 4);
                     break;
                 case 2:
-                    AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 8);
+                    AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 8);
                     break;
                 case 3:
-                    AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 12);
+                    AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 12);
                     break;
                 default:
-                    AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 0);
+                    AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 0);
                     break;
             }
         }
@@ -150,32 +149,32 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
         int maxIndex = this.route.size() - 1;
 
         if (shouldSlowDown()) {
-            this.getCharacter().setObjPosX((int) this.getCharacter().getObjPosX());
-            this.getCharacter().setObjPosY((int) this.getCharacter().getObjPosY());
-            this.getCharacter().setVelocityX(1.0F);
-            this.getCharacter().setVelocityY(1.0F);
+            this.getEntity().setObjPosX((int) this.getEntity().getObjPosX());
+            this.getEntity().setObjPosY((int) this.getEntity().getObjPosY());
+            this.getEntity().setVelocityX(1.0F);
+            this.getEntity().setVelocityY(1.0F);
         } else {
-            this.getCharacter().setVelocityX(this.characterVelocityX);
-            this.getCharacter().setVelocityY(this.characterVelocityY);
+            this.getEntity().setVelocityX(this.entityVelocityX);
+            this.getEntity().setVelocityY(this.entityVelocityY);
         }
 
-        this.moveCharacter(maxIndex);
+        this.moveentity(maxIndex);
 
-        if (this.characterPosY == WaypointHelper.topMostY) {
-            this.getCharacter().setZIndex(2);
-        } else if (this.characterPosY == WaypointHelper.centerY) {
-            this.getCharacter().setZIndex(4);
-        } else if (this.characterPosY == WaypointHelper.bottomMostY) {
-            this.getCharacter().setZIndex(5);
+        if (this.entityPosY == WaypointHelper.topMostY) {
+            this.getEntity().setZIndex(2);
+        } else if (this.entityPosY == WaypointHelper.centerY) {
+            this.getEntity().setZIndex(4);
+        } else if (this.entityPosY == WaypointHelper.bottomMostY) {
+            this.getEntity().setZIndex(5);
         }
     }
 
-    private void moveCharacter(int maxIndex) {
+    private void moveentity(int maxIndex) {
         if (this.atEndWaypoint(this.currentWaypointIndex)) {
-            if (targetPosY > characterPosY) {
-                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 4);
+            if (targetPosY > entityPosY) {
+                AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 4);
             } else {
-                AnimationUtil.getInstance().initialFrame(this.getCharacter().getAnimations()[0], 0);
+                AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 0);
             }
             return;
         }
@@ -187,42 +186,42 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
 
         switch (FACING) {
             case 0:
-                this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() - this.getCharacter().getVelocityY());
-                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 0, 3);
-                this.characterPosY = this.getCharacter().getObjPosY();
+                this.getEntity().setObjPosY(this.getEntity().getObjPosY() - this.getEntity().getVelocityY());
+                AnimationUtil.getInstance().playAnimation(this.getEntity().getAnimations()[0], 0, 3);
+                this.entityPosY = this.getEntity().getObjPosY();
                 break;
             case 1:
-                this.getCharacter().setObjPosY(this.getCharacter().getObjPosY() + this.getCharacter().getVelocityY());
-                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 4, 7);
-                this.characterPosY = this.getCharacter().getObjPosY();
+                this.getEntity().setObjPosY(this.getEntity().getObjPosY() + this.getEntity().getVelocityY());
+                AnimationUtil.getInstance().playAnimation(this.getEntity().getAnimations()[0], 4, 7);
+                this.entityPosY = this.getEntity().getObjPosY();
                 break;
             case 2:
-                this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() - this.getCharacter().getVelocityX());
-                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 8, 11);
-                this.characterPosX = this.getCharacter().getObjPosX();
+                this.getEntity().setObjPosX(this.getEntity().getObjPosX() - this.getEntity().getVelocityX());
+                AnimationUtil.getInstance().playAnimation(this.getEntity().getAnimations()[0], 8, 11);
+                this.entityPosX = this.getEntity().getObjPosX();
                 break;
             case 3:
-                this.getCharacter().setObjPosX(this.getCharacter().getObjPosX() + this.getCharacter().getVelocityX());
-                AnimationUtil.getInstance().playAnimation(this.getCharacter().getAnimations()[0], 12, 15);
-                this.characterPosX = this.getCharacter().getObjPosX();
+                this.getEntity().setObjPosX(this.getEntity().getObjPosX() + this.getEntity().getVelocityX());
+                AnimationUtil.getInstance().playAnimation(this.getEntity().getAnimations()[0], 12, 15);
+                this.entityPosX = this.getEntity().getObjPosX();
                 break;
         }
     }
 
     private boolean shouldSlowDown() {
         int nextIndex = Math.min(this.currentWaypointIndex + 1, this.route.size() - 1);
-        return (this.characterPosX + 8 >= this.route.get(nextIndex).getX() &&
-                this.characterPosX <= this.route.get(nextIndex).getX()) ||
-               (this.characterPosX - 8 <= this.route.get(nextIndex).getX() &&
-                this.characterPosX >= this.route.get(nextIndex).getX()) ||
-               (this.characterPosX + 8 >= this.route.get(nextIndex).getY() &&
-                this.characterPosX <= this.route.get(nextIndex).getY()) ||
-               (this.characterPosX - 8 <= this.route.get(nextIndex).getY() &&
-                this.characterPosX >= this.route.get(nextIndex).getY());
+        return (this.entityPosX + 8 >= this.route.get(nextIndex).getX() &&
+                this.entityPosX <= this.route.get(nextIndex).getX()) ||
+               (this.entityPosX - 8 <= this.route.get(nextIndex).getX() &&
+                this.entityPosX >= this.route.get(nextIndex).getX()) ||
+               (this.entityPosX + 8 >= this.route.get(nextIndex).getY() &&
+                this.entityPosX <= this.route.get(nextIndex).getY()) ||
+               (this.entityPosX - 8 <= this.route.get(nextIndex).getY() &&
+                this.entityPosX >= this.route.get(nextIndex).getY());
     }
 
     private boolean atNextWaypoint (Waypoint waypoint) {
-        return this.characterPosX == waypoint.getX() && this.characterPosY == waypoint.getY();
+        return this.entityPosX == waypoint.getX() && this.entityPosY == waypoint.getY();
     }
 
     private boolean atEndWaypoint(int currentWaypointIndex) {
@@ -239,13 +238,13 @@ public class MoveToTargetGoal extends AbstractCharacterGoals {
 
     private int routeLength() {
         if ((this.targetPosX >= WaypointHelper.leftMostX && this.targetPosX <= WaypointHelper.rightMostX) && (
-            (this.characterPosY == this.targetPosY - 32) || (this.characterPosY == this.targetPosY - 48))) {
+            (this.entityPosY == this.targetPosY - 32) || (this.entityPosY == this.targetPosY - 48))) {
             return 2;
         }
-        if ((this.characterPosY == WaypointHelper.topMostY && this.targetPosY - 32 == WaypointHelper.topMostY) ||
-            (this.characterPosY == WaypointHelper.topMostY && this.targetPosY - 48 == WaypointHelper.topMostY) ||
-            (this.characterPosY == WaypointHelper.centerY && this.targetPosY - 32 == WaypointHelper.centerY) ||
-            (this.characterPosY == WaypointHelper.centerY && this.targetPosY - 48 == WaypointHelper.centerY)) {
+        if ((this.entityPosY == WaypointHelper.topMostY && this.targetPosY - 32 == WaypointHelper.topMostY) ||
+            (this.entityPosY == WaypointHelper.topMostY && this.targetPosY - 48 == WaypointHelper.topMostY) ||
+            (this.entityPosY == WaypointHelper.centerY && this.targetPosY - 32 == WaypointHelper.centerY) ||
+            (this.entityPosY == WaypointHelper.centerY && this.targetPosY - 48 == WaypointHelper.centerY)) {
             return 3;
         }
         return 4;

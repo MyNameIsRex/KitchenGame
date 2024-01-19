@@ -12,8 +12,10 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject
 import data.psychologytheory.kitchengame.gameplay.gameobjects.StationaryGameObject;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class GameObjectInit implements IContent {
     public static final Map<Integer, AbstractGameObject> GAME_OBJECT_MAP = new HashMap<>();
@@ -129,6 +131,7 @@ public class GameObjectInit implements IContent {
         GAME_OBJECT_MAP.put(GameObjectList.HOTPLATE.getGameObjectID(),
                 GameObjectList.HOTPLATE.getGameObjectInstance());
 
+        //Change to stream at some point
         for (AbstractGameObject gameObject : GAME_OBJECT_MAP.values()) {
             if (gameObject instanceof AbstractKitchenGameObject) {
                 switch(gameObject.getObjName()) {
@@ -144,10 +147,5 @@ public class GameObjectInit implements IContent {
                 }
             }
         }
-    }
-
-    @Override
-    public void disposeContents() {
-
     }
 }

@@ -1,4 +1,4 @@
-package data.psychologytheory.kitchengame.gameplay.characters.goals.movetotarget;
+package data.psychologytheory.kitchengame.gameplay.entities.goals.movetotarget;
 
 public class Waypoint {
     private final float x, y;

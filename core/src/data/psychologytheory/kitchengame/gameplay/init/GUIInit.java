@@ -72,9 +72,4 @@ public class GUIInit implements IContent {
         GUI_MAP.put(GUIList.OPTIONS_MENU_BUTTON.getGUIID(), GUIList.OPTIONS_MENU_BUTTON.getGUIComponent());
         GUI_MAP.put(GUIList.ACHIEVEMENTS_MENU_BUTTON.getGUIID(), GUIList.ACHIEVEMENTS_MENU_BUTTON.getGUIComponent());
     }
-
-    @Override
-    public void disposeContents() {
-
-    }
 }
