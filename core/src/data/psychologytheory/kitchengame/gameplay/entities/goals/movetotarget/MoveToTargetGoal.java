@@ -16,8 +16,10 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
     private float targetPosX, targetPosY;
     private List<Waypoint> route;
     private int currentWaypointIndex = 0;
+    private int maxWaypointSize = 0;
     private final float entityVelocityX, entityVelocityY;
     private boolean goalSuccessful = false;
+    private boolean hasReachedGoalBefore = false;
 
     public MoveToTargetGoal(AbstractEntity entity) {
         super(entity);
@@ -32,20 +34,22 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
 
     @Override
     public void executeGoal() {
-        this.setInProgress(true);
+        if (this.isInProgress()) {
+            //Generate Route
+            if (this.route.isEmpty()) {
+                this.generateRoute();
+            }
 
-        //Generate Route
-        if (this.route.isEmpty()) {
-            this.generateRoute();
+            this.determineDirection();
+            this.walkAlongRoute();
+
+            //TODO: Fix looping goal success check
+            if (!this.hasReachedGoalBefore && this.entityAtEndWaypoint(this.currentWaypointIndex) && !this.goalSuccessful) {
+                this.goalSuccessful = true;
+                this.hasReachedGoalBefore = true;
+            }
         }
-
-        this.determineDirection();
-        this.walkAlongRoute();
-
-        //TODO: Fix looping goal success check
-        if (this.entityAtEndWaypoint(this.currentWaypointIndex) && !this.goalSuccessful) {
-            this.goalSuccessful = true;
-        }
+        System.out.println("Current Waypoint Index: " + this.currentWaypointIndex);
     }
 
     @Override
@@ -65,20 +69,23 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         } else if (this.targetPosY < this.entityPosY) {
             AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 0);
         }
-        this.clearRoute();
+        this.hasReachedGoalBefore = false;
         this.currentWaypointIndex = 0;
-        System.out.println("Resetting!");
+        if (!this.route.isEmpty()) {
+            this.route.clear();
+        }
+        this.setGoalSuccessful(false);
     }
 
     private void generateRoute() {
-        int routeSize = this.routeLength();
+        this.maxWaypointSize = this.routeLength();
 
         //First waypoint
         Waypoint beginingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.entityPosX, this.entityPosY, WaypointHelper.WaypointType.BEGINNING.getTypeID());
         this.route.add(beginingWaypoint);
 
         //Second waypoint
-        if (routeSize >= 3) {
+        if (this.maxWaypointSize >= 3) {
             if (this.entityPosX < this.targetPosX || this.entityPosX == this.targetPosX) {
                 this.route.add(WaypointHelper.getInstance().createNewWaypoint(WaypointHelper.rightMostX, this.entityPosY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
             } else {
@@ -87,7 +94,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         }
 
         //Third waypoint
-        if (routeSize == 4) {
+        if (this.maxWaypointSize == 4) {
             if (this.targetPosY == WaypointHelper.topMostY + 32) {
                 this.route.add(WaypointHelper.getInstance().createNewWaypoint(this.route.get(1).getX(), WaypointHelper.topMostY, WaypointHelper.WaypointType.INTERMEDIATE.getTypeID()));
             } else if (this.targetPosY == WaypointHelper.centerY + 32) {
@@ -107,7 +114,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         if (this.targetPosY == WaypointHelper.bottomMostY - 32) {
             endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY + 32, WaypointHelper.WaypointType.GOAL.getTypeID());
         } else if (this.targetPosY == WaypointHelper.centerY + 48 || this.targetPosY == WaypointHelper.topMostY + 48) {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 16, WaypointHelper.WaypointType.GOAL.getTypeID());
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 48, WaypointHelper.WaypointType.GOAL.getTypeID());
         } else {
             endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 32, WaypointHelper.WaypointType.GOAL.getTypeID());
         }
@@ -238,7 +245,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
     }
 
     private boolean entityAtEndWaypoint(int currentWaypointIndex) {
-        return this.route.get(currentWaypointIndex).getX() == this.entityPosX && this.route.get(currentWaypointIndex).getY() == this.entityPosY;
+        return this.route.get(this.maxWaypointSize - 1).getX() == this.entityPosX && this.route.get(this.maxWaypointSize - 1).getY() == this.entityPosY;
     }
 
     private void incrementWaypointIndex(int maxIndex) {
@@ -267,8 +274,10 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         this.route.clear();
     }
 
-    public void setTarget (AbstractGameObject target){
+    public void setupGoal (AbstractGameObject target) {
         this.targetPosX = target.getObjPosX();
         this.targetPosY = target.getObjPosY();
+        this.clearRoute();
+        this.setInProgress(true);
     }
 }

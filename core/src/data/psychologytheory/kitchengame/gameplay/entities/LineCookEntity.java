@@ -43,16 +43,33 @@ public class LineCookEntity extends AbstractEntity {
         Notification outboundNotification;
         Notification inboundNotification;
 
-        this.canMoveToFridge = KeyboardInput.isKeyPressed(Input.Keys.C);
-
-        if (canMoveToFridge) {
+        if (KeyboardInput.isKeyPressed(Input.Keys.C)) {
             this.setupTarget(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.FRIDGE.getGameObjectID()));
             this.moveToFridge = true;
         }
 
         if (moveToFridge) {
             this.moveToFridge();
-            System.out.println("Is Goal Successful? " + this.getCharacterGoals()[0].isGoalSuccessful());
+        }
+
+        if (canMoveToStation) {
+            this.setupTarget(this.station);
+            this.moveToStation = true;
+            this.canMoveToStation = false;
+        }
+
+        if (this.moveToStation) {
+            this.moveToStation();
+        }
+
+        if (canMoveToHotplate) {
+            this.setupTarget(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.HOTPLATE.getGameObjectID()));
+            this.moveToHotplate = true;
+            this.canMoveToHotplate = false;
+        }
+
+        if (moveToHotplate) {
+            this.moveToHotplate();
         }
     }
 
@@ -64,16 +81,35 @@ public class LineCookEntity extends AbstractEntity {
 
     private void setupTarget(AbstractGameObject target) {
         if (this.getCharacterGoals()[0] instanceof MoveToTargetGoal) {
-            this.getCharacterGoals()[0].setGoalSuccessful(false);
-            ((MoveToTargetGoal) this.getCharacterGoals()[0]).setTarget(target);
+            ((MoveToTargetGoal) this.getCharacterGoals()[0]).setupGoal(target);
         }
     }
 
     private void moveToFridge() {
         if (this.getCharacterGoals()[0].isGoalSuccessful()) {
-            this.getCharacterGoals()[0].resetGoal();
             this.moveToFridge = false;
             this.canMoveToStation = true;
+            this.getCharacterGoals()[0].resetGoal();
+            return;
+        }
+        this.getCharacterGoals()[0].executeGoal();
+    }
+
+    private void moveToStation() {
+        if (this.getCharacterGoals()[0].isGoalSuccessful()) {
+            this.moveToStation = false;
+            this.canMoveToHotplate = true;
+            this.getCharacterGoals()[0].resetGoal();
+            return;
+        }
+        this.getCharacterGoals()[0].executeGoal();
+    }
+
+    private void moveToHotplate() {
+        if (this.getCharacterGoals()[0].isGoalSuccessful()) {
+            this.moveToHotplate = false;
+            this.getCharacterGoals()[0].resetGoal();
+            return;
         }
         this.getCharacterGoals()[0].executeGoal();
     }
