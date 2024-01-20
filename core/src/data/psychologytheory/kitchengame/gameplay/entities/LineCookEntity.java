@@ -40,9 +40,6 @@ public class LineCookEntity extends AbstractEntity {
 
     @Override
     public void update() {
-        Notification outboundNotification;
-        Notification inboundNotification;
-
         if (KeyboardInput.isKeyPressed(Input.Keys.C)) {
             this.setupTarget(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.FRIDGE.getGameObjectID()));
             this.moveToFridge = true;
@@ -60,6 +57,10 @@ public class LineCookEntity extends AbstractEntity {
 
         if (this.moveToStation) {
             this.moveToStation();
+        }
+
+        if (canStartCooking) {
+            this.cook();
         }
 
         if (canMoveToHotplate) {
@@ -98,7 +99,7 @@ public class LineCookEntity extends AbstractEntity {
     private void moveToStation() {
         if (this.getCharacterGoals()[0].isGoalSuccessful()) {
             this.moveToStation = false;
-            this.canMoveToHotplate = true;
+            this.canStartCooking = true;
             this.getCharacterGoals()[0].resetGoal();
             return;
         }
@@ -112,5 +113,40 @@ public class LineCookEntity extends AbstractEntity {
             return;
         }
         this.getCharacterGoals()[0].executeGoal();
+    }
+
+    private void cook() {
+        if (!this.cooking) {
+            this.setOutboundNotification(NotificationUtil.getInstance().createNotification(this.station));
+            NotificationUtil.getInstance().sendNotification(this.getOutboundNotification());
+            NotificationUtil.getInstance().deliverToken(this.getOutboundNotification(), this.station.getObjName());
+            this.cooking = true;
+        }
+
+        if (this.cooking) {
+            this.getCharacterGoals()[1].executeGoal();
+        }
+
+        if (!this.shouldFlip && this.getCharacterGoals()[1] instanceof CookingGoal && ((CookingGoal) this.getCharacterGoals()[1]).getCookingTimer() >= (float) this.station.getDishes()[0].getDishCookTime() / 2) {
+            this.shouldFlip = true;
+        }
+
+        if (this.cooking && this.shouldFlip) {
+            this.setOutboundNotification(NotificationUtil.getInstance().createNotification(this.station));
+            NotificationUtil.getInstance().sendNotification(this.getOutboundNotification());
+            NotificationUtil.getInstance().deliverToken(this.getOutboundNotification(), this.station.getObjName());
+            this.shouldFlip = false;
+        }
+
+        if (this.cooking && this.getCharacterGoals()[1] instanceof CookingGoal &&
+                ((CookingGoal) this.getCharacterGoals()[1]).getCookingTimer() >= (float) this.station.getDishes()[0].getDishCookTime()) {
+            this.setOutboundNotification(NotificationUtil.getInstance().createNotification(this.station));
+            NotificationUtil.getInstance().sendNotification(this.getOutboundNotification());
+            NotificationUtil.getInstance().deliverToken(this.getOutboundNotification(), this.station.getObjName());
+            this.cooking = false;
+            this.shouldFlip = false;
+            this.canStartCooking = false;
+            this.canMoveToHotplate = true;
+        }
     }
 }

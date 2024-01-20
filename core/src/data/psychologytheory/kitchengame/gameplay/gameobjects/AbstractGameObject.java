@@ -1,6 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.gameobjects;
 
 import com.badlogic.gdx.graphics.Texture;
+import data.psychologytheory.kitchengame.engine.notification.Notification;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 
 public abstract class AbstractGameObject {
@@ -13,6 +14,9 @@ public abstract class AbstractGameObject {
     private String receivedToken;
     private boolean attemptToReceiveNotification = false;
     private boolean canCreateNotification = false;
+
+    private Notification outboundNotification;
+    private Notification inboundNotification;
 
     public AbstractGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, int zIndex) {
         this.objID = objID;
@@ -113,5 +117,21 @@ public abstract class AbstractGameObject {
 
     public void setAttemptToReceiveNotification(boolean attemptToReceiveNotification) {
         this.attemptToReceiveNotification = attemptToReceiveNotification;
+    }
+
+    public Notification getOutboundNotification() {
+        return outboundNotification;
+    }
+
+    public void setOutboundNotification(Notification outboundNotification) {
+        this.outboundNotification = outboundNotification;
+    }
+
+    public Notification getInboundNotification() {
+        return inboundNotification;
+    }
+
+    public void setInboundNotification(Notification inboundNotification) {
+        this.inboundNotification = inboundNotification;
     }
 }
