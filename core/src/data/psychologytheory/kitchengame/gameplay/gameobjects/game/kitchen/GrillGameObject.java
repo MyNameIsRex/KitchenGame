@@ -2,22 +2,19 @@ package data.psychologytheory.kitchengame.gameplay.gameobjects.game.kitchen;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import data.psychologytheory.kitchengame.KitchenGame;
 import data.psychologytheory.kitchengame.engine.io.MouseInput;
 import data.psychologytheory.kitchengame.engine.notification.Notification;
 import data.psychologytheory.kitchengame.engine.utils.NotificationUtil;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.entities.LineCookEntity;
-import data.psychologytheory.kitchengame.gameplay.init.EntityInit;
-import data.psychologytheory.kitchengame.gameplay.lists.EntityList;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class GrillGameObject extends AbstractKitchenGameObject {
     private boolean isGrillOn = false;
     private boolean renderSteak = false;
+    private boolean shouldFlip = false;
     private LineCookEntity lineCookEntity;
 
     public GrillGameObject(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture[] textures, int zIndex, boolean canMove, boolean canInteract) {
@@ -26,19 +23,29 @@ public class GrillGameObject extends AbstractKitchenGameObject {
 
     @Override
     public void update() {
+        Notification outboundNotification;
+        Notification inboundNotification;
+
         if (!this.isAttemptToReceiveNotification()) {
             return;
         }
 
-        System.out.println(this.getReceivedToken());
-        Notification toggleGrillNotification = NotificationUtil.getInstance().receiveNotification(this.getReceivedToken());
-        if (Objects.equals(toggleGrillNotification, null)) {
+        inboundNotification = NotificationUtil.getInstance().receiveNotification(this.getReceivedToken());
+        if (Objects.equals(inboundNotification, null)) {
             return;
         }
 
-        if (NotificationUtil.getInstance().isNotificationReceived(toggleGrillNotification)) {
-            this.isGrillOn = !isGrillOn;
-            this.renderSteak = this.isGrillOn;
+        if (NotificationUtil.getInstance().isNotificationReceived(inboundNotification)) {
+            if (!this.isGrillOn) {
+                this.isGrillOn = true;
+                this.renderSteak = true;
+            } else if (this.renderSteak && !this.shouldFlip) {
+                this.shouldFlip = true;
+            } else {
+                this.isGrillOn = false;
+                this.renderSteak = false;
+                this.shouldFlip = false;
+            }
         }
 
         this.setAttemptToReceiveNotification(false);
@@ -46,13 +53,17 @@ public class GrillGameObject extends AbstractKitchenGameObject {
 
     @Override
     public void render() {
-        if (isGrillOn) {
-            RenderUtil.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX(), (int) this.getObjPosY());
-        } else {
+        if (!this.isGrillOn) {
             RenderUtil.getInstance().renderTexture(this.getTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY());
+        } else {
+            RenderUtil.getInstance().renderTexture(this.getTextures()[1], (int) this.getObjPosX(), (int) this.getObjPosY());
         }
 
-        if (renderSteak) {
+        if (this.renderSteak) {
+            if (this.shouldFlip) {
+                RenderUtil.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[1], (int) this.getObjPosX(), (int) this.getObjPosY() + 36);
+                return;
+            }
             RenderUtil.getInstance().renderPartialTexture(this.getDishes()[0].getDishPartialTextures()[0], (int) this.getObjPosX(), (int) this.getObjPosY() + 36);
         }
     }

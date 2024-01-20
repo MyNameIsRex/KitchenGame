@@ -17,6 +17,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
     private List<Waypoint> route;
     private int currentWaypointIndex = 0;
     private final float entityVelocityX, entityVelocityY;
+    private boolean goalSuccessful = false;
 
     public MoveToTargetGoal(AbstractEntity entity) {
         super(entity);
@@ -41,24 +42,32 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         this.determineDirection();
         this.walkAlongRoute();
 
-        if (this.atEndWaypoint(this.currentWaypointIndex)) {
-            if (this.targetPosY > this.entityPosY) {
-                FACING = 1;
-            } else if (this.targetPosY < this.entityPosY) {
-                FACING = 0;
-            }
-            this.clearRoute();
+        //TODO: Fix looping goal success check
+        if (this.entityAtEndWaypoint(this.currentWaypointIndex) && !this.goalSuccessful) {
+            this.goalSuccessful = true;
         }
     }
 
     @Override
     public boolean isGoalSuccessful() {
-        if (this.atEndWaypoint(this.currentWaypointIndex)) {
-            this.setInProgress(false);
-            this.currentWaypointIndex = 0;
-            return true;
+        return goalSuccessful;
+    }
+
+    @Override
+    public void setGoalSuccessful(boolean isGoalSuccessful) {
+        this.goalSuccessful = isGoalSuccessful;
+    }
+
+    @Override
+    public void resetGoal() {
+        if (this.targetPosY > this.entityPosY) {
+            AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 4);
+        } else if (this.targetPosY < this.entityPosY) {
+            AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 0);
         }
-        return false;
+        this.clearRoute();
+        this.currentWaypointIndex = 0;
+        System.out.println("Resetting!");
     }
 
     private void generateRoute() {
@@ -98,9 +107,9 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         if (this.targetPosY == WaypointHelper.bottomMostY - 32) {
             endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY + 32, WaypointHelper.WaypointType.GOAL.getTypeID());
         } else if (this.targetPosY == WaypointHelper.centerY + 48 || this.targetPosY == WaypointHelper.topMostY + 48) {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 48, WaypointHelper.WaypointType.GOAL.getTypeID());
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 16, WaypointHelper.WaypointType.GOAL.getTypeID());
         } else {
-            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY, WaypointHelper.WaypointType.GOAL.getTypeID());
+            endingWaypoint = WaypointHelper.getInstance().createNewWaypoint(this.targetPosX, this.targetPosY - 32, WaypointHelper.WaypointType.GOAL.getTypeID());
         }
 
         this.route.add(endingWaypoint);
@@ -158,7 +167,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
             this.getEntity().setVelocityY(this.entityVelocityY);
         }
 
-        this.moveentity(maxIndex);
+        this.moveEntity(maxIndex);
 
         if (this.entityPosY == WaypointHelper.topMostY) {
             this.getEntity().setZIndex(2);
@@ -169,7 +178,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         }
     }
 
-    private void moveentity(int maxIndex) {
+    private void moveEntity(int maxIndex) {
         if (this.atEndWaypoint(this.currentWaypointIndex)) {
             if (targetPosY > entityPosY) {
                 AnimationUtil.getInstance().initialFrame(this.getEntity().getAnimations()[0], 4);
@@ -228,6 +237,10 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
         return currentWaypointIndex == this.route.size() - 1;
     }
 
+    private boolean entityAtEndWaypoint(int currentWaypointIndex) {
+        return this.route.get(currentWaypointIndex).getX() == this.entityPosX && this.route.get(currentWaypointIndex).getY() == this.entityPosY;
+    }
+
     private void incrementWaypointIndex(int maxIndex) {
         if (this.currentWaypointIndex + 1 >= maxIndex) {
             this.currentWaypointIndex = maxIndex;
@@ -238,7 +251,7 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
 
     private int routeLength() {
         if ((this.targetPosX >= WaypointHelper.leftMostX && this.targetPosX <= WaypointHelper.rightMostX) && (
-            (this.entityPosY == this.targetPosY - 32) || (this.entityPosY == this.targetPosY - 48))) {
+                (this.entityPosY == this.targetPosY - 32) || (this.entityPosY == this.targetPosY - 48))) {
             return 2;
         }
         if ((this.entityPosY == WaypointHelper.topMostY && this.targetPosY - 32 == WaypointHelper.topMostY) ||

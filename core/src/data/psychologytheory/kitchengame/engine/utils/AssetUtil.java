@@ -15,7 +15,7 @@ public class AssetUtil {
         int index = 0;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                textureRegions[index] = AssetUtil.getInstance().createPartialTexture(texture, startX + width * i, startY + height * j, width, height);
+                textureRegions[index] = AssetUtil.getInstance().createPartialTexture(texture, startX + width * j, startY + height * i, width, height);
                 index++;
             }
         }

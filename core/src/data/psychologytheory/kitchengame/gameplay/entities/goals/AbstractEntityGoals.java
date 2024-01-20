@@ -12,6 +12,8 @@ public abstract class AbstractEntityGoals {
     public abstract void executeGoal();
 
     public abstract boolean isGoalSuccessful();
+    public abstract void setGoalSuccessful(boolean isGoalSuccessful);
+    public abstract void resetGoal();
 
     public AbstractEntity getEntity() {
         return entity;

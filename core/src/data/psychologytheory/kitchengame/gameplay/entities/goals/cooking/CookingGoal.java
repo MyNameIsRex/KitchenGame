@@ -19,18 +19,26 @@ public class CookingGoal extends AbstractEntityGoals {
     public void executeGoal() {
         this.setInProgress(true);
         this.incrementCookingTimer(Gdx.graphics.getDeltaTime());
-        System.out.println("Current cooking timer: " + this.cookingTimer);
     }
 
     @Override
     public boolean isGoalSuccessful() {
         this.setInProgress(false);
         if (isCookingComplete(this.dish)) {
-            System.out.println("Cooking Complete!");
             this.cookingTimer = 0;
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void setGoalSuccessful(boolean isGoalSuccessful) {
+
+    }
+
+    @Override
+    public void resetGoal() {
+
     }
 
     private void incrementCookingTimer(float deltaTime) {
@@ -39,5 +47,13 @@ public class CookingGoal extends AbstractEntityGoals {
 
     private boolean isCookingComplete(AbstractDish dish) {
         return this.cookingTimer > dish.getDishCookTime();
+    }
+
+    public float getCookingTimer() {
+        return this.cookingTimer;
+    }
+
+    public AbstractDish getDish() {
+        return this.dish;
     }
 }
