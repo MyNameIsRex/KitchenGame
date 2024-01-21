@@ -23,22 +23,13 @@ public class CookingGoal extends AbstractEntityGoals {
 
     @Override
     public boolean isGoalSuccessful() {
-        this.setInProgress(false);
-        if (isCookingComplete(this.dish)) {
-            this.cookingTimer = 0;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void setGoalSuccessful(boolean isGoalSuccessful) {
-
+        return isCookingComplete(this.dish);
     }
 
     @Override
     public void resetGoal() {
-
+        this.setInProgress(false);
+        this.cookingTimer = 0;
     }
 
     private void incrementCookingTimer(float deltaTime) {

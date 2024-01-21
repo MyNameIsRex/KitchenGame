@@ -5,14 +5,13 @@ import data.psychologytheory.kitchengame.gameplay.entities.AbstractEntity;
 public abstract class AbstractEntityGoals {
     private AbstractEntity entity;
     private boolean inProgress = false;
+    private boolean isGoalSuccessful = false;
+
     public AbstractEntityGoals(AbstractEntity entity) {
         this.entity = entity;
     }
 
     public abstract void executeGoal();
-
-    public abstract boolean isGoalSuccessful();
-    public abstract void setGoalSuccessful(boolean isGoalSuccessful);
     public abstract void resetGoal();
 
     public AbstractEntity getEntity() {
@@ -29,5 +28,17 @@ public abstract class AbstractEntityGoals {
 
     public void setInProgress(boolean inProgress) {
         this.inProgress = inProgress;
+    }
+
+    public void setEntity(AbstractEntity entity) {
+        this.entity = entity;
+    }
+
+    public boolean isGoalSuccessful() {
+        return isGoalSuccessful;
+    }
+
+    public void setGoalSuccessful(boolean goalSuccessful) {
+        isGoalSuccessful = goalSuccessful;
     }
 }

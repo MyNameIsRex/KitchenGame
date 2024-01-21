@@ -18,7 +18,6 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
     private int currentWaypointIndex = 0;
     private int maxWaypointSize = 0;
     private final float entityVelocityX, entityVelocityY;
-    private boolean goalSuccessful = false;
     private boolean hasReachedGoalBefore = false;
 
     public MoveToTargetGoal(AbstractEntity entity) {
@@ -44,22 +43,12 @@ public class MoveToTargetGoal extends AbstractEntityGoals {
             this.walkAlongRoute();
 
             //TODO: Fix looping goal success check
-            if (!this.hasReachedGoalBefore && this.entityAtEndWaypoint(this.currentWaypointIndex) && !this.goalSuccessful) {
-                this.goalSuccessful = true;
+            if (!this.hasReachedGoalBefore && this.entityAtEndWaypoint(this.currentWaypointIndex) && !this.isGoalSuccessful()) {
+                this.setGoalSuccessful(true);
                 this.hasReachedGoalBefore = true;
             }
         }
         System.out.println("Current Waypoint Index: " + this.currentWaypointIndex);
-    }
-
-    @Override
-    public boolean isGoalSuccessful() {
-        return goalSuccessful;
-    }
-
-    @Override
-    public void setGoalSuccessful(boolean isGoalSuccessful) {
-        this.goalSuccessful = isGoalSuccessful;
     }
 
     @Override

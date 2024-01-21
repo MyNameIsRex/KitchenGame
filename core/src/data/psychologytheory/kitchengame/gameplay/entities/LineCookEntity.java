@@ -30,7 +30,7 @@ public class LineCookEntity extends AbstractEntity {
     private boolean shouldFlip = false;
     private boolean canMoveToHotplate = false;
     private boolean moveToHotplate = false;
-    private int globalTime = 0;
+    private boolean flipped = false;
 
     public LineCookEntity(int objID, float objWidth, float objHeight, float objPosX, float objPosY, String objName, Texture texture, TextureRegion[] partialTextures, int zIndex, float velocityX, float velocityY, Animation[] animations, AbstractKitchenGameObject assignedStation) {
         super(objID, objWidth, objHeight, objPosX, objPosY, objName, texture, partialTextures, zIndex, velocityX, velocityY, animations);
@@ -61,6 +61,8 @@ public class LineCookEntity extends AbstractEntity {
 
         if (canStartCooking) {
             this.cook();
+            this.changeDishTexture();
+            this.completeCooking();
         }
 
         if (canMoveToHotplate) {
@@ -122,22 +124,21 @@ public class LineCookEntity extends AbstractEntity {
             NotificationUtil.getInstance().deliverToken(this.getOutboundNotification(), this.station.getObjName());
             this.cooking = true;
         }
+        this.getCharacterGoals()[1].executeGoal();
+    }
 
-        if (this.cooking) {
-            this.getCharacterGoals()[1].executeGoal();
-        }
-
-        if (!this.shouldFlip && this.getCharacterGoals()[1] instanceof CookingGoal && ((CookingGoal) this.getCharacterGoals()[1]).getCookingTimer() >= (float) this.station.getDishes()[0].getDishCookTime() / 2) {
-            this.shouldFlip = true;
-        }
-
-        if (this.cooking && this.shouldFlip) {
+    private void changeDishTexture() {
+        this.shouldFlip = !this.flipped && this.getCharacterGoals()[1] instanceof CookingGoal && (int) ((CookingGoal) this.getCharacterGoals()[1]).getCookingTimer() == this.station.getDishes()[0].getDishCookTime() / 2;
+        if (this.shouldFlip) {
             this.setOutboundNotification(NotificationUtil.getInstance().createNotification(this.station));
             NotificationUtil.getInstance().sendNotification(this.getOutboundNotification());
             NotificationUtil.getInstance().deliverToken(this.getOutboundNotification(), this.station.getObjName());
             this.shouldFlip = false;
+            this.flipped = true;
         }
+    }
 
+    private void completeCooking() {
         if (this.cooking && this.getCharacterGoals()[1] instanceof CookingGoal &&
                 ((CookingGoal) this.getCharacterGoals()[1]).getCookingTimer() >= (float) this.station.getDishes()[0].getDishCookTime()) {
             this.setOutboundNotification(NotificationUtil.getInstance().createNotification(this.station));
@@ -147,6 +148,8 @@ public class LineCookEntity extends AbstractEntity {
             this.shouldFlip = false;
             this.canStartCooking = false;
             this.canMoveToHotplate = true;
+            this.flipped = false;
+            this.getCharacterGoals()[1].resetGoal();
         }
     }
 }
