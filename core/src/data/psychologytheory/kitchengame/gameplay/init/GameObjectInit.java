@@ -22,9 +22,8 @@ public class GameObjectInit implements IContent {
 
     @Override
     public void createContents() {
-        GameObjectList.KITCHEN_BACKGROUND.setGameObjectInstance(new StationaryGameObject(0, 640, 384,
-                RenderUtil.moveToCenter(KitchenGame.currentWidth, 640),
-                RenderUtil.moveToCenter(KitchenGame.currentHeight, 384), "kitchen_background",
+        GameObjectList.KITCHEN_BACKGROUND.setGameObjectInstance(new StationaryGameObject(0, 1280, 720,
+                0, 0, "kitchen_background",
                 AssetList.KITCHEN_BACKGROUND.getTexture(), 0, false));
 
         GameObjectList.FRIDGE.setGameObjectInstance(new FridgeGameObject(1, 64, 128,
