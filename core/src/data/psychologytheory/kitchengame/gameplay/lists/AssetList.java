@@ -1,6 +1,7 @@
 package data.psychologytheory.kitchengame.gameplay.lists;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -58,12 +59,12 @@ public enum AssetList {
     ICE_CREAM(30, "textures/gameplay/dishes/desserts/ice_cream.png"),
 
     //GUI
-    CURRENT_ORDER_PROMPT(31, "textures/gui/gameplay/current_order_prompt.png"),
-    COUNTDOWN_PROMPT(32, "textures/gui/gameplay/countdown_prompt.png"),
-    INFORMATION_PROMPT(33, "textures/gui/gameplay/information_prompt.png"),
-    CURRENT_TIME_PROMPT(34, "textures/gui/gameplay/current_time_prompt.png"),
-    OPTIONS_MENU_BUTTON(35, "textures/gui/gameplay/options_menu_button.png"),
-    ACHIEVEMENTS_MENU_BUTTON(36, "textures/gui/gameplay/achievements_menu_button.png"),
+    GUI_ICONS(31, "textures/gui/gameplay/icons.png"),
+    GUI_GRAY(0.369F, 0.369F, 0.369F, 1F),
+    GUI_LIGHT_GRAY(0.549F, 0.549F, 0.549F, 1F),
+    GUI_YELLOW(0.98F, 0.820F, 0.231F, 1F),
+    GUI_LIGHT_YELLOW(1F, 0.898F, 0.533F, 1F),
+    GUI_CREAM(0.969F, 0.933F, 0.804F, 1F),
 
     //Fonts
     PRESS_START_2P(50, "textures/gui/fonts/press_start_2p/press_start_2p.ttf"),
@@ -77,10 +78,15 @@ public enum AssetList {
     private Texture texture;
     private TextureRegion[] textureRegions;
     private BitmapFont bitmapFont;
+    private Color color;
 
     AssetList(int assetID, String assetLocation) {
         this.assetID = assetID;
         this.assetLocation = assetLocation;
+    }
+
+    AssetList(float r, float g, float b, float a) {
+        this.color = new Color(r, g, b ,a);
     }
 
     public int getAssetID() {

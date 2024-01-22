@@ -4,12 +4,14 @@ import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUICom
 
 public enum GUIList {
     //Gameplay Scene
+    GAMEPLAY_MENU_BAR(),
     CURRENT_ORDER_PROMPT(),
     COUNTDOWN_PROMPT(),
     INFORMATION_PROMPT(),
     CURRENT_TIME_PROMPT(),
     OPTIONS_MENU_BUTTON(),
     ACHIEVEMENTS_MENU_BUTTON();
+
     //Main Menu Scene
     //Options Scene
 

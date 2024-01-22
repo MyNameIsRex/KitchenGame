@@ -63,12 +63,7 @@ public class AssetInit implements IContent {
         AssetList.ICE_CREAM.setTexture(new Texture(Gdx.files.internal(AssetList.ICE_CREAM.getAssetLocation())));
 
         //GUI
-        AssetList.CURRENT_ORDER_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.CURRENT_ORDER_PROMPT.getAssetLocation())));
-        AssetList.COUNTDOWN_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.COUNTDOWN_PROMPT.getAssetLocation())));
-        AssetList.INFORMATION_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.INFORMATION_PROMPT.getAssetLocation())));
-        AssetList.CURRENT_TIME_PROMPT.setTexture(new Texture(Gdx.files.internal(AssetList.CURRENT_TIME_PROMPT.getAssetLocation())));
-        AssetList.OPTIONS_MENU_BUTTON.setTexture(new Texture(Gdx.files.internal(AssetList.OPTIONS_MENU_BUTTON.getAssetLocation())));
-        AssetList.ACHIEVEMENTS_MENU_BUTTON.setTexture(new Texture(Gdx.files.internal(AssetList.ACHIEVEMENTS_MENU_BUTTON.getAssetLocation())));
+        AssetList.GUI_ICONS.setTexture(new Texture(Gdx.files.internal(AssetList.GUI_ICONS.getAssetLocation())));
 
         //Font
         AssetList.PRESS_START_2P.setBitmapFont(new FreeTypeFontGenerator(Gdx.files.internal(AssetList.PRESS_START_2P.getAssetLocation())),
@@ -121,13 +116,7 @@ public class AssetInit implements IContent {
         TEXTURE_MAP.put(AssetList.ICE_CREAM.getAssetID(), AssetList.ICE_CREAM.getTexture());
 
         //GUI
-        TEXTURE_MAP.put(AssetList.CURRENT_ORDER_PROMPT.getAssetID(), AssetList.CURRENT_ORDER_PROMPT.getTexture());
-
-        TEXTURE_MAP.put(AssetList.COUNTDOWN_PROMPT.getAssetID(), AssetList.COUNTDOWN_PROMPT.getTexture());
-        TEXTURE_MAP.put(AssetList.INFORMATION_PROMPT.getAssetID(), AssetList.INFORMATION_PROMPT.getTexture());
-        TEXTURE_MAP.put(AssetList.CURRENT_TIME_PROMPT.getAssetID(), AssetList.CURRENT_TIME_PROMPT.getTexture());
-        TEXTURE_MAP.put(AssetList.OPTIONS_MENU_BUTTON.getAssetID(), AssetList.OPTIONS_MENU_BUTTON.getTexture());
-        TEXTURE_MAP.put(AssetList.ACHIEVEMENTS_MENU_BUTTON.getAssetID(), AssetList.ACHIEVEMENTS_MENU_BUTTON.getTexture());
+        TEXTURE_MAP.put(AssetList.GUI_ICONS.getAssetID(), AssetList.GUI_ICONS.getTexture());
 
         //Font
         FONT_MAP.put(AssetList.PRESS_START_2P.getAssetID(), AssetList.PRESS_START_2P.getBitmapFont());
