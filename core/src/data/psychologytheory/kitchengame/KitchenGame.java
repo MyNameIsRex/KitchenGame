@@ -45,10 +45,7 @@ public class KitchenGame extends ApplicationAdapter {
 		this.currentDisplayMode = Gdx.graphics.getDisplayMode();
 		SceneHelper.getInstance().updateScene(SceneHelper.currentSceneID);
 		ScreenUtils.clear(0, 0, 0, 1);
-
-		RenderUtil.getInstance().startRendering();
 		SceneHelper.getInstance().renderScene(SceneHelper.currentSceneID);
-		RenderUtil.getInstance().endRendering();
 
 		if (KeyboardInput.isKeyPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();

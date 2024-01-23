@@ -7,7 +7,6 @@ import data.psychologytheory.kitchengame.engine.animation.Animation;
 import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
 import data.psychologytheory.kitchengame.engine.utils.AnimationUtil;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
-import data.psychologytheory.kitchengame.gameplay.entities.goals.cooking.CookingGoal;
 
 public class ChefEntity extends AbstractEntity {
     private int currentGoal = 0;

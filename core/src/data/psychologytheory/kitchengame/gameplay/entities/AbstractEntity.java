@@ -6,7 +6,7 @@ import data.psychologytheory.kitchengame.engine.animation.Animation;
 import data.psychologytheory.kitchengame.gameplay.entities.goals.AbstractEntityGoals;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
 
-public class AbstractEntity extends AbstractGameObject {
+public abstract class AbstractEntity extends AbstractGameObject {
     private TextureRegion[] partialTextures;
 
     private float velocityX, velocityY;

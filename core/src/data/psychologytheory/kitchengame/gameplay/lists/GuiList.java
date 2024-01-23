@@ -1,8 +1,8 @@
 package data.psychologytheory.kitchengame.gameplay.lists;
 
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGuiComponent;
 
-public enum GUIList {
+public enum GuiList {
     //Gameplay Scene
     GAMEPLAY_MENU_BAR(),
     CURRENT_ORDER_PROMPT(),
@@ -16,22 +16,22 @@ public enum GUIList {
     //Options Scene
 
     private int guiID;
-    private AbstractGUIComponent guiComponent;
+    private AbstractGuiComponent guiComponent;
 
-    public void setGUIComponent(AbstractGUIComponent guiComponent) {
+    public void setGuiComponent(AbstractGuiComponent guiComponent) {
         this.guiComponent = guiComponent;
         this.guiID = guiComponent.getObjID();
     }
 
-    public int getGUIID() {
+    public int getGuiID() {
         return guiID;
     }
 
-    public void setGUIID(int guiID) {
+    public void setGuiID(int guiID) {
         this.guiID = guiID;
     }
 
-    public AbstractGUIComponent getGUIComponent() {
+    public AbstractGuiComponent getGuiComponent() {
         return guiComponent;
     }
 }

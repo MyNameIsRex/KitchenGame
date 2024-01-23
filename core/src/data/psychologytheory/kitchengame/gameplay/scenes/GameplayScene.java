@@ -1,20 +1,20 @@
 package data.psychologytheory.kitchengame.gameplay.scenes;
 
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGuiComponent;
 import data.psychologytheory.kitchengame.gameplay.init.EntityInit;
-import data.psychologytheory.kitchengame.gameplay.init.GUIInit;
 import data.psychologytheory.kitchengame.gameplay.init.GameObjectInit;
+import data.psychologytheory.kitchengame.gameplay.init.GuiInit;
 import data.psychologytheory.kitchengame.gameplay.lists.EntityList;
-import data.psychologytheory.kitchengame.gameplay.lists.GUIList;
 import data.psychologytheory.kitchengame.gameplay.lists.GameObjectList;
+import data.psychologytheory.kitchengame.gameplay.lists.GuiList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameplayScene extends AbstractScene {
     public static final List<AbstractGameObject> GAME_OBJECT_LIST = new ArrayList<>();
-    public static final List<AbstractGUIComponent> GUI_COMPONENT_LIST = new ArrayList<>();
+    public static final List<AbstractGuiComponent> GUI_COMPONENT_LIST = new ArrayList<>();
     @Override
     public void addGameObjects() {
         GAME_OBJECT_LIST.add(GameObjectInit.GAME_OBJECT_MAP.get(GameObjectList.KITCHEN_BACKGROUND.getGameObjectID()));
@@ -42,8 +42,9 @@ public class GameplayScene extends AbstractScene {
     }
 
     @Override
-    public void addGUIComponents() {
-
+    public void addGuiComponents() {
+        GUI_COMPONENT_LIST.add(GuiInit.GUI_MAP.get(GuiList.GAMEPLAY_MENU_BAR.getGuiID()));
+        GUI_COMPONENT_LIST.add(GuiInit.GUI_MAP.get(GuiList.CURRENT_ORDER_PROMPT.getGuiID()));
     }
 
     @Override
@@ -52,7 +53,7 @@ public class GameplayScene extends AbstractScene {
     }
 
     @Override
-    public List<AbstractGUIComponent> getGUIComponentList() {
+    public List<AbstractGuiComponent> getGuiComponentList() {
         return GUI_COMPONENT_LIST;
     }
 }

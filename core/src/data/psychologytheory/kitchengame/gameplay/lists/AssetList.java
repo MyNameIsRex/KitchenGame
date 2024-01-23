@@ -134,4 +134,12 @@ public enum AssetList {
         this.bitmapFont = fontGenerator.generateFont(fontParameter);
         fontGenerator.dispose();
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }

@@ -5,7 +5,7 @@ public class GameContentInitializer {
     private final DishInit dishInit;
     private final GameObjectInit gameObjectInit;
     private final EntityInit entityInit;
-    private final GUIInit guiInit;
+    private final GuiInit guiInit;
     private final SceneInit sceneInit;
 
     public GameContentInitializer() {
@@ -13,7 +13,7 @@ public class GameContentInitializer {
         this.dishInit = new DishInit();
         this.gameObjectInit = new GameObjectInit();
         this.entityInit = new EntityInit();
-        this.guiInit = new GUIInit();
+        this.guiInit = new GuiInit();
         this.sceneInit = new SceneInit();
     }
 

@@ -20,6 +20,6 @@ public class SceneInit implements IContent {
     public void loadContents() {
         SCENE_MAP.put(SceneList.GAMEPLAY_SCENE.getSceneID(), SceneList.GAMEPLAY_SCENE.getScene());
         SCENE_MAP.get(SceneList.GAMEPLAY_SCENE.getSceneID()).addGameObjects();
-        SCENE_MAP.get(SceneList.GAMEPLAY_SCENE.getSceneID()).addGUIComponents();
+        SCENE_MAP.get(SceneList.GAMEPLAY_SCENE.getSceneID()).addGuiComponents();
     }
 }

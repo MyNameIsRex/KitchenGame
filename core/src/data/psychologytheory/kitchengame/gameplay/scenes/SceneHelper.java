@@ -13,11 +13,11 @@ public class SceneHelper {
     }
 
     public void updateScene(int sceneID) {
-        SceneInit.SCENE_MAP.get(sceneID).update(SceneInit.SCENE_MAP.get(sceneID).getGameObjectList(), SceneInit.SCENE_MAP.get(sceneID).getGUIComponentList());
+        SceneInit.SCENE_MAP.get(sceneID).update(SceneInit.SCENE_MAP.get(sceneID).getGameObjectList(), SceneInit.SCENE_MAP.get(sceneID).getGuiComponentList());
     }
 
     public void renderScene(int sceneID) {
-        SceneInit.SCENE_MAP.get(sceneID).render(SceneInit.SCENE_MAP.get(sceneID).getGameObjectList(), SceneInit.SCENE_MAP.get(sceneID).getGUIComponentList());
+        SceneInit.SCENE_MAP.get(sceneID).render(SceneInit.SCENE_MAP.get(sceneID).getGameObjectList(), SceneInit.SCENE_MAP.get(sceneID).getGuiComponentList());
     }
 
     public static SceneHelper getInstance() {

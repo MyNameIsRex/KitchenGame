@@ -1,17 +1,17 @@
 package data.psychologytheory.kitchengame.gameplay.scenes;
 
+import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
 import data.psychologytheory.kitchengame.gameplay.gameobjects.AbstractGameObject;
-import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGUIComponent;
+import data.psychologytheory.kitchengame.gameplay.gameobjects.gui.AbstractGuiComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public abstract class AbstractScene {
     public abstract void addGameObjects();
-    public abstract void addGUIComponents();
+    public abstract void addGuiComponents();
 
-    public void update(List<AbstractGameObject> gameObjectList, List<AbstractGUIComponent> guiComponentList) {
+    public void update(List<AbstractGameObject> gameObjectList, List<AbstractGuiComponent> guiComponentList) {
         if (!gameObjectList.isEmpty()) {
             for (AbstractGameObject gameObject : gameObjectList) {
                 gameObject.update();
@@ -19,12 +19,12 @@ public abstract class AbstractScene {
         }
 
         if (!guiComponentList.isEmpty()) {
-            for (AbstractGUIComponent guiComponent : guiComponentList) {
+            for (AbstractGuiComponent guiComponent : guiComponentList) {
                 guiComponent.update();
             }
         }
     }
-    public void render(List<AbstractGameObject> gameObjectList, List<AbstractGUIComponent> guiComponentList) {
+    public void render(List<AbstractGameObject> gameObjectList, List<AbstractGuiComponent> guiComponentList) {
         if (!gameObjectList.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 int currentZIndex = i;
@@ -52,7 +52,7 @@ public abstract class AbstractScene {
         return new ArrayList<>();
     }
 
-    public List<AbstractGUIComponent> getGUIComponentList() {
+    public List<AbstractGuiComponent> getGuiComponentList() {
         return new ArrayList<>();
     }
 }

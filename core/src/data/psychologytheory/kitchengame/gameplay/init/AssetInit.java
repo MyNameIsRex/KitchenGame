@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import data.psychologytheory.kitchengame.engine.interfaces.IContent;
 import data.psychologytheory.kitchengame.gameplay.lists.AssetList;
 
@@ -16,11 +17,13 @@ import java.util.Map;
 public class AssetInit implements IContent {
     public static final Map<Integer, Texture> TEXTURE_MAP = new HashMap<>();
     public static final Map<Integer, BitmapFont> FONT_MAP = new HashMap<>();
-    public static SpriteBatch spriteBatch;
+    public static SpriteBatch globalSpriteBatch;
+    public static ShapeRenderer globalShapeRenderer;
 
     @Override
     public void createContents() {
-        getSpriteBatch();
+        getGlobalSpriteBatch();
+
         //Gameplay
         AssetList.KITCHEN_BACKGROUND.setTexture(new Texture(Gdx.files.internal(AssetList.KITCHEN_BACKGROUND.getAssetLocation())));
 
@@ -132,13 +135,20 @@ public class AssetInit implements IContent {
             font.dispose();
         }
 
-        getSpriteBatch().dispose();
+        getGlobalSpriteBatch().dispose();
     }
 
-    public static SpriteBatch getSpriteBatch() {
-        if (spriteBatch == null) {
-            spriteBatch = new SpriteBatch();
+    public static SpriteBatch getGlobalSpriteBatch() {
+        if (globalSpriteBatch == null) {
+            globalSpriteBatch = new SpriteBatch();
         }
-        return spriteBatch;
+        return globalSpriteBatch;
+    }
+
+    public static ShapeRenderer getGlobalShapeRenderer() {
+        if (globalShapeRenderer == null) {
+            globalShapeRenderer = new ShapeRenderer();
+        }
+        return globalShapeRenderer;
     }
 }

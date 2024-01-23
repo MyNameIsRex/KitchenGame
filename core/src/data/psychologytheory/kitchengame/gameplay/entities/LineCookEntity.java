@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import data.psychologytheory.kitchengame.engine.animation.Animation;
 import data.psychologytheory.kitchengame.engine.io.KeyboardInput;
-import data.psychologytheory.kitchengame.engine.notification.Notification;
 import data.psychologytheory.kitchengame.engine.utils.AnimationUtil;
 import data.psychologytheory.kitchengame.engine.utils.NotificationUtil;
 import data.psychologytheory.kitchengame.engine.utils.RenderUtil;
