@@ -6,7 +6,7 @@ public enum GuiList {
     //Gameplay Scene
     GAMEPLAY_MENU_BAR(),
     CURRENT_ORDER_PROMPT(),
-    COUNTDOWN_PROMPT(),
+    WALLET_PROMPT(),
     INFORMATION_PROMPT(),
     CURRENT_TIME_PROMPT(),
     OPTIONS_MENU_BUTTON(),

@@ -8,7 +8,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 public class DesktopLauncher {
 
 	public static final int WIDTH = 1280, HEIGHT = 720;
-	public static final String VERSION = "v0.1.3.1_2";
+	public static final String VERSION = "v0.1.3.1_3";
 
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
