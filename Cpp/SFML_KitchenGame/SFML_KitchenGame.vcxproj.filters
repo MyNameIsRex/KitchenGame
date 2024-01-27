@@ -18,5 +18,13 @@
     <ClCompile Include="data\psychologytheory\kitchengame\main\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data\psychologytheory\kitchengame\game\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data\psychologytheory\kitchengame\game\Game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

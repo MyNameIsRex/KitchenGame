@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="data\psychologytheory\kitchengame\game\Game.cpp" />
     <ClCompile Include="data\psychologytheory\kitchengame\main\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data\psychologytheory\kitchengame\game\Game.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
