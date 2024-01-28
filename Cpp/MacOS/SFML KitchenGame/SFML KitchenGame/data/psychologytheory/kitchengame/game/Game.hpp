@@ -22,11 +22,12 @@ class Game
 {
     int mWidth, mHeight;
     string mTitle;
-    RenderWindow mWindow;
+    RenderWindow *mWindow;
     Event mEvent;
     
 public:
     Game(int width, int height, string title);
+    virtual ~Game();
     
     void Initialize();
     
