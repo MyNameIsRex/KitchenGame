@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "../logger/Logger.hpp"
 
 #endif /* Game_hpp */
 
@@ -24,6 +25,7 @@ class Game
     string mTitle;
     RenderWindow *mWindow;
     Event mEvent;
+    Logger* mLogger;
     
 public:
     Game(int width, int height, string title);

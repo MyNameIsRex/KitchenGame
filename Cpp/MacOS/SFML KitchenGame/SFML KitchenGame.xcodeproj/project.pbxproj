@@ -39,8 +39,11 @@
 		7D61901E2B65FC7A00BF8CEF /* OpenAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6190032B65FC7A00BF8CEF /* OpenAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D61901F2B65FC7A00BF8CEF /* ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6190042B65FC7A00BF8CEF /* ogg.framework */; };
 		7D6190202B65FC7A00BF8CEF /* ogg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6190042B65FC7A00BF8CEF /* ogg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7D6190282B65FDBD00BF8CEF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D6190272B65FDBD00BF8CEF /* main.cpp */; };
+		7D6190282B65FDBD00BF8CEF /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D6190272B65FDBD00BF8CEF /* Main.cpp */; };
 		7D61902B2B65FDE200BF8CEF /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D6190292B65FDE200BF8CEF /* Game.cpp */; };
+		7D6190332B6687A500BF8CEF /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D6190312B6687A500BF8CEF /* Logger.cpp */; };
+		7D6190392B668CD900BF8CEF /* AbstractGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D6190372B668CD900BF8CEF /* AbstractGameState.cpp */; };
+		7D61903C2B668E2E00BF8CEF /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D61903A2B668E2E00BF8CEF /* GameState.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,9 +94,15 @@
 		7D6190022B65FC7A00BF8CEF /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "../../../../../../../Library/Frameworks/sfml-graphics.framework"; sourceTree = "<group>"; };
 		7D6190032B65FC7A00BF8CEF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = ../../../../../../../Library/Frameworks/OpenAL.framework; sourceTree = "<group>"; };
 		7D6190042B65FC7A00BF8CEF /* ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ogg.framework; path = ../../../../../../../Library/Frameworks/ogg.framework; sourceTree = "<group>"; };
-		7D6190272B65FDBD00BF8CEF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7D6190272B65FDBD00BF8CEF /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		7D6190292B65FDE200BF8CEF /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		7D61902A2B65FDE200BF8CEF /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		7D6190312B6687A500BF8CEF /* Logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		7D6190322B6687A500BF8CEF /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
+		7D6190372B668CD900BF8CEF /* AbstractGameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractGameState.cpp; sourceTree = "<group>"; };
+		7D6190382B668CD900BF8CEF /* AbstractGameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AbstractGameState.hpp; sourceTree = "<group>"; };
+		7D61903A2B668E2E00BF8CEF /* GameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		7D61903B2B668E2E00BF8CEF /* GameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +216,8 @@
 		7D6190242B65FD7D00BF8CEF /* kitchengame */ = {
 			isa = PBXGroup;
 			children = (
+				7D6190302B66879500BF8CEF /* logger */,
+				7D61902C2B6683EA00BF8CEF /* state */,
 				7D6190262B65FD9000BF8CEF /* main */,
 				7D6190252B65FD8B00BF8CEF /* game */,
 			);
@@ -225,9 +236,29 @@
 		7D6190262B65FD9000BF8CEF /* main */ = {
 			isa = PBXGroup;
 			children = (
-				7D6190272B65FDBD00BF8CEF /* main.cpp */,
+				7D6190272B65FDBD00BF8CEF /* Main.cpp */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		7D61902C2B6683EA00BF8CEF /* state */ = {
+			isa = PBXGroup;
+			children = (
+				7D6190372B668CD900BF8CEF /* AbstractGameState.cpp */,
+				7D6190382B668CD900BF8CEF /* AbstractGameState.hpp */,
+				7D61903A2B668E2E00BF8CEF /* GameState.cpp */,
+				7D61903B2B668E2E00BF8CEF /* GameState.hpp */,
+			);
+			path = state;
+			sourceTree = "<group>";
+		};
+		7D6190302B66879500BF8CEF /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				7D6190312B6687A500BF8CEF /* Logger.cpp */,
+				7D6190322B6687A500BF8CEF /* Logger.hpp */,
+			);
+			path = logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,8 +355,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D6190282B65FDBD00BF8CEF /* main.cpp in Sources */,
+				7D6190282B65FDBD00BF8CEF /* Main.cpp in Sources */,
+				7D61903C2B668E2E00BF8CEF /* GameState.cpp in Sources */,
+				7D6190392B668CD900BF8CEF /* AbstractGameState.cpp in Sources */,
 				7D61902B2B65FDE200BF8CEF /* Game.cpp in Sources */,
+				7D6190332B6687A500BF8CEF /* Logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

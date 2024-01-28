@@ -11,5 +11,5 @@
 
 int main()
 {
-    Game(1280, 720, "SFML Kitchen Game");
+    Game game(1280, 720, "SFML Kitchen Game");
 }

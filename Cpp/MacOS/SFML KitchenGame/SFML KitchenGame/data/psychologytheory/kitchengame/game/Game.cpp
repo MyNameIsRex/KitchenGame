@@ -10,21 +10,28 @@
 
 Game::Game(int width, int height, string title)
 {
+    this -> mLogger = new Logger;
+    
     this -> mWidth = width;
     this -> mHeight = height;
     this -> mTitle = title;
     
     this -> mWindow = new RenderWindow(VideoMode(this -> mWidth, this -> mHeight), this -> mTitle);
+    this -> mLogger -> LogInfo("Window has been created");
+    
     this -> Initialize();
 }
 
 Game::~Game()
 {
     delete this -> mWindow;
+    this -> mLogger -> LogWarning("Logger to be destroyed!");
+    delete this -> mLogger;
 }
 
 void Game::Initialize()
 {
+    this -> mLogger -> LogInfo("Initialization Complete!");
     this -> Run();
 }
 
@@ -47,11 +54,13 @@ void Game::Run()
 
 void Game::Update()
 {
+    this -> mLogger -> LogInfo("Updating!");
     //Update Stuff Here
 }
 
 void Game::Render()
 {
+    this -> mLogger -> LogInfo("Rendering");
     this -> mWindow -> clear();
     
     //Render Stuff Here
