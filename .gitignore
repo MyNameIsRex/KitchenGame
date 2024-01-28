@@ -113,5 +113,5 @@ Thumbs.db
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
 
-/Cpp/SFML_KitchenGame/x64/
-/Cpp/SFML_KitchenGame/.vs/
+/Cpp/Windows/SFML_KitchenGame/x64/
+/Cpp/Windows/SFML_KitchenGame/.vs
