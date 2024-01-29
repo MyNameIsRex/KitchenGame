@@ -133,10 +133,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="data\psychologytheory\kitchengame\game\Game.cpp" />
+    <ClCompile Include="data\psychologytheory\kitchengame\logger\Logger.cpp" />
     <ClCompile Include="data\psychologytheory\kitchengame\main\main.cpp" />
+    <ClCompile Include="data\psychologytheory\kitchengame\state\AbstractGameState.cpp" />
+    <ClCompile Include="data\psychologytheory\kitchengame\state\GameStateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\psychologytheory\kitchengame\game\Game.hpp" />
+    <ClInclude Include="data\psychologytheory\kitchengame\logger\Logger.hpp" />
+    <ClInclude Include="data\psychologytheory\kitchengame\state\AbstractGameState.hpp" />
+    <ClInclude Include="data\psychologytheory\kitchengame\state\GameStateManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

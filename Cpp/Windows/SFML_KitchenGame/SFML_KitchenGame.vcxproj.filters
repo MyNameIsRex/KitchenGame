@@ -21,9 +21,27 @@
     <ClCompile Include="data\psychologytheory\kitchengame\game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data\psychologytheory\kitchengame\logger\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\psychologytheory\kitchengame\state\GameStateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\psychologytheory\kitchengame\state\AbstractGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\psychologytheory\kitchengame\game\Game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\psychologytheory\kitchengame\logger\Logger.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\psychologytheory\kitchengame\state\GameStateManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\psychologytheory\kitchengame\state\AbstractGameState.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

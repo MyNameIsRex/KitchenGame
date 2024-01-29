@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "../state/GameStateManager.hpp"
+#include "../logger/Logger.hpp"
 
 using namespace std;
 using namespace sf;
@@ -13,6 +15,8 @@ class Game
 
 	RenderWindow *mWindow;
 	Event mEvent;
+
+	GameStateManager *mGameStateMngr;
 
 public:
 	Game(int width, int height, string title);
