@@ -8,17 +8,17 @@
 
 #include "Logger.hpp"
 
-void Logger::LogInfo(const char* message)
+void Logger::LogInfo(string message)
 {
     cout << "[Info] " << message << endl;
 }
 
-void Logger::LogWarning(const char* message)
+void Logger::LogWarning(string message)
 {
     cout << "[Warning] " << message << endl;
 }
 
-void Logger::LogError(const char* message)
+void Logger::LogError(string message)
 {
     cout << "[Error] " << message << endl;
 }

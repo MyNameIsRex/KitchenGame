@@ -10,60 +10,65 @@
 
 Game::Game(int width, int height, string title)
 {
-    this -> mLogger = new Logger;
+    this->mWidth = width;
+    this->mHeight = height;
+    this->mTitle = title;
     
-    this -> mWidth = width;
-    this -> mHeight = height;
-    this -> mTitle = title;
+    this->mWindow = new RenderWindow(VideoMode(this -> mWidth, this -> mHeight), this -> mTitle);
+    Logger::LogInfo("Window has been created");
     
-    this -> mWindow = new RenderWindow(VideoMode(this -> mWidth, this -> mHeight), this -> mTitle);
-    this -> mLogger -> LogInfo("Window has been created");
+    this->mGameStateMngr = new GameStateManager();
+    Logger::LogInfo("Game State Manager has been created!");
     
-    this -> Initialize();
+    this->Initialize();
 }
 
 Game::~Game()
 {
-    delete this -> mWindow;
-    this -> mLogger -> LogWarning("Logger to be destroyed!");
-    delete this -> mLogger;
+    Logger::LogWarning("Game State Manager to be destroyed!");
+    delete this->mGameStateMngr;
+    
+    Logger::LogWarning("Window to be destroyed!");
+    delete this->mWindow;
 }
 
 void Game::Initialize()
 {
-    this -> mLogger -> LogInfo("Initialization Complete!");
-    this -> Run();
+    Logger::LogInfo("Initialization Complete!");
+    this->Run();
 }
 
 void Game::Run()
 {
-    while (this -> mWindow->isOpen())
+    while (this->mWindow->isOpen())
     {
-        while (this -> mWindow -> pollEvent(this -> mEvent))
+        while (this->mWindow->pollEvent(this->mEvent))
         {
-            if (this -> mEvent.type == Event::Closed)
+            if (this->mEvent.type == Event::Closed)
             {
-                this -> mWindow -> close();
+                this->mWindow->close();
             }
             
-            this -> Update();
-            this -> Render();
+            this->Update();
+            this->Render();
         }
     }
 }
 
 void Game::Update()
 {
-    this -> mLogger -> LogInfo("Updating!");
+    Logger::LogInfo("Updating!");
     //Update Stuff Here
+    this->mGameStateMngr->UpdateCurrentGameState();
 }
 
 void Game::Render()
 {
-    this -> mLogger -> LogInfo("Rendering");
-    this -> mWindow -> clear();
+    Logger::LogInfo("Rendering");
+    this->mWindow->clear();
     
     //Render Stuff Here
+    this->mGameStateMngr->RenderCurrentGameState();
     
-    this -> mWindow -> display();
+    this->mWindow->display();
 }

@@ -6,21 +6,21 @@
 //  Copyright © 2024 PsychologyTheory. All rights reserved.
 //
 
-#ifndef Logger_hpp
-#define Logger_hpp
+#ifndef LOGGER
+#define LOGGER
 
 #include <iostream>
-
-#endif /* Logger_hpp */
 
 using namespace std;
 
 class Logger
 {
 public:
-    void LogInfo(const char* message);
+    static void LogInfo(string message);
     
-    void LogWarning(const char* message);
+    static void LogWarning(string message);
     
-    void LogError(const char* message);
+    static void LogError(string message);
 };
+
+#endif

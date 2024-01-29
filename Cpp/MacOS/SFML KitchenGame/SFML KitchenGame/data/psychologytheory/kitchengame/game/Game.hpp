@@ -7,14 +7,11 @@
 //
 
 #pragma once
-#ifndef Game_hpp
-#define Game_hpp
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../logger/Logger.hpp"
-
-#endif /* Game_hpp */
+#include "../state/GameStateManager.hpp"
 
 using namespace std;
 using namespace sf;
@@ -25,11 +22,12 @@ class Game
     string mTitle;
     RenderWindow *mWindow;
     Event mEvent;
-    Logger* mLogger;
+    
+    GameStateManager *mGameStateMngr;
     
 public:
     Game(int width, int height, string title);
-    virtual ~Game();
+    ~Game();
     
     void Initialize();
     
