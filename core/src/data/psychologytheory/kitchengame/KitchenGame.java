@@ -1,7 +1,9 @@
 package data.psychologytheory.kitchengame;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import data.psychologytheory.kitchengame.gameplay.scenes.SceneUtil;
 
 public class KitchenGame extends ApplicationAdapter
 {
@@ -16,6 +18,7 @@ public class KitchenGame extends ApplicationAdapter
 		currentHeight = HEIGHT;
 
 		this.spriteBatch = new SpriteBatch();
+		SceneUtil.createScenes();
 	}
 
 	@Override
@@ -29,15 +32,17 @@ public class KitchenGame extends ApplicationAdapter
 	@Override
 	public void render ()
 	{
+		SceneUtil.updateCurrentScene(Gdx.graphics.getDeltaTime());
 		this.spriteBatch.begin();
-		//Render here
 
+		//Render here
+		SceneUtil.renderCurrentScene(this.spriteBatch);
 		this.spriteBatch.end();
 	}
 
 	@Override
 	public void dispose ()
 	{
-
+		this.spriteBatch.dispose();
 	}
 }
