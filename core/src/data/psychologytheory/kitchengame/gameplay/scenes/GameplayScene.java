@@ -16,8 +16,8 @@ public class GameplayScene extends Scene
     public void createScene()
     {
         this.kitchenBackground = new Entity("kitchen_background");
-        this.kitchenBackground.addComponent(new TransformationComponent((float) (KitchenGame.WIDTH / 2 - 360),
-                (float) ((KitchenGame.HEIGHT / 2) - 160), 720, 320));
+        this.kitchenBackground.addComponent(new TransformationComponent((float) (KitchenGame.WIDTH / 2 - 400),
+                (float) ((KitchenGame.HEIGHT / 2) - 200), 800, 400));
         this.kitchenBackground.addComponent(new TextureComponent("textures/gameplay/kitchen_background.png"));
         this.kitchenBackground.addComponent(new RenderComponent(this.kitchenBackground));
     }
